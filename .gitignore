@@ -1,2 +1,4 @@
-*.csv
-*.json
+d*.csv
+output.csv
+output.json
+*pycache
