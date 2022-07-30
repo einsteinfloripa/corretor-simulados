@@ -13,7 +13,11 @@ def formatar_dados():
             del dados_aplicacao[0] #Excluir header
 
             for respostas in dados_aplicacao:
-                dados.append(respostas[2:3] + respostas[4:6] + respostas[8:9])
+                lingua = ""
+                dia = aplicacao[0:2]
+                if dia == "d1":
+                    lingua = aplicacao[3:4]
+                dados.append([dia, lingua] + respostas[2:3] + respostas[4:6] + respostas[8:9])
     return dados
 
 
