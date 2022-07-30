@@ -15,12 +15,12 @@ def formatar_dados(aplicacoes):
                 dia = aplicacao[0:2]
 
                 respostaVazia = respostas[5] == None
-                formulasd1 = dia == "d1" and respostas[4] == "22"
-                formulasd2 = dia == "d2" and respostas[4] == "20"
+                formulasd1 = dia == "d1" and re.sub(r'\s+', '', respostas[4]) == "22"
+                formulasd2 = dia == "d2" and re.sub(r'\s+', '', respostas[4]) == "20"
 
                 if respostaVazia or formulasd1 or formulasd2:
                     continue
-                
+
                 if dia == "d1":
                     lingua = aplicacao[3:4]
 
