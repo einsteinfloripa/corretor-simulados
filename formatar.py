@@ -31,28 +31,28 @@ def formatar_dados(aplicacoes):
 
 
 def formatar_resposta(resposta):
-    resposta = re.sub(r'\s+', '', resposta)
+    resposta_formatada = re.sub(r'\s+', '', resposta)
 
-    if resposta == "":
+    if resposta_formatada == "":
         #print("Resposta é nula")
         return None
 
-    if "=" and "+" in resposta:
-        resposta = extrair_da_soma(resposta)
+    if "=" and "+" in resposta_formatada:
+        resposta_formatada = extrair_da_soma(resposta_formatada)
 
-    if not resposta.isdigit():
+    if not resposta_formatada.isdigit():
         #print(resposta + " não é um número")
         return f"ANULADA ('{resposta}' não é um número inteiro válido)"
 
-    resposta = int(resposta)
+    resposta_formatada = int(resposta_formatada)
 
-    if resposta < 1 or resposta > 99:
+    if resposta_formatada < 1 or resposta_formatada > 99:
         #print( str(resposta) + " é um número inválido")
         return f"ANULADA ('{resposta}' não um numero inteiro entre 1 e 99)"
 
-    return resposta
+    return resposta_formatada
 
 
 def extrair_da_soma(resposta):
-    print(resposta)
+    #print(resposta)
     return resposta.split("=")[1]
