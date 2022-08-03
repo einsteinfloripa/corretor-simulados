@@ -4,6 +4,7 @@ from formatar import *
 from variaveis import *
 from corrigir import *
 from somatorio import *
+from gerar_json import *
 
 dados_formatados = formatar_dados(aplicacoes)
 
@@ -20,3 +21,5 @@ correcao = corrigir(dados_formatados, gabarito)
 with open("./output/correcao.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerows(correcao)
+
+disciplinas = gerar_json_disciplinas(correcao, gabarito)

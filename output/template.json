@@ -9,11 +9,25 @@
     "total": 8.48,
     "subjects": {
       "matematica": {
-        "general_percent": 20,
-        "subject_note": 20,
-        "detailed": [24, 20, 16],
-        "theme": ["abc", "abc", "abc"],
-        "level": ["Fácil", "Média", "Díficil"]
+        "matematica": {
+          "general_percent": 20,
+          "subject_note": 20,
+          "detailed": [24, 20, 16],
+          "theme": ["abc", "abc", "abc"],
+          "level": ["Fácil", "Média", "Díficil"]
+        }
+      },
+      "Primeira Língua": {
+        "Português/ Literatura": {
+          "general_percent": 20,
+          "subject_note": 20,
+          "detailed": [24, 20, 16],
+          "theme": ["abc", "abc", "abc"],
+          "level": ["Fácil", "Média", "Díficil"]
+        }
+      },
+      "Ciências Humanas e Sociais": {
+        "Interdiciplinar": {}
       }
     },
     "writing": {

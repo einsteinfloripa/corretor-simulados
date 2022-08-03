@@ -1,6 +1,7 @@
 from variaveis import *
 from somatorio import *
 
+
 def corrigir(lista_respostas, gabarito):
     dados_alunos = {}
     resultado_alunos = {}
@@ -15,7 +16,7 @@ def corrigir(lista_respostas, gabarito):
 
     for resposta in lista_respostas:
         if resposta[0] == "d1":
-            numero_questao = int(resposta[3]) 
+            numero_questao = int(resposta[3])
             dados_alunos[resposta[2]][numero_questao-1] = resposta[4]
         elif resposta[0] == "d2":
             numero_questao = int(resposta[3]) + 42
@@ -27,29 +28,29 @@ def corrigir(lista_respostas, gabarito):
             questao[2] += 42
         for aluno, respostas in dados_alunos.items():
             if questao[1] == "d1" and questao[2] >= 14 and questao[2] <= 21:
-                #Verifica se é a segunda lingua do aluno
+                # Verifica se é a segunda lingua do aluno
                 if not questao[0][0] == respostas[-1].upper():
                     continue
 
             if questao[3] == "ANULADA":
-                #Questão foi anulada no gabarito
+                # Questão foi anulada no gabarito
                 resultado_alunos[aluno][questao[2]] = 100
                 continue
 
             if "ANULADA" in str(dados_alunos[aluno][questao[2]]):
-                #Aluno teve sua resposta anulada
-                resultado_alunos[aluno][questao[2]] = str(dados_alunos[aluno][int(questao[2])])
+                # Aluno teve sua resposta anulada
+                resultado_alunos[aluno][questao[2]] = str(
+                    dados_alunos[aluno][int(questao[2])])
                 continue
 
             if questao[4] == "ABERTA":
-                #Questões abertas, só pontua se for a resposta for exatamente igual ao gabarito
+                # Questões abertas, só pontua se for a resposta for exatamente igual ao gabarito
                 if questao[3] == dados_alunos[aluno][questao[2]]:
                     resultado_alunos[aluno][questao[2]] = 100
             else:
-                #Aplica o método por somatorio
-                print(dados_alunos[aluno][questao[2]])
-                resultado_alunos[aluno][questao[2]] = somatorio(dados_alunos[aluno][questao[2]], int(questao[3]), int(questao[4]))
-
+                # Aplica o método por somatorio
+                resultado_alunos[aluno][questao[2]] = somatorio(
+                    dados_alunos[aluno][questao[2]], int(questao[3]), int(questao[4]))
 
     lista_resultado_alunos = []
     for aluno, resultados in resultado_alunos.items():

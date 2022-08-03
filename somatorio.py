@@ -1,7 +1,3 @@
-from ast import For
-from re import I
-
-
 def somatorio(resposta, gabarito, quantidade_proposiçoes):
     NPC = 0
     NPI = 0
@@ -22,5 +18,5 @@ def somatorio(resposta, gabarito, quantidade_proposiçoes):
         i /= 2
     if NPC > NPI:
         P = (NP - (NTPC - (NPC - NPI))) / NP
-        return int(round(P * 100 , 0))
+        return int(round(P * 100, 0))
     return 0
