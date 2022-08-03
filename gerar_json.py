@@ -18,10 +18,13 @@ def gerar_json_alunos(correcao, gabarito):
             {
                 "info": {
                     "name": aluno[0],
-                    "cpf": 0,
-                    "total": 0,
-                    "position": 0
+                    "cpf": 0,  # TODO: Pegar o CPF
+                    "total": 0,  # TODO: Somar todas as respostas
+                    "position": 0  # TODO: Saber a posição de cada aluno
                 }
+                # TODO: Incluir detalhado (Ver modelo do subjects)
+                # TODO: Incluir redação no detalhado
+                # TODO: Incluir msg do tutor
             }
         )
 
