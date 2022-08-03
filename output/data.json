@@ -1,0 +1,472 @@
+{
+  "config": [
+    {
+      "role": 0,
+      "type": 4,
+      "version": "07/2022",
+      "name": "SIMUFSC 2022"
+    }
+  ],
+  "subjects": {
+    "Primeira Língua": {
+      "Português/Literatura": {
+        "question_numbers": 564,
+        "general_percent": 57.98049645390071,
+        "detailed": [
+          "50",
+          "13",
+          "12",
+          "22",
+          "17",
+          "15",
+          "22",
+          "6",
+          "5",
+          "14",
+          "7",
+          "1"
+        ]
+      }
+    },
+    "Segunda Língua": {
+      "Inglês": {
+        "question_numbers": 376,
+        "general_percent": 50.18882978723405,
+        "detailed": ["46", "7", "12", "2", "ANULADA", "51", "12", "27"]
+      },
+      "Espanhol": {
+        "question_numbers": 376,
+        "general_percent": 50.18882978723405,
+        "detailed": ["12", "4", "3", "9", "3", "20", "1", "38"]
+      }
+    },
+    "Matemática": {
+      "Matemática": {
+        "question_numbers": 470,
+        "general_percent": 25.0,
+        "detailed": ["10", "9", "22", "5", "2", "6", "3", "11", "10", "18"]
+      }
+    },
+    "Biologia": {
+      "Biologia": {
+        "question_numbers": 470,
+        "general_percent": 43.95744680851064,
+        "detailed": ["29", "52", "54", "75", "35", "36", "8", "27", "15", "55"]
+      }
+    },
+    "Ciências Humanas e Sociais": {
+      "História": {
+        "question_numbers": 329,
+        "general_percent": 51.06990881458968,
+        "detailed": ["14", "30", "14", "28", "22", "ANULADA", "25"]
+      },
+      "Geografia": {
+        "question_numbers": 376,
+        "general_percent": 37.92819148936171,
+        "detailed": ["43", "13", "1", "48", "85", "54", "ANULADA", "92"]
+      },
+      "Filosofia/Sociologia": {
+        "question_numbers": 188,
+        "general_percent": 46.122340425531924,
+        "detailed": ["38", "25", "25", "23"]
+      },
+      "Português/Literatura": {
+        "question_numbers": 47,
+        "general_percent": 70.76595744680846,
+        "detailed": ["12"]
+      }
+    },
+    "Física": {
+      "Física": {
+        "question_numbers": 470,
+        "general_percent": 24.28936170212766,
+        "detailed": ["81", "39", "42", "53", "9", "11", "46", "21", "17", "25"]
+      }
+    },
+    "Química": {
+      "Química": {
+        "question_numbers": 470,
+        "general_percent": 30.06170212765958,
+        "detailed": ["81", "52", "18", "25", "12", "31", "98", "74", "3", "20"]
+      }
+    }
+  },
+  "students_dataset": [
+    {
+      "info": {
+        "name": "Ágata Cristina Cidade",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Ana Luíza dos Santos Silva",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Beatriz de Sousa Maximiano",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Caroliny Alves Leal",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Emanuelly Rubia Barboza Ferreira",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Felippe Castro de Moraes",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Gabriéle Alban Gonçalves",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Luiza Gaia da Silva",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "María Clara Silva",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Thayssa Rodrigues de Almeida",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Ademir Atanazio Junior",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Ana Carolina de Andrade Machado",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Ana Gabriela Lima da Silva",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Ana Laura Teixeira da Rosa",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Ana Luiza da Costa Batista",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Beatriz Medeiros de Oliveira",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Bianca Müller Rosa",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Bruna Yukari Maeda",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Byanka Lemos Veríssimo",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Cecília Rost Hames",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Danthon Ruan Mira",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Echo Fabre Zimmermann",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Guilherme Cadona da Silva",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Gustavo Bernardo Rodrigues",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Halisson Eduardo Trindade Rodriguez",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Heitor Zilton de Azevedo Peres",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Iana Sol Ferreira da Cunha",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Iara Martinez Avena",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Kamilla Alves Kukert",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Leandra Cardoso",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Lotus Electra da Silva Ciarini",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Luana Kamili da Silva",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Lucas Ferreira Sardá da Conceição",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Manuella Maria Heinemann Pereira",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Maria Clara Souza de Assis",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Nathan Zeferino Batista",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Rafi Marcos Hoffmann",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Raíra Ribeiro Farias Barbosa",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Rita Danielle Lopes dos Santos",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Vitória Soares de Santana",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Emanuelli Marques de Souza",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Raquel Freire de Jesus",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Ana Clara Callado Chaplin",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Isabella Pacheco Silveira",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Júlia Maria da Silva",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Sophia Helena Souza Rodrigues",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    },
+    {
+      "info": {
+        "name": "Thifany Bauer Borges",
+        "cpf": [],
+        "total": 0,
+        "position": 0
+      }
+    }
+  ]
+}

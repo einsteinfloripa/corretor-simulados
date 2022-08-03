@@ -22,4 +22,15 @@ with open("./output/correcao.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerows(correcao)
 
-disciplinas = gerar_json_disciplinas(correcao, gabarito)
+subjects = gerar_json_disciplinas(correcao, gabarito)
+
+students_dataset = gerar_json_alunos(correcao, gabarito)
+
+data = {
+    "config": config,
+    "subjects": subjects,
+    "students_dataset": students_dataset
+}
+
+with open('./output/data.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)

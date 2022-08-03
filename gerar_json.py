@@ -7,7 +7,25 @@ def gerar_json_disciplinas(correcao, gabarito):
         subjects, correcao, gabarito)
     subjects = calcular_general_porcent(subjects)
 
-    print(subjects)
+    return subjects
+
+
+def gerar_json_alunos(correcao, gabarito):
+    students_dataset = []
+
+    for aluno in correcao:
+        students_dataset.append(
+            {
+                "info": {
+                    "name": aluno[0],
+                    "cpf": 0,
+                    "total": 0,
+                    "position": 0
+                }
+            }
+        )
+
+    return students_dataset
 
 
 def gerar_estrutura_disciplinas():
@@ -39,8 +57,6 @@ def gerar_detalhado_disciplina_estrutura(subjects, correcao, gabarito):
             if "ANULADA" not in str(aluno[numero_questao + 1]):
                 pontuacoes += aluno[numero_questao + 1]
             subjects[area][disciplina]["question_numbers"] += 1
-
-        print(pontuacoes)
 
         subjects[area][disciplina]["general_percent"] += pontuacoes
         subjects[area][disciplina]["detailed"].append(resposta_gabarito)

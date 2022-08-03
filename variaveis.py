@@ -16,5 +16,3 @@ config = {
     "version": "07/2022",
     "name": "SIMUFSC 2022"
 },
-general = {}
-students_dataset = []
