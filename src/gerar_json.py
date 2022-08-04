@@ -47,6 +47,7 @@ def gerar_estrutura_disciplinas():
     return estrutura
 
 
+
 def gerar_detalhado_disciplina_estrutura(subjects, correcao, gabarito):
     for questao in gabarito:
         disciplina = questao[0]
