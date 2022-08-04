@@ -1,4 +1,4 @@
 d*.csv
 output.csv
 output.json
-*pycache
+__pycache__
