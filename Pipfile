@@ -1,2 +1,5 @@
 [scripts]
 gerar = "python3 ./src/index.py"
+
+[packages]
+cryptography = "*"
