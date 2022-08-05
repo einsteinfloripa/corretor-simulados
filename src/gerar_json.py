@@ -1,5 +1,5 @@
+from cryptography.fernet import Fernet
 from variaveis import *
-
 
 def gerar_json_disciplinas(correcao, gabarito):
     subjects = gerar_estrutura_disciplinas()
@@ -12,18 +12,20 @@ def gerar_json_disciplinas(correcao, gabarito):
 
 def gerar_json_alunos(correcao, dados_alunos):
     students_dataset = []
-
     for aluno in correcao:
         nome_aluno = aluno[0]
+        nota_total = aluno[84]
+        cpf = pegar_cpf(nome_aluno, dados_alunos)
+        posicao = encontrar_posicao(correcao, nota_total)
         students_dataset.append(
             {
                 "info": {
                     "name": nome_aluno,
-                    "cpf": pegar_cpf(nome_aluno, dados_alunos),
-                    "total": 0,  # TODO: Somar todas as respostas
-                    "position": 0  # TODO: Saber a posição de cada aluno
+                    "cpf": cpf,
+                    "total": nota_total,
+                    "position": posicao 
                 },
-                "details": []
+                "details": [] # TODO: adicionar detalhes
                 # TODO: Incluir redação no detalhado
                 # TODO: Incluir msg do tutor
             }
@@ -83,4 +85,13 @@ def pegar_cpf(nome_aluno, dados_alunos):
         if nome_formatado in aluno[0].lower():
             cpf = aluno[1]
             break
-    return cpf
+    return cpf 
+
+def encontrar_posicao(correcao, nota_total):
+    todas_notas_totais = []
+    for aluno in correcao:
+        todas_notas_totais.append(aluno[84])
+        
+    todas_notas_totais.sort(reverse=True)
+    posicao = todas_notas_totais.index(nota_total) + 1
+    return posicao
