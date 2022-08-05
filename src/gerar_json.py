@@ -10,19 +10,20 @@ def gerar_json_disciplinas(correcao, gabarito):
     return subjects
 
 
-def gerar_json_alunos(correcao, gabarito):
+def gerar_json_alunos(correcao, dados_alunos):
     students_dataset = []
 
     for aluno in correcao:
+        nome_aluno = aluno[0]
         students_dataset.append(
             {
                 "info": {
-                    "name": aluno[0],
-                    "cpf": 0,  # TODO: Pegar o CPF
+                    "name": nome_aluno,
+                    "cpf": pegar_cpf(nome_aluno, dados_alunos),
                     "total": 0,  # TODO: Somar todas as respostas
                     "position": 0  # TODO: Saber a posição de cada aluno
-                }
-                # TODO: Incluir detalhado (Ver modelo do subjects)
+                },
+                "details": []
                 # TODO: Incluir redação no detalhado
                 # TODO: Incluir msg do tutor
             }
@@ -51,7 +52,7 @@ def gerar_estrutura_disciplinas():
 def gerar_detalhado_disciplina_estrutura(subjects, correcao, gabarito):
     for questao in gabarito:
         disciplina = questao[0]
-        aplicacao = questao[1]
+        # aplicacao = questao[1]
         numero_questao = questao[2]
         resposta_gabarito = questao[3]
         area = questao[5]
@@ -74,3 +75,12 @@ def calcular_general_porcent(subjects):
                 subjects[chave_dicionario][disciplina]["general_percent"] = subjects[chave_dicionario][disciplina]["general_percent"] / \
                     subjects[chave_dicionario][disciplina]["question_numbers"] * 100
     return subjects
+
+def pegar_cpf(nome_aluno, dados_alunos):
+    cpf = ""
+    nome_formatado = nome_aluno.lower()
+    for aluno in dados_alunos:
+        if nome_formatado in aluno[0].lower():
+            cpf = aluno[1]
+            break
+    return cpf

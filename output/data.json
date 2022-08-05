@@ -10,8 +10,8 @@
     "subjects": {
         "Primeira Língua": {
             "Português/Literatura": {
-                "question_numbers": 564,
-                "general_percent": 57.98049645390071,
+                "question_numbers": 588,
+                "general_percent": 55.954081632653065,
                 "detailed": [
                     "50",
                     "13",
@@ -30,8 +30,8 @@
         },
         "Segunda Língua": {
             "Inglês": {
-                "question_numbers": 376,
-                "general_percent": 50.18882978723405,
+                "question_numbers": 392,
+                "general_percent": 31.946428571428577,
                 "detailed": [
                     "46",
                     "7",
@@ -44,8 +44,8 @@
                 ]
             },
             "Espanhol": {
-                "question_numbers": 376,
-                "general_percent": 50.18882978723405,
+                "question_numbers": 392,
+                "general_percent": 31.946428571428577,
                 "detailed": [
                     "12",
                     "4",
@@ -60,8 +60,8 @@
         },
         "Matemática": {
             "Matemática": {
-                "question_numbers": 470,
-                "general_percent": 25.0,
+                "question_numbers": 490,
+                "general_percent": 23.97959183673469,
                 "detailed": [
                     "10",
                     "9",
@@ -78,8 +78,8 @@
         },
         "Biologia": {
             "Biologia": {
-                "question_numbers": 470,
-                "general_percent": 43.95744680851064,
+                "question_numbers": 490,
+                "general_percent": 42.163265306122454,
                 "detailed": [
                     "29",
                     "52",
@@ -96,8 +96,8 @@
         },
         "Ciências Humanas e Sociais": {
             "História": {
-                "question_numbers": 329,
-                "general_percent": 51.06990881458968,
+                "question_numbers": 343,
+                "general_percent": 49.56851311953354,
                 "detailed": [
                     "14",
                     "30",
@@ -109,8 +109,8 @@
                 ]
             },
             "Geografia": {
-                "question_numbers": 376,
-                "general_percent": 37.92819148936171,
+                "question_numbers": 392,
+                "general_percent": 36.89030612244899,
                 "detailed": [
                     "43",
                     "13",
@@ -123,8 +123,8 @@
                 ]
             },
             "Filosofia/Sociologia": {
-                "question_numbers": 188,
-                "general_percent": 46.122340425531924,
+                "question_numbers": 196,
+                "general_percent": 44.239795918367356,
                 "detailed": [
                     "38",
                     "25",
@@ -133,8 +133,8 @@
                 ]
             },
             "Português/Literatura": {
-                "question_numbers": 47,
-                "general_percent": 70.76595744680846,
+                "question_numbers": 49,
+                "general_percent": 67.8775510204081,
                 "detailed": [
                     "12"
                 ]
@@ -142,8 +142,8 @@
         },
         "Física": {
             "Física": {
-                "question_numbers": 470,
-                "general_percent": 24.28936170212766,
+                "question_numbers": 490,
+                "general_percent": 23.29795918367347,
                 "detailed": [
                     "81",
                     "39",
@@ -160,8 +160,8 @@
         },
         "Química": {
             "Química": {
-                "question_numbers": 470,
-                "general_percent": 30.06170212765958,
+                "question_numbers": 490,
+                "general_percent": 28.834693877551025,
                 "detailed": [
                     "81",
                     "52",
@@ -181,7 +181,7 @@
         {
             "info": {
                 "name": "Ágata Cristina Cidade",
-                "cpf": 0,
+                "cpf": "122.386.229-18",
                 "total": 0,
                 "position": 0
             }
@@ -189,7 +189,7 @@
         {
             "info": {
                 "name": "Ana Luíza dos Santos Silva",
-                "cpf": 0,
+                "cpf": "131.807.269-70",
                 "total": 0,
                 "position": 0
             }
@@ -197,7 +197,7 @@
         {
             "info": {
                 "name": "Beatriz de Sousa Maximiano",
-                "cpf": 0,
+                "cpf": "091.206.089-18",
                 "total": 0,
                 "position": 0
             }
@@ -205,7 +205,7 @@
         {
             "info": {
                 "name": "Caroliny Alves Leal",
-                "cpf": 0,
+                "cpf": "095.063.049-71",
                 "total": 0,
                 "position": 0
             }
@@ -213,7 +213,7 @@
         {
             "info": {
                 "name": "Emanuelly Rubia Barboza Ferreira",
-                "cpf": 0,
+                "cpf": "010.013.319-31",
                 "total": 0,
                 "position": 0
             }
@@ -221,7 +221,7 @@
         {
             "info": {
                 "name": "Felippe Castro de Moraes",
-                "cpf": 0,
+                "cpf": "058.396.769-85",
                 "total": 0,
                 "position": 0
             }
@@ -229,7 +229,7 @@
         {
             "info": {
                 "name": "Gabriéle Alban Gonçalves",
-                "cpf": 0,
+                "cpf": "141.127.589-60",
                 "total": 0,
                 "position": 0
             }
@@ -237,7 +237,7 @@
         {
             "info": {
                 "name": "Luiza Gaia da Silva",
-                "cpf": 0,
+                "cpf": "108.772.659-09",
                 "total": 0,
                 "position": 0
             }
@@ -245,7 +245,7 @@
         {
             "info": {
                 "name": "María Clara Silva",
-                "cpf": 0,
+                "cpf": "139.596.999-05",
                 "total": 0,
                 "position": 0
             }
@@ -253,7 +253,7 @@
         {
             "info": {
                 "name": "Thayssa Rodrigues de Almeida",
-                "cpf": 0,
+                "cpf": "018.111.462-36",
                 "total": 0,
                 "position": 0
             }
@@ -261,7 +261,7 @@
         {
             "info": {
                 "name": "Ademir Atanazio Junior",
-                "cpf": 0,
+                "cpf": "095.839.609-42",
                 "total": 0,
                 "position": 0
             }
@@ -269,7 +269,7 @@
         {
             "info": {
                 "name": "Ana Carolina de Andrade Machado",
-                "cpf": 0,
+                "cpf": "141.515.809-64",
                 "total": 0,
                 "position": 0
             }
@@ -277,7 +277,7 @@
         {
             "info": {
                 "name": "Ana Gabriela Lima da Silva",
-                "cpf": 0,
+                "cpf": "108.462.264-56",
                 "total": 0,
                 "position": 0
             }
@@ -285,7 +285,7 @@
         {
             "info": {
                 "name": "Ana Laura Teixeira da Rosa",
-                "cpf": 0,
+                "cpf": "846.414.870-20",
                 "total": 0,
                 "position": 0
             }
@@ -293,7 +293,7 @@
         {
             "info": {
                 "name": "Ana Luiza da Costa Batista",
-                "cpf": 0,
+                "cpf": "111.408.859-52",
                 "total": 0,
                 "position": 0
             }
@@ -301,7 +301,7 @@
         {
             "info": {
                 "name": "Beatriz Medeiros de Oliveira",
-                "cpf": 0,
+                "cpf": "110.891.269-99",
                 "total": 0,
                 "position": 0
             }
@@ -309,7 +309,7 @@
         {
             "info": {
                 "name": "Bianca Müller Rosa",
-                "cpf": 0,
+                "cpf": "100.249.439-75",
                 "total": 0,
                 "position": 0
             }
@@ -317,7 +317,7 @@
         {
             "info": {
                 "name": "Bruna Yukari Maeda",
-                "cpf": 0,
+                "cpf": "011.916.149-48",
                 "total": 0,
                 "position": 0
             }
@@ -325,7 +325,7 @@
         {
             "info": {
                 "name": "Byanka Lemos Veríssimo",
-                "cpf": 0,
+                "cpf": "107.379.819-46",
                 "total": 0,
                 "position": 0
             }
@@ -333,7 +333,7 @@
         {
             "info": {
                 "name": "Cecília Rost Hames",
-                "cpf": 0,
+                "cpf": "151.756.969-98",
                 "total": 0,
                 "position": 0
             }
@@ -341,7 +341,7 @@
         {
             "info": {
                 "name": "Danthon Ruan Mira",
-                "cpf": 0,
+                "cpf": "136.547.169-11",
                 "total": 0,
                 "position": 0
             }
@@ -349,7 +349,7 @@
         {
             "info": {
                 "name": "Echo Fabre Zimmermann",
-                "cpf": 0,
+                "cpf": "122.763.439-07",
                 "total": 0,
                 "position": 0
             }
@@ -357,7 +357,7 @@
         {
             "info": {
                 "name": "Guilherme Cadona da Silva",
-                "cpf": 0,
+                "cpf": "132.036.619-85",
                 "total": 0,
                 "position": 0
             }
@@ -365,7 +365,7 @@
         {
             "info": {
                 "name": "Gustavo Bernardo Rodrigues",
-                "cpf": 0,
+                "cpf": "135.860.399.56",
                 "total": 0,
                 "position": 0
             }
@@ -373,7 +373,7 @@
         {
             "info": {
                 "name": "Halisson Eduardo Trindade Rodriguez",
-                "cpf": 0,
+                "cpf": "013.530.910-74",
                 "total": 0,
                 "position": 0
             }
@@ -381,7 +381,7 @@
         {
             "info": {
                 "name": "Heitor Zilton de Azevedo Peres",
-                "cpf": 0,
+                "cpf": "131.784.689-35",
                 "total": 0,
                 "position": 0
             }
@@ -389,7 +389,7 @@
         {
             "info": {
                 "name": "Iana Sol Ferreira da Cunha",
-                "cpf": 0,
+                "cpf": "066.836.399-14",
                 "total": 0,
                 "position": 0
             }
@@ -397,7 +397,7 @@
         {
             "info": {
                 "name": "Iara Martinez Avena",
-                "cpf": 0,
+                "cpf": "109.685.909-26",
                 "total": 0,
                 "position": 0
             }
@@ -405,7 +405,7 @@
         {
             "info": {
                 "name": "Kamilla Alves Kukert",
-                "cpf": 0,
+                "cpf": "151.963.009-37",
                 "total": 0,
                 "position": 0
             }
@@ -413,7 +413,7 @@
         {
             "info": {
                 "name": "Leandra Cardoso",
-                "cpf": 0,
+                "cpf": "129.321.989.47",
                 "total": 0,
                 "position": 0
             }
@@ -421,7 +421,7 @@
         {
             "info": {
                 "name": "Lotus Electra da Silva Ciarini",
-                "cpf": 0,
+                "cpf": "112.033.629-51",
                 "total": 0,
                 "position": 0
             }
@@ -429,7 +429,7 @@
         {
             "info": {
                 "name": "Luana Kamili da Silva",
-                "cpf": 0,
+                "cpf": "117.976.369-60",
                 "total": 0,
                 "position": 0
             }
@@ -437,7 +437,7 @@
         {
             "info": {
                 "name": "Lucas Ferreira Sardá da Conceição",
-                "cpf": 0,
+                "cpf": "010.819.645-99",
                 "total": 0,
                 "position": 0
             }
@@ -445,7 +445,7 @@
         {
             "info": {
                 "name": "Manuella Maria Heinemann Pereira",
-                "cpf": 0,
+                "cpf": "085.093.659-46",
                 "total": 0,
                 "position": 0
             }
@@ -453,7 +453,7 @@
         {
             "info": {
                 "name": "Maria Clara Souza de Assis",
-                "cpf": 0,
+                "cpf": "157.086.069-67",
                 "total": 0,
                 "position": 0
             }
@@ -461,7 +461,7 @@
         {
             "info": {
                 "name": "Nathan Zeferino Batista",
-                "cpf": 0,
+                "cpf": "138.524.359-78",
                 "total": 0,
                 "position": 0
             }
@@ -469,7 +469,7 @@
         {
             "info": {
                 "name": "Rafi Marcos Hoffmann",
-                "cpf": 0,
+                "cpf": "871.614.000-15",
                 "total": 0,
                 "position": 0
             }
@@ -477,7 +477,7 @@
         {
             "info": {
                 "name": "Raíra Ribeiro Farias Barbosa",
-                "cpf": 0,
+                "cpf": "038.517.272-90",
                 "total": 0,
                 "position": 0
             }
@@ -485,7 +485,7 @@
         {
             "info": {
                 "name": "Rita Danielle Lopes dos Santos",
-                "cpf": 0,
+                "cpf": "515.778.858-48",
                 "total": 0,
                 "position": 0
             }
@@ -493,23 +493,23 @@
         {
             "info": {
                 "name": "Vitória Soares de Santana",
-                "cpf": 0,
+                "cpf": "126.574.839-09",
                 "total": 0,
                 "position": 0
             }
         },
         {
             "info": {
-                "name": "Emanuelli Marques de Souza",
-                "cpf": 0,
+                "name": "Emanuelli Marques de Souza ",
+                "cpf": "",
                 "total": 0,
                 "position": 0
             }
         },
         {
             "info": {
-                "name": "Raquel Freire de Jesus",
-                "cpf": 0,
+                "name": "Raquel Freire de Jesus     ",
+                "cpf": "",
                 "total": 0,
                 "position": 0
             }
@@ -517,7 +517,7 @@
         {
             "info": {
                 "name": "Ana Clara Callado Chaplin",
-                "cpf": 0,
+                "cpf": "118.265.809-13",
                 "total": 0,
                 "position": 0
             }
@@ -525,7 +525,7 @@
         {
             "info": {
                 "name": "Isabella Pacheco Silveira",
-                "cpf": 0,
+                "cpf": "145.356.769-09",
                 "total": 0,
                 "position": 0
             }
@@ -533,7 +533,7 @@
         {
             "info": {
                 "name": "Júlia Maria da Silva",
-                "cpf": 0,
+                "cpf": "",
                 "total": 0,
                 "position": 0
             }
@@ -541,7 +541,7 @@
         {
             "info": {
                 "name": "Sophia Helena Souza Rodrigues",
-                "cpf": 0,
+                "cpf": "469.602.558-64",
                 "total": 0,
                 "position": 0
             }
@@ -549,7 +549,23 @@
         {
             "info": {
                 "name": "Thifany Bauer Borges",
-                "cpf": 0,
+                "cpf": "111.656.669-95",
+                "total": 0,
+                "position": 0
+            }
+        },
+        {
+            "info": {
+                "name": "Emanuelli Marques de Souza",
+                "cpf": "141.556.539-23",
+                "total": 0,
+                "position": 0
+            }
+        },
+        {
+            "info": {
+                "name": "Raquel Freire de Jesus",
+                "cpf": "122.823.179.63",
                 "total": 0,
                 "position": 0
             }

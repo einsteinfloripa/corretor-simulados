@@ -12,6 +12,10 @@ with open("./output/output.csv", "w", newline="") as f:
     writer = csv.writer(f)
     writer.writerows(dados_formatados)
 
+with open(f"./input/cpfs.csv", "r", encoding="utf-8") as g:
+    reader = csv.reader(g, delimiter=",", quotechar='"')
+    dados_alunos = [row for row in reader]
+
 with open(f"./input/Gabarito.csv", "r", encoding="utf-8") as fp:
     reader = csv.reader(fp, delimiter=",", quotechar='"')
     gabarito = [row for row in reader]
@@ -24,7 +28,7 @@ with open("./output/correcao.csv", "w", newline="") as f:
 
 subjects = gerar_json_disciplinas(correcao, gabarito)
 
-students_dataset = gerar_json_alunos(correcao, gabarito)
+students_dataset = gerar_json_alunos(correcao, dados_alunos)
 
 data = {
     "config": config,
