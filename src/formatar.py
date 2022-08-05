@@ -1,4 +1,6 @@
-import csv, re
+import csv
+import re
+
 
 def formatar_dados(aplicacoes):
     dados = []
@@ -7,7 +9,7 @@ def formatar_dados(aplicacoes):
             reader = csv.reader(fp, delimiter=",", quotechar='"')
             dados_aplicacao = [row for row in reader]
 
-            del dados_aplicacao[0] #Excluir header
+            del dados_aplicacao[0]  # Excluir header
 
             for respostas in dados_aplicacao:
                 respostas[5] = formatar_resposta(respostas[5])
@@ -15,8 +17,10 @@ def formatar_dados(aplicacoes):
                 dia = aplicacao[0:2]
 
                 respostaVazia = respostas[5] == None
-                formulasd1 = dia == "d1" and re.sub(r'\s+', '', respostas[4]) == "22"
-                formulasd2 = dia == "d2" and re.sub(r'\s+', '', respostas[4]) == "20"
+                formulasd1 = dia == "d1" and re.sub(
+                    r'\s+', '', respostas[4]) == "22"
+                formulasd2 = dia == "d2" and re.sub(
+                    r'\s+', '', respostas[4]) == "20"
 
                 if respostaVazia or formulasd1 or formulasd2:
                     continue
@@ -24,10 +28,9 @@ def formatar_dados(aplicacoes):
                 if dia == "d1":
                     lingua = aplicacao[3:4]
 
-
-                dados.append([dia, lingua] + respostas[2:3] + respostas[4:6] + respostas[8:9])
+                dados.append([dia, lingua] + [respostas[2:3][0].strip()] +
+                             respostas[4:6] + respostas[8:9])
     return dados
-
 
 
 def formatar_resposta(resposta):
@@ -54,5 +57,5 @@ def formatar_resposta(resposta):
 
 
 def extrair_da_soma(resposta):
-    #print(resposta)
+    # print(resposta)
     return resposta.split("=")[1]

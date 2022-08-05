@@ -27,10 +27,10 @@ def corrigir(lista_respostas, gabarito):
         if questao[1] == "d2" and not questao[3] == "ANULADA":
             questao[2] += 42
         for aluno, respostas in dados_alunos.items():
-            # if questao[1] == "d1" and questao[2] >= 14 and questao[2] <= 21:
-            #     # Verifica se é a segunda lingua do aluno
-            #     if not questao[0][0] == respostas[-1].upper():
-            #         continue
+            if questao[1] == "d1" and questao[2] >= 14 and questao[2] <= 21:
+                # Verifica se é a segunda lingua do aluno
+                if not questao[0][0] == respostas[-1].upper():
+                    continue
 
             if questao[3] == "ANULADA":
                 # Questão foi anulada no gabarito
