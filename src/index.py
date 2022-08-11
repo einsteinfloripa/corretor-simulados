@@ -1,10 +1,11 @@
 import csv
 import json
 from formatar import *
+from gerar_json_aluno import *
 from variaveis import *
 from corrigir import *
 from somatorio import *
-from gerar_json import *
+from gerar_json_disciplina import *
 from escrever_arquivo import *
 from ler_arquivo import *
 
@@ -21,7 +22,7 @@ escrever_csv("./output/correcao.csv", correcao)
 
 subjects = gerar_json_disciplinas(correcao, gabarito)
 
-students_dataset = gerar_json_alunos(correcao, dados_alunos)
+students_dataset = gerar_json_alunos(correcao, dados_alunos, gabarito)
 
 data = {
     "config": config,
