@@ -10,7 +10,7 @@ def gerar_json_alunos(correcao, dados_alunos, gabarito):
         
     
         subjects = gerar_estrutura_disciplinas()
-        subjects = gerar_detalhado_disciplina_estrutura(subjects, correcao, gabarito, "aluno")
+        subjects = gerar_detalhado_disciplina_estrutura(subjects, correcao, gabarito)
         
         students_dataset.append(
             {

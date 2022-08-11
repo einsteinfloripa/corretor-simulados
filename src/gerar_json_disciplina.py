@@ -23,7 +23,7 @@ def gerar_estrutura_disciplinas():
                 }
     return estrutura
 
-def gerar_detalhado_disciplina_estrutura(subjects, correcao, gabarito, tipo_correcao="disciplina"):
+def gerar_detalhado_disciplina_estrutura(subjects, correcao, gabarito):
     for questao in gabarito:
         disciplina = questao[0]
         numero_questao = questao[2]
@@ -35,11 +35,7 @@ def gerar_detalhado_disciplina_estrutura(subjects, correcao, gabarito, tipo_corr
                 pontuacoes += aluno[numero_questao + 1]
             subjects[area][disciplina]["question_numbers"] += 1
         subjects[area][disciplina]["general_percent"] += pontuacoes
-        
-        if tipo_correcao == "aluno":
-            subjects[area][disciplina]["detailed"].append("")
-        else:
-            subjects[area][disciplina]["detailed"].append(resposta_gabarito)
+        subjects[area][disciplina]["detailed"].append(resposta_gabarito)
     return subjects
 
 def calcular_general_porcent(subjects):
