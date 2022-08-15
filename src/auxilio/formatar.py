@@ -55,7 +55,14 @@ def formatar_resposta(resposta):
 
     return resposta_formatada
 
+def formatar_redacao(redacoes, dados_alunos):
+    for redacao in redacoes:
+        for aluno in dados_alunos:
+            if aluno[1].replace("-", "").replace(".", "")  == redacao[2]:
+                redacao.insert(0, aluno[0])
+    return redacoes
 
 def extrair_da_soma(resposta):
     # print(resposta)
     return resposta.split("=")[1]
+
