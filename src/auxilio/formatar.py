@@ -32,7 +32,6 @@ def formatar_dados(aplicacoes):
                              respostas[4:6] + respostas[8:9])
     return dados
 
-
 def formatar_resposta(resposta):
     resposta_formatada = re.sub(r'\s+', '', resposta)
 

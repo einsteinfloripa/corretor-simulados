@@ -5,8 +5,8 @@ from auxilio.variaveis import *
 from corrigir import *
 from auxilio.somatorio import *
 from geradores.gerar_json_aluno import *
-from geradores.gerar_json_disciplina import *
-from geradores.gerar_json_redacao import *
+from geradores.gerar_json_geral_disciplina import *
+from geradores.gerar_json_geral_redacao import *
 from leitura_e_escrita.escrever_arquivo import *
 from leitura_e_escrita.ler_arquivo import *
 
