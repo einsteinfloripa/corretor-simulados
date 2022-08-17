@@ -1,7 +1,6 @@
 import csv
 import json
 
-
 def escrever_csv(caminho, dados):
     with open(caminho, "w", newline="") as f:
         writer = csv.writer(f)

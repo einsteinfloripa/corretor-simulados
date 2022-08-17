@@ -4,15 +4,15 @@ from dis import dis
 from geradores.gerar_json_geral_disciplina import *
 from auxilio.variaveis import areas_ufsc
 
-def gerar_json_alunos(correcao, dados_alunos, gabarito):
-    students_dataset = []
+def gerar_json_alunos(correcao, respostas, dados_alunos, gabarito):
+    student_dataset = []
     for aluno in correcao:
         nome_aluno = aluno[0]
         nota_total = aluno[84] + aluno[89]
         cpf, msg_tutor  = pegar_cpf_e_msg_tutor(nome_aluno, dados_alunos)
         posicao = encontrar_posicao(correcao, nota_total)
         
-        students_dataset.append(
+        student_dataset.append(
             {
                 "info": {
                     "name": nome_aluno,
@@ -22,7 +22,7 @@ def gerar_json_alunos(correcao, dados_alunos, gabarito):
                     "msg": msg_tutor
                 },
                 "detailed": {
-                    "subjects": gerar_details_aluno(aluno, gabarito),
+                    "subjects": gerar_details_aluno(aluno, gabarito, respostas),
                     "writing": {
                         "c1": {
                             "note": aluno[-11],
@@ -47,9 +47,9 @@ def gerar_json_alunos(correcao, dados_alunos, gabarito):
                 }
             }
         )
-    return students_dataset
+    return student_dataset
 
-def gerar_details_aluno(aluno, gabarito):
+def gerar_details_aluno(aluno, gabarito, respostas):
     details = {}
     for area_ufsc in areas_ufsc:
         lingua_estrangeira_aluno = aluno[83]
@@ -62,7 +62,8 @@ def gerar_details_aluno(aluno, gabarito):
                         details[chave_dicionario][disciplina] = {
                             "question_numbers": 0,
                             "general_percent": 0,
-                            "answered": []
+                            "answered": [],
+                            "detailed": []
                         }
                         continue
                     else:
@@ -71,16 +72,18 @@ def gerar_details_aluno(aluno, gabarito):
                 details[chave_dicionario][disciplina] = {
                         "question_numbers": 0,
                         "general_percent": 0,
-                        "answered": []
+                        "answered": [],
+                        "detailed": []
                     }
 
-    details = gerar_anwsers_aluno(aluno, gabarito, details)
+    details = gerar_anwsers_aluno(aluno, gabarito, details, respostas)
     details = calcular_general_porcent(details, aluno)
     return details
 
-def gerar_anwsers_aluno(aluno, gabarito, details):
+def gerar_anwsers_aluno(aluno, gabarito, details, respostas):
     for questao in gabarito:
         disciplina = questao[0]
+        dia = questao[1]
         numero_questao = questao[2]
         resposta_aluno = aluno[numero_questao + 1]
         area = questao[5]
@@ -94,6 +97,7 @@ def gerar_anwsers_aluno(aluno, gabarito, details):
                         details[area][disciplina]["question_numbers"] += 1
                         details[area][disciplina]["general_percent"] += pontuacoes
                         details[area][disciplina]["answered"].append(resposta_aluno)
+                        details[area][disciplina]["detailed"].append(encontrar_resposta_aluno(respostas, aluno[0], numero_questao + 1, dia))
                         continue
                     else:
                         continue
@@ -101,6 +105,7 @@ def gerar_anwsers_aluno(aluno, gabarito, details):
         details[area][disciplina]["question_numbers"] += 1
         details[area][disciplina]["general_percent"] += pontuacoes
         details[area][disciplina]["answered"].append(resposta_aluno)
+        details[area][disciplina]["detailed"].append(encontrar_resposta_aluno(respostas, aluno[0], numero_questao + 1, dia))
     return details
 
 def calcular_general_porcent(details, aluno):
@@ -127,11 +132,18 @@ def pegar_cpf_e_msg_tutor(nome_aluno, dados_alunos):
     nome_formatado = nome_aluno.lower()
     for aluno in dados_alunos:
         if nome_formatado in aluno[0].lower():
-            cpf = aluno[1]
+            cpf = aluno[1].replace("-", "").replace(".", "")
             if len(aluno) >= 3:
                 msg_tutor = aluno[2]
             break
     return cpf, msg_tutor
+
+def encontrar_resposta_aluno(respostas, nome, numeroQuestao, dia):
+    if dia == "d2":
+        numeroQuestao = numeroQuestao - 42
+    for resposta in respostas:
+        if resposta[2] == nome and resposta[0] == dia and str(resposta[3]) == str(numeroQuestao):
+            return resposta[4]
 
 def encontrar_posicao(correcao, nota_total):
     todas_notas_totais = []

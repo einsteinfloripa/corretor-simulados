@@ -1,8 +1,7 @@
 import csv
 import re
 
-
-def formatar_dados(aplicacoes):
+def formatar_respostas(aplicacoes):
     dados = []
     for aplicacao in aplicacoes:
         with open(f"./input/{aplicacao}.csv", "r", encoding="utf-8") as fp:
@@ -12,7 +11,7 @@ def formatar_dados(aplicacoes):
             del dados_aplicacao[0]  # Excluir header
 
             for respostas in dados_aplicacao:
-                respostas[5] = formatar_resposta(respostas[5])
+                respostas[5] = valida_resposta(respostas[5])
                 lingua = ""
                 dia = aplicacao[0:2]
 
@@ -32,7 +31,7 @@ def formatar_dados(aplicacoes):
                              respostas[4:6] + respostas[8:9])
     return dados
 
-def formatar_resposta(resposta):
+def valida_resposta(resposta):
     resposta_formatada = re.sub(r'\s+', '', resposta)
 
     if resposta_formatada == "":
