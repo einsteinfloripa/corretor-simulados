@@ -1,17 +1,22 @@
 import csv
 import re
 
-def formatar_respostas(aplicacoes):
+
+def formatar_respostas(aplicacoes, tipo_correcao):
     dados = []
     for aplicacao in aplicacoes:
-        with open(f"./input/{aplicacao}.csv", "r", encoding="utf-8") as fp:
+        with open(f"./input/provas/{aplicacao}.csv", "r", encoding="utf-8") as fp:
             reader = csv.reader(fp, delimiter=",", quotechar='"')
             dados_aplicacao = [row for row in reader]
 
             del dados_aplicacao[0]  # Excluir header
 
             for respostas in dados_aplicacao:
-                respostas[5] = valida_resposta(respostas[5])
+                if (tipo_correcao == "simufsc"):
+                    respostas[5] = valida_resposta_simufsc(respostas[5])
+                if (tipo_correcao == "simuenem"):
+                    respostas[5] = valida_resposta_simenem(respostas[5])
+
                 lingua = ""
                 dia = aplicacao[0:2]
 
@@ -26,12 +31,12 @@ def formatar_respostas(aplicacoes):
 
                 if dia == "d1":
                     lingua = aplicacao[3:4]
-
                 dados.append([dia, lingua] + [respostas[2:3][0].strip()] +
                              respostas[4:6] + respostas[8:9])
     return dados
 
-def valida_resposta(resposta):
+
+def valida_resposta_simufsc(resposta):
     resposta_formatada = re.sub(r'\s+', '', resposta)
 
     if resposta_formatada == "":
@@ -53,14 +58,25 @@ def valida_resposta(resposta):
 
     return resposta_formatada
 
+
+def valida_resposta_simenem(resposta):
+    resposta_formatada = re.sub(r'\s+', '', resposta)
+
+    if resposta_formatada == "":
+        #print("Resposta é nula")
+        return None
+
+    return resposta_formatada
+
+
 def formatar_redacao(redacoes, dados_alunos):
     for redacao in redacoes:
         for aluno in dados_alunos:
-            if aluno[1].replace("-", "").replace(".", "")  == redacao[2]:
+            if aluno[1].replace("-", "").replace(".", "") == redacao[2]:
                 redacao.insert(0, aluno[0])
     return redacoes
+
 
 def extrair_da_soma(resposta):
     # print(resposta)
     return resposta.split("=")[1]
-

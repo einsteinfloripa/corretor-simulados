@@ -1,7 +1,7 @@
 from auxilio.variaveis import *
 from auxilio.somatorio import *
 
-def gerar_lista_resultado_alunos(resultado_alunos, redacoes):
+def gerar_lista_resultado_alunos_ufsc(resultado_alunos, redacoes):
     lista_resultado_alunos = []
 
     for aluno, resultados in resultado_alunos.items():
@@ -14,6 +14,20 @@ def gerar_lista_resultado_alunos(resultado_alunos, redacoes):
         lista_resultado_alunos.append(resultado_aluno)
 
     return lista_resultado_alunos
+
+def gerar_lista_resultado_alunos_enem(resultado_alunos, redacoes):
+    lista_resultado_alunos = []
+
+    for aluno, resultados in resultado_alunos.items():
+        resultado_aluno = [aluno] + resultados
+
+        resultado_aluno = inserir_redacao(redacoes, aluno, resultado_aluno)
+
+        lista_resultado_alunos.append(resultado_aluno)
+
+    return lista_resultado_alunos
+
+
 
 def inserir_redacao(redacoes, aluno, resultado_aluno):
         for redacao in redacoes:
@@ -39,18 +53,19 @@ def calcula_PT(resultado_aluno):
             resultado_aluno[i] /= 100
     return PT
 
-def gera_base(lista_respostas):
+def gera_base(lista_respostas):    
     #Pega base de arrays de variaveis
     dados_alunos = {}
     resultado_alunos = {}
 
     for resposta_base in lista_respostas:
         if resposta_base[2] not in dados_alunos:
-            dados_alunos[resposta_base[2]] = lista_base_alunos.copy()
-            resultado_alunos[resposta_base[2]] = lista_base_alunos.copy()
+            dados_alunos[resposta_base[2]] = [0] * total_questoes
+            resultado_alunos[resposta_base[2]] = [0] * total_questoes
+
         if resposta_base[0] == "d1":
-            dados_alunos[resposta_base[2]][82] = resposta_base[1]
-            resultado_alunos[resposta_base[2]][82] = resposta_base[1]
+            dados_alunos[resposta_base[2]][total_questoes - 1] = resposta_base[1]
+            resultado_alunos[resposta_base[2]][total_questoes - 1] = resposta_base[1]
 
     return dados_alunos, resultado_alunos
 
@@ -58,8 +73,10 @@ def separa_dia_de_prova(lista_respostas, dados_alunos):
     for resposta in lista_respostas:
         if resposta[0] == "d1":
             numero_questao = int(resposta[3])
-            dados_alunos[resposta[2]][numero_questao-1] = resposta[4]
+            dados_alunos[resposta[2]][numero_questao - 1] = resposta[4]
+
         elif resposta[0] == "d2":
-            numero_questao = int(resposta[3]) + 42
-            dados_alunos[resposta[2]][numero_questao-1] = resposta[4]
+            numero_questao = int(resposta[3]) + max_questoes_por_dia
+            dados_alunos[resposta[2]][numero_questao - 1] = resposta[4]
+
     return dados_alunos
