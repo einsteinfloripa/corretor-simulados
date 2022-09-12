@@ -35,7 +35,7 @@ escrever_csv("./output/correcao.csv", correcao)
 subjects = gerar_json_disciplinas(correcao, gabarito, tipo_correcao)
 # writing = gerar_json_redacao(correcao, len(redacoes))
 student_dataset = gerar_json_alunos(
-    correcao, respostas, dados_alunos, gabarito)
+    correcao, respostas, dados_alunos, gabarito, tipo_correcao)
 
 data = {
     "config": {
@@ -48,7 +48,7 @@ data = {
         "subjects": subjects,
         # "writing": writing,
     },
-    # "student_dataset": student_dataset
+    "student_dataset": student_dataset
 }
 
 escrever_json('./output/data.json', data)
