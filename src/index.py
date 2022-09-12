@@ -7,13 +7,14 @@ from geradores.gerar_json_geral_disciplina import *
 from geradores.gerar_json_geral_redacao import *
 from leitura_e_escrita.escrever_arquivo import *
 from leitura_e_escrita.ler_arquivo import *
+from utils.tipo_correcao import tipo_correcao_simulado
 
 
 # Variáveis base globais
 dados_alunos_url = "./input/alunos/cpfs.csv"
 redacoes_url = "./input/redacoes/"
 gabarito_url = "./input/gabarito/gabarito.csv"
-tipo_correcao = "simuenem"
+tipo_correcao = tipo_correcao_simulado()
 
 # Leitor de arquivos
 dados_alunos = ler_csv(dados_alunos_url)
@@ -52,3 +53,5 @@ data = {
 }
 
 escrever_json('./output/data.json', data)
+
+print("Arquivos gerados com sucesso!")
