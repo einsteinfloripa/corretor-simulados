@@ -32,23 +32,23 @@ correcao = corrigir(respostas, gabarito, redacoes, tipo_correcao)
 escrever_csv("./output/respostas.csv", respostas)
 escrever_csv("./output/correcao.csv", correcao)
 
-# subjects = gerar_json_disciplinas(correcao, gabarito)
+subjects = gerar_json_disciplinas(correcao, gabarito, tipo_correcao)
 # writing = gerar_json_redacao(correcao, len(redacoes))
-# student_dataset = gerar_json_alunos(
-#     correcao, respostas, dados_alunos, gabarito)
+student_dataset = gerar_json_alunos(
+    correcao, respostas, dados_alunos, gabarito)
 
-# data = {
-#     "config": {
-#         "role": 0,
-#         "type": 4,
-#         "version": "I 07/2022",
-#         "name": "SIMUFSC 2022"
-#     },
-#     "general": {
-#         "subjects": subjects,
-#         "writing": writing,
-#     },
-#     "student_dataset": student_dataset
-# }
+data = {
+    "config": {
+        "role": 0,
+        "type": 4,
+        "version": "I 07/2022",
+        "name": "SIMUFSC 2022"
+    },
+    "general": {
+        "subjects": subjects,
+        # "writing": writing,
+    },
+    # "student_dataset": student_dataset
+}
 
-# escrever_json('./output/data.json', data)
+escrever_json('./output/data.json', data)
