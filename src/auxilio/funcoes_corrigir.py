@@ -18,10 +18,10 @@ def gerar_lista_resultado_alunos_ufsc(resultado_alunos, redacoes):
 def gerar_lista_resultado_alunos_enem(resultado_alunos, redacoes):
     lista_resultado_alunos = []
 
-    for aluno, resultados in resultado_alunos.items():
-        resultado_aluno = [aluno] + resultados
+    for nome_aluno, array_respostas_aluno in resultado_alunos.items():
+        resultado_aluno = [nome_aluno] + array_respostas_aluno
 
-        resultado_aluno = inserir_redacao(redacoes, aluno, resultado_aluno)
+        resultado_aluno = inserir_redacao(redacoes, nome_aluno, resultado_aluno)
 
         lista_resultado_alunos.append(resultado_aluno)
 
@@ -59,24 +59,10 @@ def gera_base(lista_respostas):
     resultado_alunos = {}
 
     for resposta_base in lista_respostas:
-        if resposta_base[2] not in dados_alunos:
-            dados_alunos[resposta_base[2]] = [0] * total_questoes
-            resultado_alunos[resposta_base[2]] = [0] * total_questoes
+        nome_aluno = resposta_base[0]
+        array_dividi_com_respostas_alunos = resposta_base[4:]
 
-        if resposta_base[0] == "d1":
-            dados_alunos[resposta_base[2]][total_questoes - 1] = resposta_base[1]
-            resultado_alunos[resposta_base[2]][total_questoes - 1] = resposta_base[1]
+        dados_alunos[nome_aluno] = array_dividi_com_respostas_alunos 
+        resultado_alunos[nome_aluno] = [0] * len(array_dividi_com_respostas_alunos)
 
     return dados_alunos, resultado_alunos
-
-def separa_dia_de_prova(lista_respostas, dados_alunos):
-    for resposta in lista_respostas:
-        if resposta[0] == "d1":
-            numero_questao = int(resposta[3])
-            dados_alunos[resposta[2]][numero_questao - 1] = resposta[4]
-
-        elif resposta[0] == "d2":
-            numero_questao = int(resposta[3]) + max_questoes_por_dia
-            dados_alunos[resposta[2]][numero_questao - 1] = resposta[4]
-
-    return dados_alunos

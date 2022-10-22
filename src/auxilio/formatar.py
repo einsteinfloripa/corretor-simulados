@@ -5,35 +5,33 @@ import re
 def formatar_respostas(aplicacoes, tipo_correcao):
     dados = []
     for aplicacao in aplicacoes:
-        with open(f"./input/provas/{aplicacao}.csv", "r", encoding="utf-8") as fp:
+        with open(f"./input/{aplicacao}.csv", "r", encoding="utf-8") as fp:
             reader = csv.reader(fp, delimiter=",", quotechar='"')
             dados_aplicacao = [row for row in reader]
 
-            del dados_aplicacao[0]  # Excluir header
+            # for respostas in dados_aplicacao:
+            #     if (tipo_correcao == "simufsc"):
+            #         respostas[5] = valida_resposta_simufsc(respostas[5])
+            #     if (tipo_correcao == "simuenem"):
+            #         respostas[5] = valida_resposta_simenem(respostas[5])
 
-            for respostas in dados_aplicacao:
-                if (tipo_correcao == "simufsc"):
-                    respostas[5] = valida_resposta_simufsc(respostas[5])
-                if (tipo_correcao == "simuenem"):
-                    respostas[5] = valida_resposta_simenem(respostas[5])
+            #     lingua = ""
+            #     dia = aplicacao[0:2]
 
-                lingua = ""
-                dia = aplicacao[0:2]
+            #     respostaVazia = respostas[5] == None
+            #     formulasd1 = dia == "d1" and re.sub(
+            #         r'\s+', '', respostas[4]) == "22"
+            #     formulasd2 = dia == "d2" and re.sub(
+            #         r'\s+', '', respostas[4]) == "20"
 
-                respostaVazia = respostas[5] == None
-                formulasd1 = dia == "d1" and re.sub(
-                    r'\s+', '', respostas[4]) == "22"
-                formulasd2 = dia == "d2" and re.sub(
-                    r'\s+', '', respostas[4]) == "20"
+            #     if respostaVazia or formulasd1 or formulasd2:
+            #         continue
 
-                if respostaVazia or formulasd1 or formulasd2:
-                    continue
-
-                if dia == "d1":
-                    lingua = aplicacao[3:4]
-                dados.append([dia, lingua] + [respostas[2:3][0].strip()] +
-                             respostas[4:6] + respostas[8:9])
-    return dados
+            #     if dia == "d1":
+            #         lingua = aplicacao[3:4]
+            #     dados.append([dia, lingua] + [respostas[2:3][0].strip()] +
+            #                  respostas[4:6] + respostas[8:9])
+    return dados_aplicacao
 
 
 def valida_resposta_simufsc(resposta):

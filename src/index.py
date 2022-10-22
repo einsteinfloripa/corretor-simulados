@@ -11,9 +11,9 @@ from utils.tipo_correcao import tipo_correcao_simulado
 
 
 # Variáveis base globais
-dados_alunos_url = "./input/alunos/cpfs.csv"
+dados_alunos_url = "./input/alunos-dados.csv"
 redacoes_url = "./input/redacoes/"
-gabarito_url = "./input/gabarito/gabarito.csv"
+gabarito_url = "./input/gabarito.csv"
 tipo_correcao = tipo_correcao_simulado()
 
 # Leitor de arquivos
@@ -29,6 +29,7 @@ redacoes = []
 
 # Corrigir Provas
 correcao = corrigir(respostas, gabarito, redacoes, tipo_correcao)
+
 
 escrever_csv("./output/respostas.csv", respostas)
 escrever_csv("./output/correcao.csv", correcao)

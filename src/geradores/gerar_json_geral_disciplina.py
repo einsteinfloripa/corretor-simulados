@@ -67,8 +67,8 @@ def gerar_detalhado_disciplina_estrutura_enem(subjects, correcao, gabarito):
     for questao in gabarito:
         area = questao[0]
         disciplina = questao[-1]
-        numero_questao = int(questao[2])
-        resposta_gabarito = questao[3]
+        numero_questao = int(questao[1])
+        resposta_gabarito = questao[2]
         pontuacoes = 0.
 
         for aluno in correcao:
