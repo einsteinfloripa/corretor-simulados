@@ -7,14 +7,14 @@ from geradores.gerar_json_geral_disciplina import *
 from geradores.gerar_json_geral_redacao import *
 from leitura_e_escrita.escrever_arquivo import *
 from leitura_e_escrita.ler_arquivo import *
-from utils.tipo_correcao import tipo_correcao_simulado
+import cli
 
 
 # Variáveis base globais
-dados_alunos_url = "./input/alunos-dados.csv"
-redacoes_url = "./input/redacoes/"
-gabarito_url = "./input/gabarito.csv"
-tipo_correcao = tipo_correcao_simulado()
+dados_alunos_url = cli.answers['dados_alunos_url'] 
+redacoes_url = cli.answers['redacoes_url']
+gabarito_url = cli.answers['gabarito_url']
+tipo_correcao = (cli.answers['tipo_correcao']).lower()
 
 # Leitor de arquivos
 dados_alunos = ler_csv(dados_alunos_url)

@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "corretor-simulados"
+version = "1.0.0"
+description = "Corretores do Einstein Floripa (Simulinho, SIMUFSC, SIMUENEM, Feedback Alunos)"
+authors = ["Vale do Silicio <vale@einsteinfloripa.com.br>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "corretor_simulados"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+PyInquirer = "^1.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
