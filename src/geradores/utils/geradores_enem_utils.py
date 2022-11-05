@@ -28,37 +28,41 @@ def gerar_details_aluno_enem(aluno, gabarito, respostas):
     details = calcular_general_porcent(details, aluno,respostas)
     return details
 
+
 def gerar_anwsers_aluno_enem(resultados_aluno, gabarito, details, respostas_alunos_detalhada):
-    for questao in gabarito:
-        print(questao)
-        area = questao[0]
-        num_questao = int(questao[1])
-        resposta_gabarito = questao[2]
-        disciplina = questao[-1]
-        pontuacoes = 0.
+    for aluno_e_suas_repostas in respostas_alunos_detalhada:
+        for questao in gabarito:
+            area = questao[0]
+            num_questao = int(questao[1])
+            ajuste_array = 3 + num_questao
+            resposta_aluno_da_questao = aluno_e_suas_repostas[ajuste_array]
+            resposta_gabarito = questao[2]
+            disciplina = questao[-1]
+            pontuacoes = 0.
 
 
-        eh_a_lingua_correta = False
-        for resposta in respostas_alunos_detalhada:
-            nome_aluno = resposta[0]
-            lingua_resposta = resposta[2]
-            if nome_aluno == resultados_aluno[0]:
-                if verificar_lingua_estrangeira(lingua_resposta, disciplina):
-                    eh_a_lingua_correta = True
-        if eh_a_lingua_correta:
-            continue
+            eh_a_lingua_correta = False
+            for resposta in respostas_alunos_detalhada:
+                nome_aluno = resposta[0]
+                lingua_resposta = resposta[2]
+                if nome_aluno == resultados_aluno[0]:
+                    if verificar_lingua_estrangeira(lingua_resposta, disciplina):
+                        eh_a_lingua_correta = True
+            if eh_a_lingua_correta:
+                continue
 
-        print(resultados_aluno)
-        
-        if resultados_aluno[num_questao] != 0:
-            pontuacoes += 1.
-            details[area][disciplina]["general_percent"] += pontuacoes
+            if resultados_aluno[num_questao] != 0:
+                pontuacoes += 1.
+                details[area][disciplina]["general_percent"] += pontuacoes
 
-        details[area][disciplina]["question_numbers"] += 1
-        details[area][disciplina]["answered"].append(resultados_aluno[num_questao])
-        details[area][disciplina]["detailed"].append(resposta_gabarito) 
+            details[area][disciplina]["question_numbers"] += 1
+            details[area][disciplina]["answered"].append(resultados_aluno[num_questao])
+            if "ANULADA" in resposta_gabarito:
+                details[area][disciplina]["detailed"].append("ANULADA")
+            else:
+                details[area][disciplina]["detailed"].append(resposta_aluno_da_questao) 
 
-    return details
+        return details
 
 def calcular_general_porcent(details, resultados_aluno, respostas_alunos_detalhada):
     lingua_estrangeira_aluno = resultados_aluno[-1]

@@ -10,11 +10,10 @@ areas_ufsc = [{"Primeira Língua": ["Português/Literatura"]},
               {"Física": ["Física"]},
               {"Química": ["Química"]}]
 
-areas_enem = [{"Linguagens, códigos e suas tecnologias": ["Literatura e Artes", "Português", "Inglês", "Espanhol"]},
-              {"Ciências Humanas e suas tecnologias": ["História", "Geografia", "Filosofia/Sociologia"]},
-              {"Ciências da Natureza e suas tecnologias": ["Biologia", "Física", "Química"]},
-              {"Matemática e suas tecnologias": ["Matemática"]}
-              ]
+areas_enem = [{"Linguagens, códigos e suas tecnologias": ["$"]},
+              {"Ciências Humanas e suas tecnologias": ["$"]},
+              {"Ciências da Natureza e suas tecnologias": ["$"]},
+              {"Matemática e suas tecnologias": ["$"]}]
 
 
 
