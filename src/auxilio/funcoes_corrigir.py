@@ -53,7 +53,7 @@ def calcula_PT(resultado_aluno):
             resultado_aluno[i] /= 100
     return PT
 
-def gera_base(lista_respostas):    
+def gerar_base(lista_respostas):    
     #Pega base de arrays de variaveis
     dados_alunos = {}
     resultado_alunos = {}

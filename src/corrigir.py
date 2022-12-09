@@ -7,7 +7,7 @@ from corretores.corretor_enem import correcao_enem
 
 
 def corrigir(lista_respostas, gabarito, redacoes, tipo_correcao):
-    dados_alunos, resultado_alunos = gera_base(lista_respostas)
+    dados_alunos, resultado_alunos = gerar_base(lista_respostas)
     if (tipo_correcao == "simufsc"):
         dados_alunos, resultado_alunos = correcao_ufsc(
             gabarito, dados_alunos, resultado_alunos)
