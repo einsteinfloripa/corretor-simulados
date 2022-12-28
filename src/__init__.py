@@ -9,33 +9,29 @@ from leitura_e_escrita.escrever_arquivo import *
 from leitura_e_escrita.ler_arquivo import *
 import cli
 
-
-# Variáveis base globais
-dados_alunos_url = cli.answers['dados_alunos_url'] 
-redacoes_url = cli.answers['redacoes_url']
-gabarito_url = cli.answers['gabarito_url']
-tipo_correcao = (cli.answers['tipo_correcao']).lower()
+# Variáveis INPUT Usuário
+dados_alunos_path, respostas_alunos_path, gabarito_path, redacoes_path, tipo_correcao = cli.get_input_usuario()
 
 # Leitor de arquivos
-dados_alunos = ler_csv(dados_alunos_url)
-gabarito = ler_csv(gabarito_url)
-# redacoes = ler_csv(redacoes_url)
+df_dados_alunos = ler_csv(dados_alunos_path, nome_col_df_dados_alunos)
+df_respostas = ler_csv(respostas_alunos_path, nome_col_df_respostas)
+df_gabarito = ler_csv(gabarito_path, nome_col_df_gabarito)
+# df_redacoes = ler_csv(redacoes_path)
+df_redacoes = []   # PLACE HOLDER
 
 # Processadores de dados
 respostas = formatar_respostas(aplicacoes, tipo_correcao)
-# redacoes = formatar_redacao(redacoes, dados_alunos)
-
-redacoes = []
+# redacoes = formatar_redacao(redacoes, dados_alunos)  ## NÃO IMPLEMENTADO
 
 # Corrigir Provas
-correcao = corrigir(respostas, gabarito, redacoes, tipo_correcao)
+df_resultado = corrigir(df_respostas, df_gabarito, df_redacoes, tipo_correcao)
 
+# escrever_csv("./output/respostas.csv", respostas)  ### Igual ao input...
+escrever_csv("./output/resultado.csv", df_resultado)
 
-escrever_csv("./output/respostas.csv", respostas)
-escrever_csv("./output/correcao.csv", correcao)
-
-subjects = gerar_json_disciplinas(correcao, gabarito, tipo_correcao)
+subjects = gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao)
 # writing = gerar_json_redacao(correcao, len(redacoes))
+
 student_dataset = gerar_json_alunos(
     correcao, respostas, dados_alunos, gabarito, tipo_correcao)
 
