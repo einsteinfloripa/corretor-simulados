@@ -20,7 +20,7 @@ df_gabarito = ler_csv(gabarito_path, nome_col_df_gabarito)
 df_redacoes = []   # PLACE HOLDER
 
 # Processadores de dados
-respostas = formatar_respostas(aplicacoes, tipo_correcao)
+#####respostas = formatar_respostas(aplicacoes, tipo_correcao)
 # redacoes = formatar_redacao(redacoes, dados_alunos)  ## NÃO IMPLEMENTADO
 
 # Corrigir Provas
