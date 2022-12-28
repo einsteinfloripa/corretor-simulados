@@ -1,14 +1,12 @@
-import csv
 import json
 import os.path
+import pandas as pd
 
-def escrever_csv(caminho, dados):
+def escrever_csv(caminho, df):
     if not os.path.exists(os.path.dirname(caminho)):
         os.makedirs(os.path.dirname(caminho))
-    
-    with open(caminho, "w", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerows(dados)
+
+    df.to_csv(caminho)
 
 
 def escrever_json(caminho, dados):
