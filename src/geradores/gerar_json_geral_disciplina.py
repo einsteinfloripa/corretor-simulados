@@ -94,7 +94,8 @@ def calcular_general_porcent_enem(subjects):
     for area_enem in areas_enem:
         for chave_dicionario, disciplinas_area in area_enem.items():
             for disciplina in disciplinas_area:
-                subjects[chave_dicionario][disciplina]["general_percent"] = round(subjects[chave_dicionario][disciplina]["general_percent"] / \
+                if subjects[chave_dicionario][disciplina]["general_percent"] != 0:
+                    subjects[chave_dicionario][disciplina]["general_percent"] = round(subjects[chave_dicionario][disciplina]["general_percent"] / \
                     subjects[chave_dicionario][disciplina]["question_numbers"] * 100, 2)
 
     return subjects
