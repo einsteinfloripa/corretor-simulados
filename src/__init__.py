@@ -7,14 +7,21 @@ from geradores.gerar_json_geral_disciplina import *
 from geradores.gerar_json_geral_redacao import *
 from leitura_e_escrita.escrever_arquivo import *
 from leitura_e_escrita.ler_arquivo import *
-import cli
+
 
 
 # Variáveis base globais
-dados_alunos_url = cli.answers['dados_alunos_url'] 
-redacoes_url = cli.answers['redacoes_url']
-gabarito_url = cli.answers['gabarito_url']
-tipo_correcao = (cli.answers['tipo_correcao']).lower()
+
+#utilizar um novo meio de "setar" as variaveis
+# dados_alunos_url  (caminho para o arquivo)
+# redacoes_url      (caminho para o arquivo)
+# gabarito_url      (caminho para o arquivo)
+# tipo_correcao     ['SIMUFSC', 'SIMUENEM', 'SIMULINHO']
+
+import GUI.aplication
+print("Isso rodou com sucesso 2")
+'''
+quit()
 
 # Leitor de arquivos
 dados_alunos = ler_csv(dados_alunos_url)
@@ -56,3 +63,4 @@ data = {
 escrever_json('./output/data.json', data)
 
 print("Arquivos gerados com sucesso!")
+'''

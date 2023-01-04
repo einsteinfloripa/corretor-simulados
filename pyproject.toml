@@ -8,8 +8,8 @@ readme = "README.md"
 packages = [{include = "corretor_simulados"}]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-PyInquirer = "^1.0.3"
+python = ">=3.7, <3.12"
+pyside6 = "^6.4.1"
 
 
 [build-system]
