@@ -7,7 +7,7 @@ from geradores.gerar_json_geral_disciplina import *
 from geradores.gerar_json_geral_redacao import *
 from leitura_e_escrita.escrever_arquivo import *
 from leitura_e_escrita.ler_arquivo import *
-
+from GUI import Aplication
 
 
 # Variáveis base globais
@@ -18,8 +18,16 @@ from leitura_e_escrita.ler_arquivo import *
 # gabarito_url      (caminho para o arquivo)
 # tipo_correcao     ['SIMUFSC', 'SIMUENEM', 'SIMULINHO']
 
-import GUI.aplication
-print("Isso rodou com sucesso 2")
+def Imprime_dados(kwargs):
+    print(kwargs)
+
+
+
+app = Aplication()
+app.window.set_corrigir_callback(Imprime_dados)
+app.Run()
+
+
 '''
 quit()
 
