@@ -29,6 +29,8 @@ df_resultado = corrigir(df_respostas, df_gabarito, df_redacoes, tipo_correcao)
 # escrever_csv("./output/respostas.csv", respostas)  ### Igual ao input...
 escrever_csv("./output/resultado.csv", df_resultado)
 
+###### ^^^ OK ^^^ ######
+
 subjects = gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao)
 # writing = gerar_json_redacao(correcao, len(redacoes))
 
@@ -52,3 +54,21 @@ data = {
 escrever_json('./output/data.json', data)
 
 print("Arquivos gerados com sucesso!")
+
+
+
+
+
+
+
+
+
+
+
+
+##########
+
+# dados_alunos_path = "input/alunos/alunos-dados.csv"
+# respostas_alunos_path = "input/resposta-alunos/respostas-alunos-oficial.csv"
+# gabarito_path = "input/gabarito/gabarito-oficial.csv"
+# tipo_correcao = "simuenem"

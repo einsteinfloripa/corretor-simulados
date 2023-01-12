@@ -32,5 +32,11 @@ nome_col_df_respostas = ["Nome","CPF","2Lingua","Cota",
                          "157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172",
                          "173","174","175","176","177","178","179","180"]
 
-# Códigos para 2lingua
-codigo_2lingua_dicionario = {"Inglês": 0, "Espanhol":1} 
+# Códigos para 2lingua e posição respostas
+codigo_2lingua_dicionario = {"2Lingua":
+                                        {
+                                        "Inglês":   {"Código": 0, "Posição": [slice(0, 5), slice(10, 185)]},
+                                        "Espanhol": {"Código": 1, "Posição": [slice(5, 185), slice(None,None)]}
+                                       #"LinguaX": {"Código": 2, "Posição": [slice(x, y), slice(z,w)]} 
+                                        }
+                            }
