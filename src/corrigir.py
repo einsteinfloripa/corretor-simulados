@@ -11,6 +11,7 @@ def corrigir(df_respostas, df_gabarito, redacoes, tipo_correcao):
         # dados_alunos, resultado_alunos = correcao_ufsc(
         #     gabarito, dados_alunos, resultado_alunos)
         # return gerar_lista_resultado_alunos_ufsc(resultado_alunos, redacoes)
+        exit()
 
     if (tipo_correcao == "simuenem"):
 
@@ -19,7 +20,7 @@ def corrigir(df_respostas, df_gabarito, redacoes, tipo_correcao):
 
     if (tipo_correcao == "simulinho"):
         print("Correção de simulinho não implementada")
-
+        exit()
 
 
 
