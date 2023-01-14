@@ -24,7 +24,7 @@ def correcao_enem(df_respostas, df_gabarito):
 
 def get_pares_dfs_2lingua(df_respostas, df_gabarito):
     dfs = []
-    for lingua, dici2 in c2l["2Lingua"].items():
+    for lingua, dici2 in list(c2l["2Lingua"].items())[:-1]:
         df_resposta_ = df_respostas.loc[df_respostas["2Lingua"].astype(str) == lingua]
         df_gabarito_ = df_gabarito.iloc[np.r_[dici2["Posição"][0], dici2["Posição"][1]]]
         dfs.extend([df_resposta_, df_gabarito_])

@@ -35,8 +35,9 @@ nome_col_df_respostas = ["Nome","CPF","2Lingua","Cota",
 # Códigos para 2lingua e posição respostas
 codigo_2lingua_dicionario = {"2Lingua":
                                         {
+                                       #"2LinguaX": {"Código": 2, "Posição": [slice(x, y), slice(z,w)]}
                                         "Inglês":   {"Código": 0, "Posição": [slice(0, 5), slice(10, 185)]},
-                                        "Espanhol": {"Código": 1, "Posição": [slice(5, 185), slice(None,None)]}
-                                       #"LinguaX": {"Código": 2, "Posição": [slice(x, y), slice(z,w)]} 
+                                        "Espanhol": {"Código": 1, "Posição": [slice(5, 185), slice(None,None)]},
+                                        "Quantidade": 5
                                         }
                             }
