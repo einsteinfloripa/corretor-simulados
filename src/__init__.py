@@ -32,10 +32,6 @@ escrever_csv("./output/gabarito.csv", df_gabarito)
 
 subjects = gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao)
 # writing = gerar_json_redacao(correcao, len(redacoes))
-
-escrever_json('./output/data.json', subjects)
-###### ^^^ OK ^^^ ######
-
 student_dataset = gerar_json_alunos(df_resultado, df_gabarito, tipo_correcao)
 
 data = {
@@ -55,47 +51,3 @@ data = {
 escrever_json('./output/data.json', data)
 
 print("Arquivos gerados com sucesso!")
-
-
-
-
-
-
-
-
-
-
-
-
-##########
-
-{
-    (1, 'Linguagens, códigos e suas tecnologias', '$'): [
-                                                         ('Ademir Atanazio Junior', 1),
-                                                         ('Agata Cristina Cidade', 1),
-                                                         ('Ana Carolina de Andrade Machado', 1),
-                                                         ('Ana Laura Teixeira Da Rosa', 1),
-                                                         ('Byanka Lemos Veríssimo', 1),
-                                                         ('Caroliny Alves Leal', 1),
-                                                         ('Cecília Rost Hames', 1),
-                                                         ('Echo Fabre Zimmermann', 1),
-                                                         ('Emanuelli marques de souza', 1),
-                                                         ('Gabriele Alban Gonçalves', 1),
-                                                         ('Gabrielle Machado Bardança', 1),
-                                                         ('Guilherme Cadona Da Silva', 1)
-                                                        ],
-    (2, 'Linguagens, códigos e suas tecnologias', '$'): [
-                                                        ('Ademir Atanazio Junior', 2),
-                                                        ('Agata Cristina Cidade', 2),
-                                                        ('Ana Carolina de Andrade Machado', 2),
-                                                        ('Ana Laura Teixeira Da Rosa', 2),
-                                                        ('Byanka Lemos Veríssimo', 2),
-                                                        ('Caroliny Alves Leal', 2),
-                                                        ('Cecília Rost Hames', 2),
-                                                        ('Echo Fabre Zimmermann', 2),
-                                                        ('Emanuelli marques de souza', 2),
-                                                        ('Gabriele Alban Gonçalves', 2),
-                                                        ('Gabrielle Machado Bardança', 2),
-                                                        ('Guilherme Cadona Da Silva', 2)
-                                                        ]
-}

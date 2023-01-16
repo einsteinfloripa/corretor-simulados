@@ -21,6 +21,7 @@ def gerar_json_simuenem(df_resultado, df_gabarito):
     student_dataset = []
     lista_total = []
     nomes_lista = df_resultado.index.get_level_values("Nome").unique()
+
     for nome in nomes_lista:
         total = df_resultado.loc[df_resultado.index.get_level_values("Nome") == nome, "Verificação"].sum()
         lista_total.append([nome, total])
@@ -45,27 +46,6 @@ def gerar_json_simuenem(df_resultado, df_gabarito):
                 },
                 "detailed": {
                     "subjects": gerar_details_aluno_enem(nome_aluno, df_gabarito, df_resultado),
-                    # "writing": {
-                    #     "c1": {
-                    #         "note": aluno[-11],
-                    #         "comment": aluno[-6]
-                    #     },
-                    #     "c2": {
-                    #         "note": aluno[-10],
-                    #         "comment": aluno[-5]
-                    #     },
-                    #     "c3": {
-                    #         "note": aluno[-9],
-                    #         "comment": aluno[-4]
-                    #     },
-                    #     "c4": {
-                    #         "note": aluno[-8],
-                    #         "comment": aluno[-3]
-                    #     },
-                    #     "general_comment": aluno[-2],
-                    #     "iframe": aluno[-1],
-                    #     "total": aluno[-7]
-                    # }
                 }
             }
         )
