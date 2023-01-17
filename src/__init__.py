@@ -13,15 +13,8 @@ import cli
 dados_alunos_path, respostas_alunos_path, gabarito_path, redacoes_path, tipo_correcao = cli.get_input_usuario()
 
 # Leitor de arquivos
-df_dados_alunos = ler_csv(dados_alunos_path, nome_col_df_dados_alunos)
-df_respostas = ler_csv(respostas_alunos_path, nome_col_df_respostas)
-df_gabarito = ler_csv(gabarito_path, nome_col_df_gabarito)
-# df_redacoes = ler_csv(redacoes_path)
-df_redacoes = []   # PLACE HOLDER
-
-# Processadores de dados
-#####respostas = formatar_respostas(aplicacoes, tipo_correcao)
-# redacoes = formatar_redacao(redacoes, dados_alunos)  ## NÃO IMPLEMENTADO
+df_dados_alunos, df_respostas, df_gabarito = csvs_to_dfs(dados_alunos_path, respostas_alunos_path, gabarito_path)
+df_redacoes = []   # PLACE HOLDER Não implementado
 
 # Corrigir Provas
 df_resultado = corrigir(df_respostas, df_gabarito, df_redacoes, tipo_correcao)
