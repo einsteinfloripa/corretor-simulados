@@ -87,13 +87,13 @@ class Frame_seleçao_tipo_de_correçao(QFrame):
         btn_id = self.grupo_botoes.checkedId()
 
         if btn_id == 0:
-            return { 'tipo_de_correçao' : 'simuenem'}
+            return { 'tipo_de_correcao' : 'simuenem'}
         elif btn_id == 1:
-            return { 'tipo_de_correçao' : 'simufsc'}
+            return { 'tipo_de_correcao' : 'simufsc'}
         elif btn_id == 2:
-            return { 'tipo_de_correçao' : 'simulinho'}
+            return { 'tipo_de_correcao' : 'simulinho'}
         else:
-            return {'tipo_de_correçao' : 'nao selecioando'}
+            return {'tipo_de_correcao' : 'nao selecioando'}
 
 
 class Frame_seleçao_caminho_de_saida(QFrame):

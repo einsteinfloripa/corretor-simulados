@@ -3,7 +3,7 @@ import sys
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import (QApplication,
     QVBoxLayout, QMainWindow, QPushButton, QWidget,
-    QFrame)
+    QFrame, QMenu)
 
 
 from GUI.widgets import (Frame_seleçao_caminhos_de_entrada,
@@ -18,7 +18,19 @@ class Window(QMainWindow):
     def __init__(self):
         super().__init__(parent=None)
 
-        # Frame princimal
+        #variavais
+        self.DEBUG_MODE = False
+
+        #menu principal
+        self.main_menu = self.menuBar()
+
+        self.options_menu = QMenu("Opçoes", self.main_menu)
+        self.options_menu.addAction("Debug mode").setCheckable(True)
+        self.options_menu.triggered.connect(self.set_option)
+
+        self.main_menu.addMenu(self.options_menu)
+
+        # Frame principal
         self.mainframe = QFrame()
         #layout do frame principal
         self.layout = QVBoxLayout(self.mainframe)
@@ -42,6 +54,7 @@ class Window(QMainWindow):
     def set_corrigir_callback(self, func):
         self.funçao_corrigir = func
 
+
     @Slot()
     def corrigir(self):        
 
@@ -50,8 +63,20 @@ class Window(QMainWindow):
         dados.update( self.frame_correçao.get_data() )
         dados.update( self.frame_caminho_saida.get_data() )
 
-        self.funçao_corrigir(dados)
+        if self.DEBUG_MODE:
+            print('-------------------------------------')
+            for key, value in dados.items():
+                print('Key: ', key, ' Value: ', value)
+            print('-------------------------------------')
+        else:
+            self.funçao_corrigir(dados)
     
+
+    @Slot()
+    def set_option(self, action):
+        if action.text() == "Debug mode":
+            self.DEBUG_MODE = action.isChecked()
+
 
 
 
