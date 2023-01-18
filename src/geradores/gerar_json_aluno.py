@@ -24,6 +24,7 @@ def gerar_json_simuenem(df_resultado, df_gabarito):
         total = df_resultado.loc[df_resultado.index.get_level_values("Nome") == nome, "Verificação"].sum()
         lista_total.append([nome, total])
     lista_total_ordenada = [x for x in sorted(lista_total, key=lambda x: x[1])]
+    lista_total_ordenada.reverse()
 
     grupos = df_resultado.groupby("Nome", sort=False)
     for nome, grupo in grupos:
@@ -31,7 +32,7 @@ def gerar_json_simuenem(df_resultado, df_gabarito):
         total_acertos = grupo["Verificação"].eq(1).sum()
         cpf = re.sub("\\D", "", grupo.loc[nome, "CPF"].iat[0])
         msg_tutor = grupo.loc[nome, "2Lingua"].iat[0]
-        posicao = next(listas[1] for listas in lista_total_ordenada if (listas[0] == nome))
+        posicao = next(lista_total_ordenada.index(listas) for listas in lista_total_ordenada if (listas[0] == nome))
 
         student_dataset.append(
             {
@@ -39,7 +40,7 @@ def gerar_json_simuenem(df_resultado, df_gabarito):
                     "name": nome_aluno,
                     "cpf": cpf,
                     "total": str(total_acertos),
-                    "position": str(posicao),
+                    "position": str(posicao+1),
                     "msg": msg_tutor
                 },
                 "detailed": {
