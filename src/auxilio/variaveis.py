@@ -33,11 +33,21 @@ nome_col_df_respostas = ["Nome","CPF","2Lingua","Cota",
                          "173","174","175","176","177","178","179","180"]
 
 # Códigos para 2lingua e posição respostas
+# ENEM
+posicao_linguas_na_planilha = {
+                              "Inglês":   {"Início": 0, "Fim": 5},
+                              "Espanhol": {"Início": 5, "Fim": 10}
+                              #"2LinguaZ": {"Início": 10,"Fim": 15}
+                              }
+
 codigo_2lingua_dicionario = {"2Lingua":
                                         {
-                                       #"2LinguaX": {"Código": 2, "Posição": [slice(x, y), slice(z,w)]}
-                                        "Inglês":   {"Código": 0, "Posição": [slice(0, 5), slice(10, 185)]},
-                                        "Espanhol": {"Código": 1, "Posição": [slice(5, 185), slice(None,None)]},
+                                        "Inglês":   {"Código": 0, "Posição": [posicao_linguas_na_planilha["Inglês"]["Início"],
+                                                                              posicao_linguas_na_planilha["Inglês"]["Fim"]]},
+                                        "Espanhol": {"Código": 1, "Posição": [posicao_linguas_na_planilha["Espanhol"]["Início"],
+                                                                              posicao_linguas_na_planilha["Espanhol"]["Fim"]]},
+                                        #"2LinguaZ":{"Código": 2, "Posição": [posicao_linguas_na_planilha["2LinguaZ"]["Início"],
+                                        #                                     posicao_linguas_na_planilha["2LinguaZ"]["Fim"]]},
                                         "Quantidade": 5
                                         }
                             }
