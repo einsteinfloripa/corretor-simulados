@@ -1,7 +1,3 @@
-from auxilio.variaveis import *
-from auxilio.somatorio import *
-from auxilio.funcoes_corrigir import *
-from corretores.corretor_ufsc import correcao_ufsc
 from corretores.corretor_enem import correcao_enem
 
 def corrigir(df_respostas, df_gabarito, redacoes, tipo_correcao):

@@ -1,8 +1,6 @@
 # TODO: por questão de tempo, não fiz um bom if para verificar se o aluno fez ingles ou espanhol, vou arrumar melhor depois, talvez em um simuenem?
 
 from dis import dis
-from geradores.gerar_json_geral_disciplina import *
-from auxilio.variaveis import areas_ufsc
 from geradores.utils.geradores_enem_utils import gerar_details_aluno_enem
 import re
 

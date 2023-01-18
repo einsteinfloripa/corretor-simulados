@@ -1,12 +1,8 @@
-from auxilio.formatar import *
-from auxilio.variaveis import *
-from corrigir import *
-from auxilio.somatorio import *
-from geradores.gerar_json_aluno import *
-from geradores.gerar_json_geral_disciplina import *
-from geradores.gerar_json_geral_redacao import *
-from leitura_e_escrita.escrever_arquivo import *
-from leitura_e_escrita.ler_arquivo import *
+from corrigir import corrigir
+from geradores.gerar_json_aluno import gerar_json_alunos
+from geradores.gerar_json_geral_disciplina import gerar_json_disciplinas
+from leitura_e_escrita.escrever_arquivo import escrever_csv, escrever_json
+from leitura_e_escrita.ler_arquivo import csvs_to_dfs
 import cli
 
 # Variáveis INPUT Usuário
