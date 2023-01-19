@@ -1,28 +1,13 @@
 from __future__ import print_function, unicode_literals
-from PyInquirer import prompt, print_json
+from InquirerPy import inquirer
 
-questions = [
-    {
-        'type': 'input',
-        'name': 'dados_alunos_url',
-        'message': 'Arraste o arquivo de dados dos alunos para cá: \n',
-    },
-    {
-        'type': 'input',
-        'name': 'redacoes_url',
-        'message': 'Arraste a pasta de redações para cá: \n',
-    },
-    {
-        'type': 'input',
-        'name': 'gabarito_url',
-        'message': 'Arraste o arquivo de gabarito para cá: \n',
-    },
-    {
-        'type': 'list',
-        'name': 'tipo_correcao',
-        'message': 'Escolha o tipo da prova: \n',
-        'choices': ['SIMUFSC', 'SIMUENEM', 'SIMULINHO']
-    }
-]
+def get_input_usuario():
+    dados_alunos_path= inquirer.text(message="Arraste o arquivo de dados dos alunos para cá: \n").execute()
+    respostas_alunos_path = inquirer.text(message="Arraste o arquivo de respostas dos alunos para cá: \n").execute()
+    gabarito_path = inquirer.text(message="Arraste o arquivo de gabarito para cá: \n").execute()
+    redacoes_path = inquirer.text(message="Arraste a pasta de redações para cá: \n").execute()
+    tipo_correcao = inquirer.select(
+            message = "Escolha o tipo da prova: \n",
+            choices = ["SIMUFSC", "SIMUENEM", "SIMULINHO"]).execute()
 
-answers = prompt(questions)
+    return(dados_alunos_path, respostas_alunos_path, gabarito_path, redacoes_path, tipo_correcao.lower())
