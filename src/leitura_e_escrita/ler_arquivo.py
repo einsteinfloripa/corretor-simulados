@@ -1,3 +1,4 @@
+from pathlib import Path
 from auxilio.variaveis import nome_col_df_dados_alunos, nome_col_df_gabarito, nome_col_df_respostas
 import pandas as pd
 
@@ -11,7 +12,7 @@ def csvs_to_dfs(*paths):
 def ler_csv(caminho: str, nome_colunas = None) -> pd.DataFrame:
 
     if nome_colunas != None: # Assumindo que o CSV não vira com nomes nas colunas
-        pandas_df = pd.read_csv(caminho,
+        pandas_df = pd.read_csv(Path(caminho),
                                 sep=",",
                                 quotechar='"',
                                 names = nome_colunas,
