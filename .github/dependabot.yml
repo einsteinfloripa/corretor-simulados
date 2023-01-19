@@ -1,0 +1,7 @@
+version: 2
+updates:
+  # Enable version updates for Poetry
+  - package-ecosystem: "poetry"
+    directory: "/"
+    schedule:
+      interval: "daily"
