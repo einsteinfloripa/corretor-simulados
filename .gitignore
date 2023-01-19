@@ -1,5 +1,4 @@
 __pycache__
-output
+output/*
+!output/template.json
 input/*
-!input/templates
-.venv
