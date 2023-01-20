@@ -14,10 +14,10 @@ from GUI import Aplication
 def funçao_corrige(dados):
     '''
     dados = {
-                'caminho_gabarito': <string> exemplo/de/caminho.xlsx,
-                'caminho_resposta': <string> exemplo/de/caminho.xlsx,
-                'tipo_de_correcao': <string> [simuenem, simufsc, simulinho],
-                'caminho_de_saida': <string> exemplo/de/caminho/nome_do_arquivo,
+                'caminhos_gabaritos': list<<string>> [exemplo/de/caminho.xlsx],
+                'caminho_resposta':   list<<string>> [exemplo/de/caminho.xlsx, exemplo/2.csv],
+                'tipo_de_correcao': <string> simuenem | simufsc | simulinho,
+                'caminho_de_saida': <string> exemplo/de/caminho/nome_do_arquivo(sem extençao!!),
             }
     '''
 

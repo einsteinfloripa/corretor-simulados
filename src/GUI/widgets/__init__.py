@@ -3,7 +3,7 @@ from os import path
 from PySide6.QtCore import Slot, QRect
 from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QLabel,
                                QFileDialog, QRadioButton, QLayout, QButtonGroup, QScrollArea,
-                               QGroupBox, QSizePolicy, QSpacerItem, QWidget)
+                               QGroupBox, QSizePolicy, QSpacerItem, QWidget, QMessageBox)
 
 
 ### WIDGETS AUXILIARES ###
@@ -34,7 +34,7 @@ class Caminho_label_btn_pair(QGroupBox):
     def set_text(self, text):
         self.label.setText(text)
     
-    
+
     @Slot()
     def remover(self):
         self.scroll_widget_patent.remove_caminho(self)
@@ -56,9 +56,19 @@ class Scroll_Widget_conteiner_caminhos(QScrollArea):
         self.setWidget(self.main_widget)
 
 
-    def adiciona_novo_caminho(self, caminho):
-        novo_caminho = Caminho_label_btn_pair(caminho, self)
-        self.main_widget_layout.addWidget(novo_caminho)
+    def adiciona_novo_caminho(self, novo_caminho):
+        
+        # valida se o caminho ja existe
+        for caminho in self.get_data():
+            if caminho == novo_caminho:
+                #precisa de um icone
+                message_box = QMessageBox()
+                message_box.setText("Arquivo já adicionado.")
+                message_box.exec()
+                return
+
+        novo_caminho_widget = Caminho_label_btn_pair(novo_caminho, self)
+        self.main_widget_layout.addWidget(novo_caminho_widget)
         
 
     def remove_caminho(self, caminho):
@@ -75,7 +85,6 @@ class Scroll_Widget_conteiner_caminhos(QScrollArea):
             data.append(caminho)
         
         return data
-
 
 
 ### WIDGETS PRINCIPAIS ###
