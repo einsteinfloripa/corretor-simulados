@@ -7,8 +7,8 @@ from PySide6.QtWidgets import (QApplication,
 
 
 from GUI.widgets import (Frame_seleçao_caminhos_de_entrada,
-                             Frame_seleçao_tipo_de_correçao,
-                             Frame_seleçao_caminho_de_saida)
+                         Frame_seleçao_tipo_de_correçao,
+                         Frame_seleçao_caminho_de_saida)
 
 
 
@@ -66,7 +66,7 @@ class Window(QMainWindow):
         if self.DEBUG_MODE:
             print('-------------------------------------')
             for key, value in dados.items():
-                print('Key: ', key, ' Value: ', value)
+                print('Key: ', key, '   Value: ', value)
             print('-------------------------------------')
         else:
             self.funçao_corrigir(dados)

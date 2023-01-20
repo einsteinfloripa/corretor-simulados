@@ -1,22 +1,101 @@
 from os import path
 
-from PySide6.QtCore import Slot
-from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QFrame, QLabel,
-                               QFileDialog, QRadioButton, QLayout, QButtonGroup)
+from PySide6.QtCore import Slot, QRect
+from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QLabel,
+                               QFileDialog, QRadioButton, QLayout, QButtonGroup, QScrollArea,
+                               QGroupBox, QSizePolicy, QSpacerItem, QWidget)
 
 
+### WIDGETS AUXILIARES ###
+
+class Caminho_label_btn_pair(QGroupBox):
+
+    def __init__(self, text, scroll_widget_patent):
+        super().__init__()
+
+        #config
+        self.scroll_widget_patent = scroll_widget_patent
+        self.layout = QHBoxLayout(self)
+
+        #label
+        self.label = QLabel(text)
+        self.layout.addWidget(self.label)
+
+        #botao
+        self.btn_remover = QPushButton("Remover")
+        self.layout.addWidget(self.btn_remover)
+        self.btn_remover.clicked.connect(self.remover)
+
+
+    def text(self):
+        return self.label.text()
+    
+
+    def set_text(self, text):
+        self.label.setText(text)
+    
+    
+    @Slot()
+    def remover(self):
+        self.scroll_widget_patent.remove_caminho(self)
+    
+
+class Scroll_Widget_conteiner_caminhos(QScrollArea):
+    
+    def __init__(self):
+        super().__init__()
+        
+        #config
+        self.setWidgetResizable(True)
+        self.layout = QVBoxLayout(self)
+
+        #main widget
+        self.main_widget = QWidget(self)
+        self.main_widget_layout = QVBoxLayout(self.main_widget)
+
+        self.setWidget(self.main_widget)
+
+
+    def adiciona_novo_caminho(self, caminho):
+        novo_caminho = Caminho_label_btn_pair(caminho, self)
+        self.main_widget_layout.addWidget(novo_caminho)
+        
+
+    def remove_caminho(self, caminho):
+        caminho.deleteLater()
+    
+
+    def get_data(self):
+        data = []
+
+        count = self.main_widget_layout.count()
+        for index in range(count):
+            item = self.main_widget_layout.itemAt(index)
+            caminho = item.widget().text()
+            data.append(caminho)
+        
+        return data
+
+
+
+### WIDGETS PRINCIPAIS ###
 
 class Frame_seleçao_caminhos_de_entrada(QFrame):
 
+
     def __init__(self, parent = None):
         super().__init__()
-
+        
+        #layout
         self.layout = QVBoxLayout(self)
-        # WIDGETS
-        self.btn_gabarito = QPushButton("Gabarito")
-        self.label_gabarito = QLabel("Não selecionado")
-        self.btn_respostas = QPushButton("Resposta")
-        self.label_respostas = QLabel("Não selecionado")
+
+        #WIDGETS
+        #botoes
+        self.btn_gabarito = QPushButton("Adicionar Gabarito")
+        self.btn_respostas = QPushButton("Adicionar Resposta")
+        #lista de pares labels-botoes
+        self.scroll_gabarito = Scroll_Widget_conteiner_caminhos()
+        self.scroll_respostas = Scroll_Widget_conteiner_caminhos()
         
     
         self.btn_gabarito.clicked.connect(lambda : self.procura_caminho("gabarito"))
@@ -24,34 +103,35 @@ class Frame_seleçao_caminhos_de_entrada(QFrame):
 
 
         self.layout.addWidget(self.btn_gabarito)
-        self.layout.addWidget(self.label_gabarito)
+        self.layout.addWidget(self.scroll_gabarito)
         self.layout.addWidget(self.btn_respostas)
-        self.layout.addWidget(self.label_respostas)
+        self.layout.addWidget(self.scroll_respostas)
       
 
     @Slot()
     def procura_caminho(self, tipo_arquivo):
         
         caminho_arquivo = QFileDialog.getOpenFileName( 
-            self,
-            "Arquivo de " + tipo_arquivo,
-            path.pardir,
-            "Arquivo de dados (*.xlsx *.csv)",
+                    self,
+                    "Arquivo de " + tipo_arquivo,
+                    path.pardir,
+                    "Arquivo de dados (*.xlsx *.csv)",
             )
         
         if caminho_arquivo[0] != '':
             if tipo_arquivo == "gabarito":
-                self.label_gabarito.setText(caminho_arquivo[0])
+                self.scroll_gabarito.adiciona_novo_caminho(caminho_arquivo[0])
+
             elif tipo_arquivo == "respostas":
-                self.label_respostas.setText(caminho_arquivo[0])
+                self.scroll_respostas.adiciona_novo_caminho(caminho_arquivo[0])
 
 
     def get_data(self):
-        caminho_gabarito = self.label_gabarito.text()
-        caminho_respostas = self.label_respostas.text()
+        caminhos_gabaritos = self.scroll_gabarito.get_data()
+        caminhos_respostas = self.scroll_respostas.get_data()
         return {
-                    'caminho_gabarito':caminho_gabarito,
-                    'caminho_resposta':caminho_respostas,
+                    'caminhos_gabaritos':caminhos_gabaritos,
+                    'caminhos_respostas':caminhos_respostas,
                }  
 
 
