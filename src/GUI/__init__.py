@@ -10,6 +10,8 @@ from GUI.widgets import (Frame_seleçao_caminhos_de_entrada,
                          Frame_seleçao_tipo_de_correçao,
                          Frame_seleçao_caminho_de_saida)
 
+from GUI import variaveis as guiVars
+
 
 
 
@@ -20,6 +22,10 @@ class Window(QMainWindow):
 
         #variavais
         self.DEBUG_MODE = False
+
+        #config
+        self.setFixedSize(guiVars.largura_da_janela, guiVars.altura_da_janela)
+        
 
         #menu principal
         self.main_menu = self.menuBar()
@@ -40,6 +46,7 @@ class Window(QMainWindow):
         self.frame_correçao = Frame_seleçao_tipo_de_correçao(self)
         self.frame_caminho_saida = Frame_seleçao_caminho_de_saida(self)
         self.btn_corrigir = QPushButton('Corrigir')
+        self.btn_corrigir.setMinimumHeight(guiVars.altura_botao_corrigir)
         
         self.layout.addWidget(self.frame_caminhos_entrada)
         self.layout.addWidget(self.frame_correçao)

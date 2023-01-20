@@ -5,6 +5,8 @@ from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QL
                                QFileDialog, QRadioButton, QLayout, QButtonGroup, QScrollArea,
                                QGroupBox, QSizePolicy, QSpacerItem, QWidget, QMessageBox)
 
+from GUI import variaveis as guiVars
+
 
 ### WIDGETS AUXILIARES ###
 
@@ -12,17 +14,27 @@ class Caminho_label_btn_pair(QGroupBox):
 
     def __init__(self, text, scroll_widget_patent):
         super().__init__()
+        
+        #vars
+        self.scroll_widget_patent = scroll_widget_patent
 
         #config
-        self.scroll_widget_patent = scroll_widget_patent
+        self.setMinimumHeight(guiVars.altura_caixa_com_os_caminhos)
+        self.setMaximumHeight(guiVars.altura_caixa_com_os_caminhos)
+
+        #layout
         self.layout = QHBoxLayout(self)
 
         #label
         self.label = QLabel(text)
+        self.label.setMaximumWidth(guiVars.largura_maxima_label_caminho)
+        self.label.setWordWrap(True)
         self.layout.addWidget(self.label)
 
         #botao
         self.btn_remover = QPushButton("Remover")
+        self.btn_remover.setMinimumSize(guiVars.largura_botao_remover,guiVars.altura_botao_remover)
+        self.btn_remover.setMaximumSize(guiVars.largura_botao_remover,guiVars.altura_botao_remover)
         self.layout.addWidget(self.btn_remover)
         self.btn_remover.clicked.connect(self.remover)
 
@@ -194,6 +206,7 @@ class Frame_seleçao_caminho_de_saida(QFrame):
         # WIDGETS
         self.btn_salvar = QPushButton("Salvar Como")
         self.label_salvar = QLabel("Não selecionado")
+        self.label_salvar.setWordWrap(True)
 
         self.btn_salvar.clicked.connect(self.procura_caminho)
     
