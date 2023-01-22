@@ -1,6 +1,7 @@
 from os import path
 
 from PySide6.QtCore import Slot, QRect
+from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QLabel,
                                QFileDialog, QRadioButton, QLayout, QButtonGroup, QScrollArea,
                                QGroupBox, QSizePolicy, QSpacerItem, QWidget, QMessageBox)
@@ -74,8 +75,9 @@ class Scroll_Widget_conteiner_caminhos(QScrollArea):
         for caminho in self.get_data():
             if caminho == novo_caminho:
                 #precisa de um icone
-                message_box = QMessageBox()
-                message_box.setText("Arquivo já adicionado.")
+                message_box = QMessageBox(QMessageBox.Warning, 
+                                          "Ops!",
+                                          "Arquivo já adicionado.")
                 message_box.exec()
                 return
 

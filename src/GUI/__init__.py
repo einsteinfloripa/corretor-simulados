@@ -1,6 +1,8 @@
 import sys
+from os import path
 
 from PySide6.QtCore import Slot
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (QApplication,
     QVBoxLayout, QMainWindow, QPushButton, QWidget,
     QFrame, QMenu)
@@ -25,7 +27,9 @@ class Window(QMainWindow):
 
         #config
         self.setFixedSize(guiVars.largura_da_janela, guiVars.altura_da_janela)
+        self.setWindowTitle("Corretor de provas")
         
+
 
         #menu principal
         self.main_menu = self.menuBar()
@@ -91,6 +95,8 @@ class Aplication(QApplication):
     
     def __init__(self):
         super().__init__(sys.argv)
+        self.icone = QIcon(guiVars.caminho_icone)
+        self.setWindowIcon(self.icone)
         self.window = Window()
 
     def Run(self):
