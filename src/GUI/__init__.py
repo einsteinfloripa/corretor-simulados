@@ -5,14 +5,15 @@ from PySide6.QtCore import Slot
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (QApplication,
     QVBoxLayout, QMainWindow, QPushButton, QWidget,
-    QFrame, QMenu)
+    QFrame, QMenu, QMessageBox)
 
 
 from GUI.widgets import (Frame_seleçao_caminhos_de_entrada,
                          Frame_seleçao_tipo_de_correçao,
                          Frame_seleçao_caminho_de_saida)
 
-from GUI import variaveis as guiVars
+from GUI import constantes as guiCons
+import GUI.auxiliar as aux
 
 
 
@@ -26,7 +27,7 @@ class Window(QMainWindow):
         self.DEBUG_MODE = False
 
         #config
-        self.setFixedSize(guiVars.largura_da_janela, guiVars.altura_da_janela)
+        self.setFixedSize(guiCons.largura_da_janela, guiCons.altura_da_janela)
         self.setWindowTitle("Corretor de provas")
         
 
@@ -50,7 +51,7 @@ class Window(QMainWindow):
         self.frame_correçao = Frame_seleçao_tipo_de_correçao(self)
         self.frame_caminho_saida = Frame_seleçao_caminho_de_saida(self)
         self.btn_corrigir = QPushButton('Corrigir')
-        self.btn_corrigir.setMinimumHeight(guiVars.altura_botao_corrigir)
+        self.btn_corrigir.setMinimumHeight(guiCons.altura_botao_corrigir)
         
         self.layout.addWidget(self.frame_caminhos_entrada)
         self.layout.addWidget(self.frame_correçao)
@@ -74,11 +75,25 @@ class Window(QMainWindow):
         dados.update( self.frame_correçao.get_data() )
         dados.update( self.frame_caminho_saida.get_data() )
 
+        valores_nao_selecionados = aux.confere_se_nao_nulo(dados)
+
         if self.DEBUG_MODE:
-            print('-------------------------------------')
-            for key, value in dados.items():
-                print('Key: ', key, '   Value: ', value)
-            print('-------------------------------------')
+            aux.print_dados(dados)
+        elif valores_nao_selecionados != None:
+            
+            texto = 'Os seguintes campos não estão preenchidos: '
+            for valor in valores_nao_selecionados:
+                texto = texto + valor + ', '
+            texto = texto.strip(', ')
+            texto = texto + '.'
+
+            message_box = QMessageBox(
+                QMessageBox.Warning,
+                "Valores nulos!",
+                texto,
+              )
+            message_box.exec()
+
         else:
             self.funçao_corrigir(dados)
     
@@ -89,13 +104,11 @@ class Window(QMainWindow):
             self.DEBUG_MODE = action.isChecked()
 
 
-
-
 class Aplication(QApplication):
     
     def __init__(self):
         super().__init__(sys.argv)
-        self.icone = QIcon(guiVars.caminho_icone)
+        self.icone = QIcon(guiCons.caminho_icone)
         self.setWindowIcon(self.icone)
         self.window = Window()
 
