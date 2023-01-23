@@ -5,11 +5,12 @@ description = "Corretores do Einstein Floripa (Simulinho, SIMUFSC, SIMUENEM, Fee
 authors = ["Vale do Silicio <vale@einsteinfloripa.com.br>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "corretor_simulados"}]
+packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
-python = ">=3.7, <3.12"
+python = ">=3.8,<3.12"
 pyside6 = "^6.4.1"
+pandas = "^1.5.2"
 
 
 [build-system]
