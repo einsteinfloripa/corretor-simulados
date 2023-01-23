@@ -10,7 +10,7 @@ packages = [{include = "src"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 inquirerpy = "^0.3.4"
-pandas = "^1.5.2"
+pandas = "^1.5.3"
 
 
 [build-system]
