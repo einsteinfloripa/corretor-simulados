@@ -199,7 +199,7 @@ class FrameSelecaoCaminhoDeSaida(QFrame):
 
         self.layout = QVBoxLayout(self)
         # WIDGETS
-        self.btn_salvar = QPushButton("Salvar Como")
+        self.btn_salvar = QPushButton("Salvar na pasta:")
         self.label_salvar = QLabel("Não selecionado")
         self.label_salvar.setWordWrap(True)
 
@@ -212,10 +212,13 @@ class FrameSelecaoCaminhoDeSaida(QFrame):
     @Slot()
     def procura_caminho(self):
         
-        caminho_arquivo = QFileDialog.getSaveFileName(self)
-        
-        if caminho_arquivo[0] != '':
-            self.label_salvar.setText(caminho_arquivo[0])
+        caminho_arquivo = QFileDialog.getExistingDirectory(self,
+                                                "Escolha o diretório",
+                                                "", # <- Diretorio inicial
+                                                QFileDialog.ShowDirsOnly
+                                                )
+        if caminho_arquivo != '':
+            self.label_salvar.setText(caminho_arquivo)
     
 
     def get_data(self):
