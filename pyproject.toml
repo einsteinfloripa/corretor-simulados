@@ -8,8 +8,8 @@ readme = "README.md"
 packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-inquirerpy = "^0.3.4"
+python = ">=3.8,<3.12"
+pyside6 = "^6.4.1"
 pandas = "^1.5.3"
 
 
