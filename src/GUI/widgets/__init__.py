@@ -6,54 +6,50 @@ from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QL
                                QFileDialog, QRadioButton, QLayout, QButtonGroup, QScrollArea,
                                QGroupBox, QSizePolicy, QSpacerItem, QWidget, QMessageBox)
 
-from GUI import constantes as guiCons
+from GUI import constantes as gui_cons
 
 
 ### WIDGETS AUXILIARES ###
 
-class Caminho_label_btn_pair(QGroupBox):
+class CaminhoLabelBtnPair(QGroupBox):
 
-    def __init__(self, text, scroll_widget_patent):
+    def __init__(self, texto, scroll_widget_patent):
         super().__init__()
         
         #vars
         self.scroll_widget_patent = scroll_widget_patent
 
         #config
-        self.setMinimumHeight(guiCons.altura_caixa_com_os_caminhos)
-        self.setMaximumHeight(guiCons.altura_caixa_com_os_caminhos)
+        self.setMinimumHeight(gui_cons.altura_caixa_com_os_caminhos)
+        self.setMaximumHeight(gui_cons.altura_caixa_com_os_caminhos)
 
         #layout
         self.layout = QHBoxLayout(self)
 
         #label
-        self.label = QLabel(text)
-        self.label.setMaximumWidth(guiCons.largura_maxima_label_caminho)
+        self.label = QLabel(texto)
+        self.label.setMaximumWidth(gui_cons.largura_maxima_label_caminho)
         self.label.setWordWrap(True)
         self.layout.addWidget(self.label)
 
         #botao
         self.btn_remover = QPushButton("Remover")
-        self.btn_remover.setMinimumSize(guiCons.largura_botao_remover,guiCons.altura_botao_remover)
-        self.btn_remover.setMaximumSize(guiCons.largura_botao_remover,guiCons.altura_botao_remover)
+        self.btn_remover.setMinimumSize(gui_cons.largura_botao_remover,gui_cons.altura_botao_remover)
+        self.btn_remover.setMaximumSize(gui_cons.largura_botao_remover,gui_cons.altura_botao_remover)
         self.layout.addWidget(self.btn_remover)
         self.btn_remover.clicked.connect(self.remover)
 
 
-    def text(self):
+    def get_texto(self):
         return self.label.text()
-    
 
-    def set_text(self, text):
-        self.label.setText(text)
-    
 
     @Slot()
     def remover(self):
         self.scroll_widget_patent.remove_caminho(self)
     
 
-class Scroll_Widget_conteiner_caminhos(QScrollArea):
+class ScrollWidgetConteinerCaminhos(QScrollArea):
     
     def __init__(self):
         super().__init__()
@@ -74,14 +70,13 @@ class Scroll_Widget_conteiner_caminhos(QScrollArea):
         # valida se o caminho ja existe
         for caminho in self.get_data():
             if caminho == novo_caminho:
-                #precisa de um icone
                 message_box = QMessageBox(QMessageBox.Warning, 
                                           "Ops!",
                                           "Arquivo já adicionado.")
                 message_box.exec()
                 return
 
-        novo_caminho_widget = Caminho_label_btn_pair(novo_caminho, self)
+        novo_caminho_widget = CaminhoLabelBtnPair(novo_caminho, self)
         self.main_widget_layout.addWidget(novo_caminho_widget)
         
 
@@ -95,7 +90,7 @@ class Scroll_Widget_conteiner_caminhos(QScrollArea):
         count = self.main_widget_layout.count()
         for index in range(count):
             item = self.main_widget_layout.itemAt(index)
-            caminho = item.widget().text()
+            caminho = item.widget().get_texto()
             data.append(caminho)
         
         return data
@@ -103,7 +98,7 @@ class Scroll_Widget_conteiner_caminhos(QScrollArea):
 
 ### WIDGETS PRINCIPAIS ###
 
-class Frame_seleçao_caminhos_de_entrada(QFrame):
+class FrameSelecaoCaminhosDeEntrada(QFrame):
 
 
     def __init__(self, parent = None):
@@ -116,14 +111,12 @@ class Frame_seleçao_caminhos_de_entrada(QFrame):
         #botoes
         self.btn_gabarito = QPushButton("Adicionar Gabarito")
         self.btn_respostas = QPushButton("Adicionar Resposta")
-        #lista de pares labels-botoes
-        self.scroll_gabarito = Scroll_Widget_conteiner_caminhos()
-        self.scroll_respostas = Scroll_Widget_conteiner_caminhos()
+        #Widgets que contem os caminhos de entrada
+        self.scroll_gabarito = ScrollWidgetConteinerCaminhos()
+        self.scroll_respostas = ScrollWidgetConteinerCaminhos()
         
-    
         self.btn_gabarito.clicked.connect(lambda : self.procura_caminho("gabarito"))
         self.btn_respostas.clicked.connect(lambda : self.procura_caminho("respostas"))
-
 
         self.layout.addWidget(self.btn_gabarito)
         self.layout.addWidget(self.scroll_gabarito)
@@ -158,7 +151,7 @@ class Frame_seleçao_caminhos_de_entrada(QFrame):
                }  
 
 
-class Frame_seleçao_tipo_de_correçao(QFrame):
+class FrameSelecaoTipoDeCorrecao(QFrame):
     
     def __init__(self, parent=None):
         super().__init__()
@@ -199,7 +192,7 @@ class Frame_seleçao_tipo_de_correçao(QFrame):
             return {'tipo_de_correcao' : 'Não selecionado'}
 
 
-class Frame_seleçao_caminho_de_saida(QFrame):
+class FrameSelecaoCaminhoDeSaida(QFrame):
 
     def __init__(self, parent = None):
         super().__init__()

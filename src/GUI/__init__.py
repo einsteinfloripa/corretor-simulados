@@ -8,11 +8,11 @@ from PySide6.QtWidgets import (QApplication,
     QFrame, QMenu, QMessageBox)
 
 
-from GUI.widgets import (Frame_seleçao_caminhos_de_entrada,
-                         Frame_seleçao_tipo_de_correçao,
-                         Frame_seleçao_caminho_de_saida)
+from GUI.widgets import (FrameSelecaoCaminhosDeEntrada,
+                         FrameSelecaoTipoDeCorrecao,
+                         FrameSelecaoCaminhoDeSaida, )
 
-from GUI import constantes as guiCons
+from GUI import constantes as gui_cons
 import GUI.auxiliar as aux
 
 
@@ -27,17 +27,15 @@ class Window(QMainWindow):
         self.DEBUG_MODE = False
 
         #config
-        self.setFixedSize(guiCons.largura_da_janela, guiCons.altura_da_janela)
+        self.setFixedSize(gui_cons.largura_da_janela, gui_cons.altura_da_janela)
         self.setWindowTitle("Corretor de provas")
-        
-
 
         #menu principal
         self.main_menu = self.menuBar()
-
+        # menu opçoes
         self.options_menu = QMenu("Opçoes", self.main_menu)
         self.options_menu.addAction("Debug mode").setCheckable(True)
-        self.options_menu.triggered.connect(self.set_option)
+        self.options_menu.triggered.connect(self.set_opcao)
 
         self.main_menu.addMenu(self.options_menu)
 
@@ -47,11 +45,11 @@ class Window(QMainWindow):
         self.layout = QVBoxLayout(self.mainframe)
 
         # Adiciona os widgets filhos
-        self.frame_caminhos_entrada = Frame_seleçao_caminhos_de_entrada(self)
-        self.frame_correçao = Frame_seleçao_tipo_de_correçao(self)
-        self.frame_caminho_saida = Frame_seleçao_caminho_de_saida(self)
+        self.frame_caminhos_entrada = FrameSelecaoCaminhosDeEntrada(self)
+        self.frame_correçao = FrameSelecaoTipoDeCorrecao(self)
+        self.frame_caminho_saida = FrameSelecaoCaminhoDeSaida(self)
         self.btn_corrigir = QPushButton('Corrigir')
-        self.btn_corrigir.setMinimumHeight(guiCons.altura_botao_corrigir)
+        self.btn_corrigir.setMinimumHeight(gui_cons.altura_botao_corrigir)
         
         self.layout.addWidget(self.frame_caminhos_entrada)
         self.layout.addWidget(self.frame_correçao)
@@ -87,11 +85,7 @@ class Window(QMainWindow):
             texto = texto.strip(', ')
             texto = texto + '.'
 
-            message_box = QMessageBox(
-                QMessageBox.Warning,
-                "Valores nulos!",
-                texto,
-              )
+            message_box = QMessageBox( QMessageBox.Warning, "Valores nulos!" ,texto)
             message_box.exec()
 
         else:
@@ -99,7 +93,7 @@ class Window(QMainWindow):
     
 
     @Slot()
-    def set_option(self, action):
+    def set_opcao(self, action):
         if action.text() == "Debug mode":
             self.DEBUG_MODE = action.isChecked()
 
@@ -108,7 +102,7 @@ class Aplication(QApplication):
     
     def __init__(self):
         super().__init__(sys.argv)
-        self.icone = QIcon(guiCons.caminho_icone)
+        self.icone = QIcon(gui_cons.caminho_icone)
         self.setWindowIcon(self.icone)
         self.window = Window()
 
