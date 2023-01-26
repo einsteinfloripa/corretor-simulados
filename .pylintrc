@@ -1,0 +1,41 @@
+[MASTER]
+init-hook='import sys;from os import path;PATH = path.join(path.abspath("."), "src");sys.path.append(PATH)'
+
+# PySide6 é escrito em C, isso faz com que o pylint possa rodar codigo nao intencional,
+# por isso o pylint requer que marquemos como confiavel.
+# https://pylint.pycqa.org/en/2.3.0/technical_reference/c_extensions.html
+# https://stackoverflow.com/questions/28437071/pylint-1-4-reports-e1101no-member-on-all-c-extensions
+extension-pkg-whitelist=PySide6
+
+disable=
+      #  CONVENÇOES
+      missing-module-docstring,
+      missing-class-docstring,
+      missing-function-docstring,
+      # Nao estamos usando doctrings
+
+
+[BASIC]
+            #Nomenclatura
+      #funçoes
+      function-naming-style=snake_case
+      # variavies
+      variable-naming-style=snake_case
+      # constantes
+      const-naming-style=UPPER_CASE
+      # atributos
+      attr-naming-style=snake_case
+      # argumentos
+      argument-naming-style=snake_case
+
+      # Classes
+      class-naming-style=PascalCase
+      # classes-atributos
+      class-attribute-naming-style=any
+      # classes-constantes
+      class-const-naming-style=UPPER_CASE
+      #classes-metodos
+      method-naming-style=snake_case
+      # Modulos
+      module-naming-style=snake_case
+

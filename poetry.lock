@@ -257,6 +257,18 @@ spelling = ["pyenchant (>=3.2,<4.0)"]
 testutils = ["gitpython (>3)"]
 
 [[package]]
+name = "pylint-venv"
+version = "2.3.0"
+description = "pylint-venv provides a Pylint init-hook to use the same Pylint installation with different virtual environments."
+category = "main"
+optional = false
+python-versions = ">=3.6,<4.0"
+files = [
+    {file = "pylint-venv-2.3.0.tar.gz", hash = "sha256:3594955502fdee83c98bfcc8c14cd615e6c7c3608aea525df84853ce79f296bf"},
+    {file = "pylint_venv-2.3.0-py3-none-any.whl", hash = "sha256:93a603cb5e1eed8ebc9c36566661a5507e4effb180ac1eba5345fced7617d2ab"},
+]
+
+[[package]]
 name = "pyside6"
 version = "6.4.2"
 description = "Python bindings for the Qt cross-platform application and UI framework"
@@ -484,4 +496,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.12"
-content-hash = "dc31b422b2781e956079542eb0e9fa5b3ef77a1a025eb8841e40731d87a3b776"
+content-hash = "2b9d2c560de9f67b0b692d193c95973f8f2706177b5590783072dbdc44b87c53"

@@ -17,13 +17,13 @@ def confere_se_nao_nulo(dados):
     }
 
     flag_valor_adicionado = False
-    valores_nulos = list()
+    valores_nulos = []
 
     for key, value in dados.items():
         if value == "Não selecionado" or value == []:
             valores_nulos.append(nome_para_imprimir[key])
             flag_valor_adicionado = True
-    
+
     if flag_valor_adicionado:
         return valores_nulos
     else:
