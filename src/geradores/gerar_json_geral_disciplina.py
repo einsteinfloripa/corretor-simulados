@@ -78,17 +78,23 @@ def gerar_detalhado_disciplina_estrutura_enem(subjects, df_resultado, df_gabarit
         if nome[0] == str([*areas_enem[0]][0]):
             subjects[nome[0]][nome[1]]["question_numbers"] = len(
                 grupo) + c2l["2Lingua"]["Quantidade"]*df_resultado["CPF"].nunique()
+
             subjects[nome[0]][nome[1]]["general_percent"] = round(
                 grupo["Verificação"].eq(1).sum() * 100 /
-                subjects[nome[0]][nome[1]]["question_numbers"], 2)
+                subjects[nome[0]][nome[1]]["question_numbers"], 2
+            )
+
         else:
             subjects[nome[0]][nome[1]]["question_numbers"] = len(grupo)
             subjects[nome[0]][nome[1]]["general_percent"] = round(
                 (grupo["Verificação"].eq(1).sum() * 100) /
-                subjects[nome[0]][nome[1]]["question_numbers"], 2)
+                subjects[nome[0]][nome[1]]["question_numbers"], 2
+            )
 
         serie_temp_ = df_gabarito.loc[(df_gabarito["Área"] == nome[0]) & (
-            df_gabarito["Matéria"] == nome[1]), "Gabarito"]
+            df_gabarito["Matéria"] == nome[1]), "Gabarito"
+        ]
+
         subjects[nome[0]][nome[1]]["detailed"] = list(serie_temp_)
     return subjects
 

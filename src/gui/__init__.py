@@ -66,7 +66,7 @@ class Window(QMainWindow):
     @Slot()
     def corrigir(self):
 
-        dados = dict()
+        dados = {}
         dados.update(self.frame_caminhos_entrada.get_data())
         dados.update(self.frame_correcao.get_data())
         dados.update(self.frame_caminho_saida.get_data())

@@ -10,4 +10,4 @@ def escrever_csv(caminho, data_frame):
 
 def escrever_json(caminho, dados):
     with open(caminho, 'w', encoding='utf-8') as open_file:
-        json.dump(dados, open_file, ensure_ascii=False, indent=4)
+        json.dump(dados, open_file, ensure_ascii = False, indent = 4)

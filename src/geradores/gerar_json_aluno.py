@@ -123,7 +123,7 @@ def encontrar_posicao(correcao, nota_total):
     for aluno in correcao:
         todas_notas_totais.append(calcular_total_acertos(aluno))
 
-    todas_notas_totais.sort(reverse=True)
+    todas_notas_totais.sort(reverse = True)
     posicao = todas_notas_totais.index(nota_total) + 1
     return posicao
 
