@@ -1,5 +1,5 @@
 [MASTER]
-init-hook='import sys;from os import path;PATH = path.join(path.abspath("."), "src");sys.path.append(PATH)'
+init-hook='import sys; sys.path.append("src")'
 
 # PySide6 é escrito em C, isso faz com que o pylint possa rodar codigo nao intencional,
 # por isso o pylint requer que marquemos como confiavel.
@@ -12,6 +12,7 @@ disable=
       missing-module-docstring,
       missing-class-docstring,
       missing-function-docstring,
+      unbalanced-tuple-unpacking,
       # Nao estamos usando doctrings
 
 
@@ -38,4 +39,3 @@ disable=
       method-naming-style=snake_case
       # Modulos
       module-naming-style=snake_case
-

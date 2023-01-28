@@ -3,21 +3,29 @@ from os import path
 
 from PySide6.QtCore import Slot
 from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import (QApplication,
-                               QVBoxLayout, QMainWindow, QPushButton, QWidget,
-                               QFrame, QMenu, QMessageBox)
+from PySide6.QtWidgets import (
+    QApplication,
+    QVBoxLayout,
+    QMainWindow,
+    QPushButton,
+    QWidget,
+    QFrame,
+    QMenu,
+    QMessageBox,
+)
 
 
-from gui.widgets import (FrameSelecaoCaminhosDeEntrada,
-                         FrameSelecaoTipoDeCorrecao,
-                         FrameSelecaoCaminhoDeSaida, )
+from gui.widgets import (
+    FrameSelecaoCaminhosDeEntrada,
+    FrameSelecaoTipoDeCorrecao,
+    FrameSelecaoCaminhoDeSaida,
+)
 
 from gui import constantes as gui_cons
 import gui.auxiliar as aux
 
 
 class Window(QMainWindow):
-
     def __init__(self):
         super().__init__(parent=None)
 
@@ -26,8 +34,7 @@ class Window(QMainWindow):
         self.funcao_corrigir = None
 
         # config
-        self.setFixedSize(gui_cons.LARGURA_DA_JANELA,
-                          gui_cons.ALTURA_DA_JANELA)
+        self.setFixedSize(gui_cons.LARGURA_DA_JANELA, gui_cons.ALTURA_DA_JANELA)
         self.setWindowTitle("Corretor de provas")
 
         # menu principal
@@ -48,7 +55,7 @@ class Window(QMainWindow):
         self.frame_caminhos_entrada = FrameSelecaoCaminhosDeEntrada()
         self.frame_correcao = FrameSelecaoTipoDeCorrecao()
         self.frame_caminho_saida = FrameSelecaoCaminhoDeSaida()
-        self.btn_corrigir = QPushButton('Corrigir')
+        self.btn_corrigir = QPushButton("Corrigir")
         self.btn_corrigir.setMinimumHeight(gui_cons.ALTURA_BOTAO_CORRIGIR)
 
         self.layout.addWidget(self.frame_caminhos_entrada)
@@ -77,14 +84,13 @@ class Window(QMainWindow):
             aux.print_dados(dados)
         elif valores_nao_selecionados is not None:
 
-            texto = 'Os seguintes campos não estão preenchidos: '
+            texto = "Os seguintes campos não estão preenchidos: "
             for valor in valores_nao_selecionados:
-                texto = texto + valor + ', '
-            texto = texto.strip(', ')
-            texto = texto + '.'
+                texto = texto + valor + ", "
+            texto = texto.strip(", ")
+            texto = texto + "."
 
-            message_box = QMessageBox(
-                QMessageBox.Warning, "Valores nulos!", texto)
+            message_box = QMessageBox(QMessageBox.Warning, "Valores nulos!", texto)
             message_box.exec()
 
         else:
@@ -97,7 +103,6 @@ class Window(QMainWindow):
 
 
 class Aplication(QApplication):
-
     def __init__(self):
         super().__init__(sys.argv)
         self.icone = QIcon(gui_cons.CAMINHO_ICONE)

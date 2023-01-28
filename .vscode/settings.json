@@ -1,6 +1,3 @@
 {
-    "python.linting.pylintArgs": [
-        "--init-hook",
-        "import sys; sys.path.append('/home/mecco/trabalhos/corretor-simulados/src')"
-    ]
+    "python.linting.pylintPath": ".venv/bin/pylint"
 }

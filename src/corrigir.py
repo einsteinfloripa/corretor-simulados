@@ -2,7 +2,8 @@ import sys
 
 from corretores.corretor_enem import correcao_enem
 
-def corrigir(df_respostas, df_gabarito, redacoes, tipo_correcao):
+
+def corrigir(df_respostas, df_gabarito, _, tipo_correcao):
 
     if tipo_correcao == "simufsc":
         print("Correção de simulado ufsc não implementado")
