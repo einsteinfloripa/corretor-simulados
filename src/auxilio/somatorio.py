@@ -1,10 +1,10 @@
-def somatorio(resposta, gabarito, quantidade_proposiçoes):
+def somatorio(resposta, gabarito, quantidade_proposicoes):
     NPC = 0
     NPI = 0
     NTPC = 0
-    NP = quantidade_proposiçoes
+    NP = quantidade_proposicoes
     P = 0
-    i = 2**(quantidade_proposiçoes - 1)
+    i = 2**(quantidade_proposicoes - 1)
     while i >= 1:
         if gabarito >= i:
             if resposta >= i:

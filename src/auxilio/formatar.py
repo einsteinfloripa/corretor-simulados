@@ -5,8 +5,8 @@ import re
 def formatar_respostas(aplicacoes, tipo_correcao):
     dados = []
     for aplicacao in aplicacoes:
-        with open(f"./input/{aplicacao}.csv", "r", encoding="utf-8") as fp:
-            reader = csv.reader(fp, delimiter=",", quotechar='"')
+        with open(f"./input/{aplicacao}.csv", "r", encoding="utf-8") as open_file:
+            reader = csv.reader(open_file, delimiter=",", quotechar='"')
             dados_aplicacao = [row for row in reader]
 
             # for respostas in dados_aplicacao:

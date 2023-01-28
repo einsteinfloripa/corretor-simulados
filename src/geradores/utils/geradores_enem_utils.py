@@ -1,4 +1,3 @@
-from ast import For
 from auxilio.variaveis import areas_enem
 
 def gerar_details_aluno_enem(nome_aluno, df_gabarito, df_resultado):
@@ -7,8 +6,11 @@ def gerar_details_aluno_enem(nome_aluno, df_gabarito, df_resultado):
     grupos = df_aluno.groupby(["Área", "Matéria"], as_index=False)
     for nome, grupo in grupos:
         subjects[nome[0]][nome[1]]["question_numbers"] = len(grupo)
-        subjects[nome[0]][nome[1]]["general_percent"] = round(grupo["Verificação"].eq(1).sum() * 100 / \
-        subjects[nome[0]][nome[1]]["question_numbers"], 2)
+        subjects[nome[0]][nome[1]]["general_percent"] = round((
+                grupo["Verificação"].eq(1).sum() * 100 /
+                subjects[nome[0]][nome[1]]["question_numbers"]
+            ), 2
+        )
         subjects[nome[0]][nome[1]]["answered"] = list(grupo["Verificação"])
         subjects[nome[0]][nome[1]]["detailed"] = list(grupo["Gabarito"])
     return subjects
@@ -26,3 +28,4 @@ def gerar_estrutura_disciplinas_enem_aluno():
                     "detailed": []
                 }
     return estrutura
+    

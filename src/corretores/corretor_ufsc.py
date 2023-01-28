@@ -29,3 +29,4 @@ def correcao_ufsc(gabarito, dados_alunos, resultado_alunos):
                 resultado_alunos[aluno][questao[2]] = somatorio(
                     dados_alunos[aluno][questao[2]], int(questao[3]), int(questao[4]))
     return dados_alunos, resultado_alunos
+    
