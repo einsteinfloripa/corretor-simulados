@@ -10,7 +10,6 @@
 4. [Uso](#uso)  
   3.1. [Como rodar o programa](#como-rodar-o-programa)   
   3.2. [Formatação arquivos de entrada](#Formatação-arquivos-de-entrada)
-5. [Features adicionais](#features-adicionais)
 
 ## Introdução
 
@@ -67,8 +66,3 @@ Apos a execução do comando interface gráfica do programa deve aparecer na tel
 É essencial que o usuario selecione arquivos de entrada formatados corretamente, abaixo estao alguns exemplos de boa formatação.
 
 ** IMAGENS COM OS EXEMPLOS **
-
-## Features adicionais
-
-
-
