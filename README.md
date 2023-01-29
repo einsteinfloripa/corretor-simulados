@@ -14,7 +14,7 @@
 
 ## Introdução
 
-O algortimo aqui desenvolvido serve para corrigir os simulados do EF (Enstein Floripa), ele recebe como input o **gabarito**, as **provas (com uma estrutura de nomes)** e uma lista com os **dados dos alunos**, tudo isso sendo arquivos ***.csv***
+O algortimo aqui desenvolvido serve para facilitar e automatizar o processo de correção de simulados do EF (Enstein Floripa), ele recebe como input o **gabarito**, as **provas (com uma estrutura de nomes)** e uma lista com os **dados dos alunos**, tudo isso sendo arquivos ***.csv*** ou ***.xlsx***
 
 ## Requrimentos
 Antes de começar a instalação é necessário que os seguintes items estejam instalados na sua maquina:  
