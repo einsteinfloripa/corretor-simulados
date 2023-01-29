@@ -1,48 +1,74 @@
 # Corretor de Simulados Einstein Floripa (SimuENEM, SimUFSC e Simulinho)
 
-### Introdução
+### Sumário
+
+1. [Introdução](#introdução)
+2. [Requerimentos](#requerimentos)
+3. [Setup do programa](#setup-do-programa)  
+  2.1. [Como baixar](#como-baixar)  
+  2.2. [Como instalar](#como-instalar) 
+4. [Uso](#uso)  
+  3.1. [Como rodar o programa](#como-rodar-o-programa)   
+  3.2. [Formatação arquivos de entrada](#Formatação-arquivos-de-entrada)
+5. [Features adicionais](#features-adicionais)
+
+## Introdução
 
 O algortimo aqui desenvolvido serve para corrigir os simulados do EF (Enstein Floripa), ele recebe como input o **gabarito**, as **provas (com uma estrutura de nomes)** e uma lista com os **dados dos alunos**, tudo isso sendo arquivos ***.csv***
 
-### Estrutura de pastas (input)
+## Requrimentos
+Antes de começar a instalação é necessário que os seguintes items estejam instalados na sua maquina:  
+**Lembrando que a instalaçao dos idens a seguir deve ser feita em ordem!**
+1. `python 3.10`  
+O dowload para mac, window e linux pode ser feito no site oficial do python:
+> https://www.python.org/downloads/
+2. `python poetry`  
+O link com as instruçoes para instalar o `poetry` estao abaixo:  
+> https://python-poetry.org/docs/  
 
-É muito importante que os arquivos/pastas sigam essa estrutura na pasta **/inputs**, seguindo os nomes.
+## Setup do programa
 
-![alt](images/pastas.png)
+### Como baixar
+O codido fonte é aberto para qualquer pessoa utilizar e pode ser encontrado no repositório:
+> https://github.com/einsteinfloripa/corretor-simulados/
 
-A seguir a estrutura de cada arquivo nas pastas.
+Depois de baixado, a pasta contendo o programa deve conter os seguintes arquivos:
 
-- Alunos
+![image](https://user-images.githubusercontent.com/92338508/215291665-292fb8dd-2323-45c0-a8a6-1ff35094961c.png)
 
-![alt](images/alunos.png)
+### Como instalar
 
-- Gabarito
+No diretório contendos os itens, abra o prompt de comando digitando "cmd" na barra de navegação:
+![image](https://user-images.githubusercontent.com/92338508/215296194-38fa5e4f-a1c2-48e3-86ca-be3c568b6401.png)
 
-![alt](images/gabarito.png)
+Digite o seguinte comando:
 
-- Provas
+```shell
+poetry install
+```
+Depois de algus segundos a instalaçao deve estar concluida.
 
-![alt](images/provas.png)
+## Uso
 
-d1 = dia 1,
-d2 = dia 2
+### Como rodar o programa
 
-e = Espanhol,
-i = Inglês,
-ae = Aplicação Especial
+Abra um promp de comando da mesma forma citada em [Como Instalar](#como-instalar) e digite o seguinte comando:
+
+```shell
+poetry run python src/__init__.py
+```
+
+Apos a execução do comando interface gráfica do programa deve aparecer na tela indicando que está tudo pronto para o uso.
+
+<img src="https://user-images.githubusercontent.com/92338508/215187159-bd145598-e1a4-497f-8cd5-ddf6baf4d19c.png" width="600" height="450">
+
+### Formatação arquivos de entrada
+
+É essencial que o usuario selecione arquivos de entrada formatados corretamente, abaixo estao alguns exemplos de boa formatação.
+
+** IMAGENS COM OS EXEMPLOS **
+
+## Features adicionais
 
 
-### Estrutura dos CSV (Provas e Gabarito)
-
-Os arquivos ***.csv*** devem seguir uma estrutura, para isso bastar acessar a pasta **/templates** e lá terá o modelo a ser seguido. É muito importante que sigam a mesma estrutura de colunas!
-
-### Como executar a correção?
-
-Após de ter sido organizado a estrutura de pastas, basta você excutar o código
-
-`pipenv run gerar` *[como instalar pipenv](https://pipenv.pypa.io/en/latest/)*
-
-ou 
-
-`python3 ./src/index.py`
 
