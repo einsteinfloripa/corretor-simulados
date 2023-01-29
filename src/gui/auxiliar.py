@@ -10,10 +10,10 @@ def print_dados(dados):
 def confere_se_nao_nulo(dados):
 
     nome_para_imprimir = {
-        'caminhos_gabaritos': "Gabaritos",
-        'caminhos_respostas'  : "Respostas",
-        'tipo_de_correcao'  : "Tipo de correçao",
-        'caminho_de_saida'  : "Caminho de saida",
+        "caminhos_gabaritos": "Gabaritos",
+        "caminhos_respostas"  : "Respostas",
+        "tipo_de_correcao"  : "Tipo de correçao",
+        "caminho_de_saida"  : "Caminho de saida",
     }
 
     flag_valor_adicionado = False
