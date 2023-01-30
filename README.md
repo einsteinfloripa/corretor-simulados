@@ -37,10 +37,22 @@ Depois de baixado, a pasta contendo o programa deve conter os seguintes arquivos
 
 ### Como instalar
 
-No diretório contendos os itens, abra o prompt de comando digitando "cmd" na barra de navegação:
-![image](https://user-images.githubusercontent.com/92338508/215296194-38fa5e4f-a1c2-48e3-86ca-be3c568b6401.png)
+1. O usuário deve abrir um terminal de comandos, esse passo depende do sistema operacional utilizado, seguem as instruções de como fazer isso em Windows, Mac e linux.
 
-Digite o seguinte comando:
+Windows:
+
+> https://tecnoblog.net/responde/7-maneiras-de-abrir-o-prompt-de-comando-no-windows-10-e-11/
+
+Mac:  
+
+> https://support.apple.com/pt-br/guide/terminal/apd5265185d-f365-44cb-8b09-71a064a42125/mac
+
+Linux (Ubuntu):
+
+> https://askubuntu.com/questions/183775/how-do-i-open-a-terminal
+
+2. Utilizando o terminal, navege até o [diretório contendo os aquivos baixados](#como-baixar).
+3. Digite o seguinte comando:
 
 ```shell
 poetry install
@@ -51,7 +63,9 @@ Depois de algus segundos, a instalação deve estar concluída.
 
 ### Como rodar o programa
 
-Abra um prompt de comando da mesma forma citada em [Como Instalar](#como-instalar) e digite o seguinte comando:
+1. Abra um terminal da mesma forma citada em [Como Instalar](#como-instalar), ou utilize um ja aberto anteriormente.
+2. Utilizando o terminal, navege até o [diretório contendo os aquivos baixados](#como-baixar).
+3. Digite o seguinte comando:
 
 ```shell
 poetry run python src/__init__.py
