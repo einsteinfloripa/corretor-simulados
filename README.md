@@ -16,10 +16,10 @@
 O algortimo aqui desenvolvido serve para facilitar e automatizar o processo de correção de simulados do EF (Enstein Floripa), ele recebe como input o **gabarito**, as **provas (com uma estrutura de nomes)** e uma lista com os **dados dos alunos**, tudo isso sendo arquivos ***.csv*** ou ***.xlsx***
 
 ## Requrimentos
-Antes de começar a instalação é necessário que os seguintes items estejam instalados na sua maquina:  
-**Lembrando que a instalaçao dos idens a seguir deve ser feita em ordem!**
+Antes de começar a instalação, é necessário que os seguintes itens estejam instalados na sua máquina:  
+**Lembrando que a instalaçao dos itens a seguir deve ser feita em ordem!**
 1. `python 3.10`  
-O dowload para mac, window e linux pode ser feito no site oficial do python:
+O download para Mac, Windows e Linux pode ser feito no site oficial do Python:
 > https://www.python.org/downloads/
 2. `python poetry`  
 O link com as instruçoes para instalar o `poetry` estao abaixo:  
@@ -45,24 +45,24 @@ Digite o seguinte comando:
 ```shell
 poetry install
 ```
-Depois de algus segundos a instalaçao deve estar concluida.
+Depois de algus segundos, a instalação deve estar concluída.
 
 ## Uso
 
 ### Como rodar o programa
 
-Abra um promp de comando da mesma forma citada em [Como Instalar](#como-instalar) e digite o seguinte comando:
+Abra um prompt de comando da mesma forma citada em [Como Instalar](#como-instalar) e digite o seguinte comando:
 
 ```shell
 poetry run python src/__init__.py
 ```
 
-Apos a execução do comando interface gráfica do programa deve aparecer na tela indicando que está tudo pronto para o uso.
+Após a execução do comando, a interface gráfica do programa deve aparecer na tela, indicando que está tudo pronto para o uso.
 
 <img src="https://user-images.githubusercontent.com/92338508/215187159-bd145598-e1a4-497f-8cd5-ddf6baf4d19c.png" width="600" height="450">
 
 ### Formatação arquivos de entrada
 
-É essencial que o usuario selecione arquivos de entrada formatados corretamente, abaixo estao alguns exemplos de boa formatação.
+É essencial que o usuário selecione arquivos de entrada formatados corretamente, abaixo estão alguns exemplos de boa formatação.
 
 ** IMAGENS COM OS EXEMPLOS **
