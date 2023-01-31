@@ -1,18 +1,18 @@
-from os import path
-
 from corrigir import corrigir
 from geradores.gerar_json_aluno import gerar_json_alunos
 from geradores.gerar_json_geral_disciplina import gerar_json_disciplinas
 from leitura_e_escrita.escrever_arquivo import escrever_csv, escrever_json
 from leitura_e_escrita.ler_arquivo import csvs_to_dfs
 from gui import Aplication
-from src.auxilio.path import get_caminho_de_saida
+from src.auxilio.path import (get_caminho_de_saida, join_paths,
+                              ROOT_PATH)
 
 
 def main(dados):
 
-    # falta implementar isso
-    dados_alunos_path = 'project-foleder/input/dados-aluno.csv' # PLACE HOLDER
+    # HARD CODED
+    dados_alunos_path = join_paths(ROOT_PATH, 'recursos', 'exemplos',
+                                  'simuenem', 'alunos-dados.csv')
 
     respostas_alunos_path = dados["caminhos_respostas"][0] # so um item por enquanto, por isso [0]
     gabarito_path = dados["caminhos_gabaritos"][0]
@@ -29,8 +29,8 @@ def main(dados):
     df_resultado = corrigir(df_respostas, df_gabarito, df_redacoes, tipo_correcao)
 
     # escrever_csv("./output/respostas.csv", respostas)  ### Igual ao input...
-    escrever_csv(path.join(path_saida, "/resultado.csv"), df_resultado)
-    escrever_csv(path.join(path_saida, "gabarito.csv"), df_gabarito)
+    escrever_csv(join_paths(path_saida, "resultado.csv"), df_resultado)
+    escrever_csv(join_paths(path_saida, "gabarito.csv"), df_gabarito)
 
     subjects = gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao)
     # writing = gerar_json_redacao(correcao, len(redacoes))
@@ -50,7 +50,7 @@ def main(dados):
         "student_dataset": student_dataset,
     }
 
-    escrever_json(path.join(path_saida, "data.json"), data)
+    escrever_json(join_paths(path_saida, "data.json"), data)
 
     print("Arquivos gerados com sucesso!")
 
