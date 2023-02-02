@@ -52,7 +52,12 @@ def main(dados):
 
     escrever_json(join_paths(path_saida, "data.json"), data)
 
-    print("Arquivos gerados com sucesso!")
+    app.window.popup_botao_ok("Sucesso!",
+                              "O relatório foi gerado com sucesso!",
+                              pixmap_customizado=join_paths(
+                                  ROOT_PATH, 'recursos', 'imagens','sucesso.png'
+                                )
+                            )
 
 
 app = Aplication()
