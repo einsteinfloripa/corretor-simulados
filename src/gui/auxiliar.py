@@ -1,4 +1,16 @@
 
+from PySide6.QtWidgets import QMessageBox
+
+def get_icone_padrao(icone):
+    icone_pyside = {
+        'Critical':QMessageBox.Critical,
+        'Warning':QMessageBox.Warning,
+        'Information':QMessageBox.Information,
+        'Question':QMessageBox.Question,
+    }
+
+    return icone_pyside[icone]
+
 
 def print_dados(dados):
     print('------------------------------------------------------')

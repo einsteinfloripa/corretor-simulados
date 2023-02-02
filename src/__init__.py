@@ -4,16 +4,21 @@ from geradores.gerar_json_geral_disciplina import gerar_json_disciplinas
 from leitura_e_escrita.escrever_arquivo import escrever_csv, escrever_json
 from leitura_e_escrita.ler_arquivo import csvs_to_dfs
 from gui import Aplication
+from src.auxilio.path import (get_caminho_de_saida, join_paths,
+                              ROOT_PATH)
 
 
-def main():
-    # Leitor de arquivos
+def main(dados):
 
-    # Definiçao temporaria, para eitar erros de linting
-    dados_alunos_path = 0
-    respostas_alunos_path = 0
-    gabarito_path = 0
-    tipo_correcao = 0
+    # HARD CODED
+    dados_alunos_path = join_paths(ROOT_PATH, 'recursos', 'exemplos',
+                                  'simuenem', 'alunos-dados.csv')
+
+    respostas_alunos_path = dados["caminhos_respostas"][0] # so um item por enquanto, por isso [0]
+    gabarito_path = dados["caminhos_gabaritos"][0]
+    tipo_correcao = dados["tipo_de_correcao"]
+
+    path_output_arquivos_correcao = get_caminho_de_saida(dados["caminho_de_saida"])
 
     _, df_respostas, df_gabarito = csvs_to_dfs(
         dados_alunos_path, respostas_alunos_path, gabarito_path
@@ -24,8 +29,8 @@ def main():
     df_resultado = corrigir(df_respostas, df_gabarito, df_redacoes, tipo_correcao)
 
     # escrever_csv("./output/respostas.csv", respostas)  ### Igual ao input...
-    escrever_csv("./output/resultado.csv", df_resultado)
-    escrever_csv("./output/gabarito.csv", df_gabarito)
+    escrever_csv(join_paths(path_output_arquivos_correcao, "resultado.csv"), df_resultado)
+    escrever_csv(join_paths(path_output_arquivos_correcao, "gabarito.csv"), df_gabarito)
 
     subjects = gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao)
     # writing = gerar_json_redacao(correcao, len(redacoes))
@@ -45,9 +50,14 @@ def main():
         "student_dataset": student_dataset,
     }
 
-    escrever_json("./output/data.json", data)
+    escrever_json(join_paths(path_output_arquivos_correcao, "data.json"), data)
 
-    print("Arquivos gerados com sucesso!")
+    app.window.popup_botao_ok("Sucesso!",
+                              "O relatório foi gerado com sucesso!",
+                              pixmap_customizado=join_paths(
+                                  ROOT_PATH, 'recursos', 'imagens','sucesso.png'
+                                )
+                            )
 
 
 app = Aplication()

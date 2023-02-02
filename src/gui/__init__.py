@@ -2,7 +2,7 @@ import sys
 from os import path
 
 from PySide6.QtCore import Slot
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QPixmap
 from PySide6.QtWidgets import (
     QApplication,
     QVBoxLayout,
@@ -69,6 +69,21 @@ class Window(QMainWindow):
 
     def set_corrigir_callback(self, func):
         self.funcao_corrigir = func
+
+    def popup_botao_ok(self, titulo, mensagem,
+            pixmap_padrao='Warning', pixmap_customizado = None):
+
+        msg = QMessageBox()
+        msg.setWindowTitle(titulo)
+        msg.setText(mensagem)
+
+        if pixmap_customizado is not None:
+            msg.setIconPixmap(QPixmap(pixmap_customizado))
+        else:
+            msg.setIcon(aux.get_icone_padrao(pixmap_padrao))
+
+        msg.exec()
+
 
     @Slot()
     def corrigir(self):
