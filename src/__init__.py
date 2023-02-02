@@ -18,7 +18,7 @@ def main(dados):
     gabarito_path = dados["caminhos_gabaritos"][0]
     tipo_correcao = dados["tipo_de_correcao"]
 
-    path_saida = get_caminho_de_saida(dados["caminho_de_saida"])
+    path_output_arquivos_correcao = get_caminho_de_saida(dados["caminho_de_saida"])
 
     _, df_respostas, df_gabarito = csvs_to_dfs(
         dados_alunos_path, respostas_alunos_path, gabarito_path
@@ -29,8 +29,8 @@ def main(dados):
     df_resultado = corrigir(df_respostas, df_gabarito, df_redacoes, tipo_correcao)
 
     # escrever_csv("./output/respostas.csv", respostas)  ### Igual ao input...
-    escrever_csv(join_paths(path_saida, "resultado.csv"), df_resultado)
-    escrever_csv(join_paths(path_saida, "gabarito.csv"), df_gabarito)
+    escrever_csv(join_paths(path_output_arquivos_correcao, "resultado.csv"), df_resultado)
+    escrever_csv(join_paths(path_output_arquivos_correcao, "gabarito.csv"), df_gabarito)
 
     subjects = gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao)
     # writing = gerar_json_redacao(correcao, len(redacoes))
@@ -50,7 +50,7 @@ def main(dados):
         "student_dataset": student_dataset,
     }
 
-    escrever_json(join_paths(path_saida, "data.json"), data)
+    escrever_json(join_paths(path_output_arquivos_correcao, "data.json"), data)
 
     app.window.popup_botao_ok("Sucesso!",
                               "O relatório foi gerado com sucesso!",
