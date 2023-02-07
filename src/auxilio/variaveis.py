@@ -19,9 +19,9 @@ areas_enem = [{"Linguagens, códigos e suas tecnologias": ["$"]},
 
 
 # Nome em ordem das colunas dos arquivos csv SIMUENEM
-nome_col_df_dados_alunos = ["Nome", "CPF", "2Lingua", "Curso", "Cota"]
-nome_col_df_gabarito = ["Área", "Questão", "Gabarito", "Matéria"]
-nome_col_df_respostas = ["Nome","CPF","2Lingua","Cota",
+nome_col_df_dados_alunos_enem = ["Nome", "CPF", "2Lingua", "Curso", "Cota"]
+nome_col_df_gabarito_enem = ["Área", "Questão", "Gabarito", "Matéria"]
+nome_col_df_respostas_enem = ["Nome","CPF","2Lingua","Cota",
     "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
     "20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37",
     "38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55",
@@ -33,6 +33,16 @@ nome_col_df_respostas = ["Nome","CPF","2Lingua","Cota",
     "141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156",
     "157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172",
     "173","174","175","176","177","178","179","180"]
+
+# Nome em ordem das colunas dos arquivos csv SIMULINHO
+# nome_col_df_dados_alunos_simulinho = ["Nome", "CPF", "2Lingua", "Curso", "Cota"]
+nome_col_df_gabarito_simulinho = ["Área", "Questão", "Gabarito", "Matéria"]
+nome_col_df_respostas_simulinho = ["Nome", "Login",
+    "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
+    "20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37",
+    "38","39","40","41","42","43","44","45","46","47","48","49","50"]
+
+
 
 # Códigos para 2lingua e posição respostas
 # ENEM

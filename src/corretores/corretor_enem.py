@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from auxilio.variaveis import codigo_2lingua_dicionario as c2l, nome_col_df_respostas
+from auxilio.variaveis import codigo_2lingua_dicionario as c2l, nome_col_df_respostas_enem
 
 
 def correcao_enem(df_respostas, df_gabarito):
@@ -42,7 +42,7 @@ def modela_df_respostas(dfs_2lingua):
     dfs = []
 
     for i in range(0, len(dfs_2lingua), 2):
-        df_resposta_modelado = dfs_2lingua[i].melt(id_vars=nome_col_df_respostas[0:4],
+        df_resposta_modelado = dfs_2lingua[i].melt(id_vars=nome_col_df_respostas_enem[0:4],
                                                    var_name="Questão",
                                                    value_name="Resposta",
                                                    ignore_index=False)

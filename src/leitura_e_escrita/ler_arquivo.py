@@ -1,20 +1,33 @@
 from pathlib import Path
 import pandas as pd
 from auxilio.variaveis import (
-    nome_col_df_dados_alunos,
-    nome_col_df_gabarito,
-    nome_col_df_respostas,
+    nome_col_df_dados_alunos_enem,
+    nome_col_df_gabarito_enem,
+    nome_col_df_respostas_enem,
+    nome_col_df_gabarito_simulinho,
+    nome_col_df_respostas_simulinho
 )
 
 
-def csvs_to_dfs(*paths):
+def csvs_to_dfs(*paths, tipo_correcao):
     dfs = []
-    lista_tupla_paths = list(
-        zip(
-            paths,
-            [nome_col_df_dados_alunos, nome_col_df_respostas, nome_col_df_gabarito],
+    if tipo_correcao == "simuenem":
+        lista_tupla_paths = list(
+            zip(
+                paths,
+                [nome_col_df_dados_alunos_enem, nome_col_df_respostas_enem, nome_col_df_gabarito_enem]
+            )
         )
-    )
+
+    if tipo_correcao == "simulinho":
+        lista_tupla_paths = list(
+            zip(
+                paths,
+                #[nome_col_df_dados_alunos_simulinho, nome_col_df_respostas_simulinho, nome_col_df_gabarito_simulinho],
+                [nome_col_df_dados_alunos_enem, nome_col_df_respostas_simulinho, nome_col_df_gabarito_simulinho] # PLACE HOLDER
+            )
+        )
+
     for tupla in lista_tupla_paths:
         dfs.append(ler_csv(tupla[0], nome_colunas=tupla[1]))
     return dfs

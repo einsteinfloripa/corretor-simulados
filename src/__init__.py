@@ -11,8 +11,11 @@ from src.auxilio.path import (get_caminho_de_saida, join_paths,
 def main(dados):
 
     # HARD CODED
-    dados_alunos_path = join_paths(ROOT_PATH, 'recursos', 'exemplos',
-                                  'simuenem', 'alunos-dados.csv')
+    dados_alunos_path = join_paths(ROOT_PATH, "recursos", "exemplos",
+                                  "simuenem", "alunos-dados.csv")
+
+    # TODO: Remover
+    dados_alunos_path = "/home/matos/Einstein/Vale/corretor/corretor-simulados/input/alunos/alunos-dados.csv"
 
     respostas_alunos_path = dados["caminhos_respostas"][0] # so um item por enquanto, por isso [0]
     gabarito_path = dados["caminhos_gabaritos"][0]
@@ -21,7 +24,8 @@ def main(dados):
     path_output_arquivos_correcao = get_caminho_de_saida(dados["caminho_de_saida"])
 
     _, df_respostas, df_gabarito = csvs_to_dfs(
-        dados_alunos_path, respostas_alunos_path, gabarito_path
+        dados_alunos_path, respostas_alunos_path, gabarito_path,
+        tipo_correcao = tipo_correcao
     )
     df_redacoes = []  # PLACE HOLDER Não implementado
 
