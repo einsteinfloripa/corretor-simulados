@@ -68,7 +68,7 @@ def get_pares_dfs_2lingua(df_respostas, df_gabarito, tipo_correcao):
 def modela_df_respostas(dfs_2lingua, tc):
     dfs = []
     col_nomes = (tc == "simuenem" and ncenem) or (tc == "simulinho" and ncsimulinho )
-    range_ = (tc == "simuenem" and col_nomes[0:4]) or (tc == "simulinho and" and col_nomes[0:2])
+    range_ = (tc == "simuenem" and col_nomes[0:4]) or (tc == "simulinho" and col_nomes[0:2])
 
     for i in range(0, len(dfs_2lingua), 2):
         df_resposta_modelado = dfs_2lingua[i].melt(id_vars=range_,
