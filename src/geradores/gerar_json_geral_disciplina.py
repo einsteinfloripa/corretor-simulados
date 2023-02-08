@@ -1,4 +1,6 @@
-from auxilio.variaveis import codigo_2lingua_dicionario as c2l, areas_enem, areas_ufsc
+from auxilio.variaveis import (codigo_2lingua_dicionario as c2l,
+                               areas_enem, areas_ufsc,
+                               areas_simulinho)
 
 
 def gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao):
@@ -19,9 +21,12 @@ def gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao):
         return subjects
 
     if tipo_correcao == "simulinho":
-        print("Atenção: Correção de simulinho não implementada")
-        return {}
-
+        # print("Atenção: Correção de simulinho não implementada")
+        # return {}
+        subjects = gerar_estrutura_disciplinas_simulinho()
+        subjects = gerar_detalhado_disciplina_estrutura_simulinho(
+            subjects, df_resultado, df_gabarito)
+        return subjects
 
 def gerar_estrutura_disciplinas_ufsc():
     estrutura = {}
@@ -43,6 +48,22 @@ def gerar_estrutura_disciplinas_enem():
     estrutura = {}
     for area_enem in areas_enem:
         for chave_dicionario, disciplinas_area in area_enem.items():
+            estrutura[chave_dicionario] = {}
+            for disciplina in disciplinas_area:
+                estrutura[chave_dicionario][disciplina] = {
+                    "question_numbers": 0,
+                    "general_percent": 0,
+                    "detailed": [],
+                    # "theme": [],
+                    # "level": []
+                }
+    return estrutura
+
+
+def gerar_estrutura_disciplinas_simulinho():
+    estrutura = {}
+    for area_simulinho in areas_simulinho:
+        for chave_dicionario, disciplinas_area in area_simulinho.items():
             estrutura[chave_dicionario] = {}
             for disciplina in disciplinas_area:
                 estrutura[chave_dicionario][disciplina] = {
@@ -98,6 +119,22 @@ def gerar_detalhado_disciplina_estrutura_enem(subjects, df_resultado, df_gabarit
         subjects[nome[0]][nome[1]]["detailed"] = list(serie_temp_)
     return subjects
 
+
+def gerar_detalhado_disciplina_estrutura_simulinho(subjects, df_resultado, df_gabarito):
+
+    grupos = df_resultado.groupby(["Área", "Matéria"], sort=False)
+    for nome, grupo in grupos:
+        subjects[nome[0]][nome[1]]["question_numbers"] = len(grupo)
+        subjects[nome[0]][nome[1]]["general_percent"] = round(
+            (grupo["Verificação"].eq(1).sum() * 100) /
+            subjects[nome[0]][nome[1]]["question_numbers"], 2)
+
+        serie_temp_ = df_gabarito.loc[(df_gabarito["Área"] == nome[0]) & (
+            df_gabarito["Matéria"] == nome[1]), "Gabarito"]
+
+        subjects[nome[0]][nome[1]]["detailed"] = list(serie_temp_)
+
+    return subjects
 
 def calcular_general_porcent_ufsc(subjects):
     for area_ufsc in areas_ufsc:

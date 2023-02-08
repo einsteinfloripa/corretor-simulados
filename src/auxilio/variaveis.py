@@ -17,6 +17,16 @@ areas_enem = [{"Linguagens, códigos e suas tecnologias": ["$"]},
               {"Ciências da Natureza e suas tecnologias": ["$"]},
               {"Matemática e suas tecnologias": ["$"]}]
 
+areas_simulinho = [{"Matemática": ["$"]},
+                   {"Português": ["$"]},
+                   {"Química": ["$"]},
+                   {"História": ["$"]},
+                   {"Química": ["$"]},
+                   {"Geografia": ["$"]},
+                   {"Física": ["$"]},
+                   {"Biologia": ["$"]},
+                   {"Filosofia/Sociologia": ["$"]}]
+
 
 # Nome em ordem das colunas dos arquivos csv SIMUENEM
 nome_col_df_dados_alunos_enem = ["Nome", "CPF", "2Lingua", "Curso", "Cota"]
