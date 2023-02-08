@@ -2,7 +2,7 @@
 # se o aluno fez ingles ou espanhol, vou arrumar melhor depois, talvez em um simuenem?
 
 import re
-from geradores.utils.geradores_enem_utils import gerar_details_aluno_enem
+from geradores.utils.geradores_enem_utils import gerar_details_aluno_enem, gerar_details_aluno_simulinho
 
 
 def gerar_json_alunos(df_resultado, df_gabarito, tipo_correcao):
@@ -13,7 +13,7 @@ def gerar_json_alunos(df_resultado, df_gabarito, tipo_correcao):
     if tipo_correcao == "simuenem":
         return gerar_json_simuenem(df_resultado, df_gabarito)
     if tipo_correcao == "simulinho":
-        print("Simulinho não implementado ainda")
+        return gerar_json_simulinho(df_resultado, df_gabarito)
 
 
 def gerar_json_simuenem(df_resultado, df_gabarito):
@@ -103,6 +103,51 @@ def gerar_json_simufsc(correcao, respostas, dados_alunos, gabarito):
                 }
             }
         )
+
+
+def gerar_json_simulinho(df_resultado, df_gabarito):
+    student_dataset = []
+    lista_total = []
+    nomes_lista = df_resultado.index.get_level_values("Nome").unique()
+
+    for nome in nomes_lista:
+        total = df_resultado.loc[df_resultado.index.get_level_values(
+            "Nome") == nome, "Verificação"].sum()
+        lista_total.append([nome, total])
+    lista_total_ordenada = [x for x in sorted(lista_total, key=lambda x: x[1])]
+    lista_total_ordenada.reverse()
+
+    grupos = df_resultado.groupby("Nome", sort=False)
+    for nome, grupo in grupos:
+        nome_aluno = nome
+        total_acertos = grupo["Verificação"].eq(1).sum()
+        # TODO: Arrumar CPF depois que tiver formato final dos inputs
+        # cpf = re.sub("\\D", "", grupo.loc[nome, "CPF"].iat[0])
+        cpf = "PLACE HOLDER"
+        # TODO: A princípio não tem 2Lingua
+        # msg_tutor = grupo.loc[nome, "2Lingua"].iat[0]
+        posicao = next(lista_total_ordenada.index(listas)
+                       for listas in lista_total_ordenada if listas[0] == nome)
+
+        student_dataset.append(
+            {
+                "info": {
+                    "name": nome_aluno,
+                    "cpf": cpf,
+                    "total": str(total_acertos),
+                    "position": str(posicao+1),
+                   #"msg": msg_tutor
+                },
+                "detailed": {
+                    "subjects": gerar_details_aluno_simulinho(nome_aluno, df_gabarito, df_resultado),
+                }
+            }
+        )
+
+    return student_dataset
+
+
+
 
 
 def pegar_cpf_e_msg_tutor(nome_aluno, dados_alunos):
