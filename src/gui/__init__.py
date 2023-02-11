@@ -1,5 +1,4 @@
 import sys
-from os import path
 
 from PySide6.QtCore import Slot
 from PySide6.QtGui import QIcon, QPixmap
@@ -21,7 +20,7 @@ from gui.widgets import (
     FrameSelecaoCaminhoDeSaida,
 )
 
-from gui import constantes as gui_cons
+import gui.constantes as gui_cons
 import gui.auxiliar as aux
 
 

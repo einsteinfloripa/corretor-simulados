@@ -1,8 +1,7 @@
-from os import path
+from auxilio.path import ROOT_PATH, join_paths
 
 # paths
-CAMINHO_ICONE = path.abspath(path.join(path.dirname(
-    __file__), '..', '..', 'recursos', 'imagens', 'icone.png'))
+CAMINHO_ICONE = join_paths(ROOT_PATH, 'recursos', 'imagens', 'icone.png')
 
 # Janela principal
 ALTURA_DA_JANELA = 600
