@@ -37,6 +37,7 @@ jobs:
         run: poetry install
 
       - name: Build do pyinstaller para ${{ matrix.config.os }}
+        run: poetry shell
         run: pyinstaller corretor.spec
 
       - name: Renomeia o diretorio do app
