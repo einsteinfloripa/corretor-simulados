@@ -1,11 +1,12 @@
+
 from corrigir import corrigir
 from geradores.gerar_json_aluno import gerar_json_alunos
 from geradores.gerar_json_geral_disciplina import gerar_json_disciplinas
 from leitura_e_escrita.escrever_arquivo import escrever_csv, escrever_json
 from leitura_e_escrita.ler_arquivo import csvs_to_dfs
 from gui import Aplication
-from src.auxilio.path import (get_caminho_de_saida, join_paths,
-                              ROOT_PATH)
+from auxilio.path import (get_caminho_de_saida, join_paths,
+                          ROOT_PATH)
 
 
 def main(dados):
@@ -52,7 +53,8 @@ def main(dados):
 
     escrever_json(join_paths(path_output_arquivos_correcao, "data.json"), data)
 
-    app.window.popup_botao_ok("Sucesso!",
+    app.window.popup_botao_ok(
+                              "Sucesso!",
                               "O relatório foi gerado com sucesso!",
                               pixmap_customizado=join_paths(
                                   ROOT_PATH, 'recursos', 'imagens','sucesso.png'
@@ -60,6 +62,7 @@ def main(dados):
                             )
 
 
-app = Aplication()
-app.window.set_corrigir_callback(main)
-app.Run()
+if __name__ == '__main__':
+    app = Aplication()
+    app.window.set_corrigir_callback(main)
+    app.Run()

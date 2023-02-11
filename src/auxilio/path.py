@@ -1,8 +1,16 @@
 import os
+import sys
 
 # Constatntes
 # .../corretor-simulados
-ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+def get_root_path():
+
+    if getattr(sys, 'frozen', False):
+        return os.path.dirname(sys.executable)
+
+    return os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+
+ROOT_PATH = get_root_path()
 
 
 # adiciona relatorio ao caminho, se ja existir adiciona relatorio_1 ...
