@@ -4,3 +4,4 @@ input/*
 !input/templates
 .venv
 dist
+build
