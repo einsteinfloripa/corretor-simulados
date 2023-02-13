@@ -1,12 +1,13 @@
 import os
 import sys
+from pathlib import Path
 
 # Constatntes
 # .../corretor-simulados
 def get_root_path():
 
-    if getattr(sys, 'frozen', False):
-        return os.path.dirname(sys.executable)
+    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS') :
+        return Path(sys._MEIPASS).resolve()
 
     return os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 

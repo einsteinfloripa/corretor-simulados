@@ -2,8 +2,7 @@ name: Criar Executaveis
 
 on:
   push:
-    tags:
-      - '*'
+
 
 
 jobs:
@@ -33,15 +32,15 @@ jobs:
           python -m poetry install
   
       - name: Build App com pyinstaller no ${{ matrix.config.os }}
-        run: pyinstaller tradutor.py --onefile --noconsole
+        run: python -m poetry run pyinstaller corretor.spec
 
-      - name: Rename builded app
+      - name: Renomear o Diretorio de Build
         run: mv ./dist ./dist-${{ matrix.config.os }}
 
-      - name: Upload result job ${{ matrix.config.os }}
+      - name: Upload resultado do Job ${{ matrix.config.os }}
         uses: actions/upload-artifact@v3
         with:
-          name: tradutor-pyinstaller-artifact
+          name: corretor-pyinstaller-artifact
           path: ./dist*
 
   release:
@@ -52,16 +51,16 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: tradutor-pyinstaller-artifact
+          name: corretor-pyinstaller-artifact
 
       - name: Zip file windows
-        run: zip -r tradutor_windows.zip dist-windows-*
+        run: zip -r corretor_windows.zip dist-windows-*
 
       - name: Zip file ubuntu
-        run: zip -r tradutor_ubuntu.zip dist-ubuntu-*
+        run: zip -r corretor_ubuntu.zip dist-ubuntu-*
 
       - name: Zip file macos
-        run: zip -r tradutor_macos.zip dist-macos-*
+        run: zip -r corretor_macos.zip dist-macos-*
 
       - name: Create Release
         id: create_release
@@ -73,6 +72,6 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            tradutor_windows.zip
-            tradutor_ubuntu.zip
-            tradutor_macos.zip
+            corretor_windows.zip
+            corretor_ubuntu.zip
+            corretor_macos.zip
