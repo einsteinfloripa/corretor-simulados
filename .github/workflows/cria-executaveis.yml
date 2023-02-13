@@ -3,7 +3,8 @@ name: Criar Executaveis
 on:
   push:
     tags:
-      - "v*.*.*"
+      - '*'
+
 
 jobs:
   build:
@@ -13,12 +14,11 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - os: ubuntu-letest
+          - os: ubuntu-22.04
           - os: macos-latest
-          - os: windows-2019
+          - os: windows-2022
     steps:
-
-      - name: Checkout code
+      - name: Checkout na Branch
         uses: actions/checkout@v3
 
       - name: Setup Python
@@ -26,27 +26,22 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Instalando Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: 1.2.2
-          virtualenvs-create: true
-          virtualenvs-in-project: true
+      - name: Instalar dependencias para ${{ matrix.config.os }}
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          python -m poetry install
+  
+      - name: Build App com pyinstaller no ${{ matrix.config.os }}
+        run: pyinstaller tradutor.py --onefile --noconsole
 
-      - name: Instalando dependências
-        run: poetry install
-
-      - name: Build do pyinstaller para ${{ matrix.config.os }}
-        run: poetry shell
-        run: pyinstaller corretor.spec
-
-      - name: Renomeia o diretorio do app
+      - name: Rename builded app
         run: mv ./dist ./dist-${{ matrix.config.os }}
 
-      - name: Faz upload do job ${{ matrix.config.os }}
+      - name: Upload result job ${{ matrix.config.os }}
         uses: actions/upload-artifact@v3
         with:
-          name: corretor-pyinstaller-artifact
+          name: tradutor-pyinstaller-artifact
           path: ./dist*
 
   release:
@@ -57,25 +52,27 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: corretor-pyinstaller-artifact
+          name: tradutor-pyinstaller-artifact
 
       - name: Zip file windows
-        run: zip -r corretor_windows.zip dist-windows-*
+        run: zip -r tradutor_windows.zip dist-windows-*
 
       - name: Zip file ubuntu
-        run: zip -r corretor_ubuntu.zip dist-ubuntu-*
+        run: zip -r tradutor_ubuntu.zip dist-ubuntu-*
 
       - name: Zip file macos
-        run: zip -r corretor_macos.zip dist-macos-*
+        run: zip -r tradutor_macos.zip dist-macos-*
 
-      - name: Cria Release
+      - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           draft: false
           prerelease: false
           files: |
-            corretor_windows.zip
-            corretor_ubuntu.zip
-            corretor_macos.zip
+            tradutor_windows.zip
+            tradutor_ubuntu.zip
+            tradutor_macos.zip
