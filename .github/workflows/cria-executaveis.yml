@@ -2,7 +2,8 @@ name: Criar Executaveis
 
 on:
   push:
-
+    tags:
+      - '*'
 
 
 jobs:
