@@ -107,9 +107,11 @@ class FrameSelecaoCaminhosDeEntrada(QFrame):
 
         # WIDGETS
         # botoes
+        self.btn_dados = QPushButton("Adicionar dados dos alunos")
         self.btn_gabarito = QPushButton("Adicionar Gabarito")
         self.btn_respostas = QPushButton("Adicionar Resposta")
         # Widgets que contem os caminhos de entrada
+        self.scroll_dados = ScrollWidgetConteinerCaminhos()
         self.scroll_gabarito = ScrollWidgetConteinerCaminhos()
         self.scroll_respostas = ScrollWidgetConteinerCaminhos()
 
@@ -117,7 +119,12 @@ class FrameSelecaoCaminhosDeEntrada(QFrame):
             lambda: self.procura_caminho("gabarito"))
         self.btn_respostas.clicked.connect(
             lambda: self.procura_caminho("respostas"))
+        self.btn_dados.clicked.connect(
+            lambda: self.procura_caminho("dados")
+        )
 
+        self.layout.addWidget(self.btn_dados)
+        self.layout.addWidget(self.scroll_dados)
         self.layout.addWidget(self.btn_gabarito)
         self.layout.addWidget(self.scroll_gabarito)
         self.layout.addWidget(self.btn_respostas)
@@ -140,12 +147,18 @@ class FrameSelecaoCaminhosDeEntrada(QFrame):
             elif tipo_arquivo == "respostas":
                 self.scroll_respostas.adiciona_novo_caminho(caminho_arquivo[0])
 
+            elif tipo_arquivo == "dados":
+                self.scroll_dados.adiciona_novo_caminho(caminho_arquivo[0])
+
+
     def get_data(self):
         caminhos_gabaritos = self.scroll_gabarito.get_data()
         caminhos_respostas = self.scroll_respostas.get_data()
+        caminhos_dados = self.scroll_dados.get_data()
         return {
             'caminhos_gabaritos': caminhos_gabaritos,
             'caminhos_respostas': caminhos_respostas,
+            'caminhos_dados': caminhos_dados,
         }
 
 
