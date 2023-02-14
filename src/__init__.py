@@ -10,11 +10,9 @@ from src.auxilio.path import (get_caminho_de_saida, join_paths,
 
 def main(dados):
 
-    # HARD CODED
-    dados_alunos_path = join_paths(ROOT_PATH, 'recursos', 'exemplos',
-                                  'simuenem', 'alunos-dados.csv')
 
-    respostas_alunos_path = dados["caminhos_respostas"][0] # so um item por enquanto, por isso [0]
+    dados_alunos_path = dados["caminhos_dados"][0] # so um item por enquanto, por isso [0]
+    respostas_alunos_path = dados["caminhos_respostas"][0]
     gabarito_path = dados["caminhos_gabaritos"][0]
     tipo_correcao = dados["tipo_de_correcao"]
 
