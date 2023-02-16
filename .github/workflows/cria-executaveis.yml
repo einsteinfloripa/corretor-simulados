@@ -1,0 +1,79 @@
+name: Criar Executaveis
+
+on:
+  push:
+    tags:
+      - v*
+
+
+jobs:
+  build:
+    name: Build app
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+              # ubuntu-22.04
+          - os: macos-latest
+          - os: windows-2022
+    steps:
+      - name: Checkout na Branch
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias para ${{ matrix.config.os }}
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          python -m poetry install
+  
+      - name: Build App com pyinstaller no ${{ matrix.config.os }}
+        run: python -m poetry run pyinstaller corretor.spec
+
+      - name: Renomear o Diretorio de Build
+        run: mv ./dist ./dist-${{ matrix.config.os }}
+
+      - name: Upload resultado do Job ${{ matrix.config.os }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: corretor-pyinstaller-artifact
+          path: ./dist*
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: corretor-pyinstaller-artifact
+
+      - name: Zip file windows
+        run: zip -r corretor_windows.zip dist-windows-*
+
+      - name: Zip file ubuntu
+        run: zip -r corretor_ubuntu.zip dist-ubuntu-*
+
+      - name: Zip file macos
+        run: zip -r corretor_macos.zip dist-macos-*
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: |
+            corretor_windows.zip
+            corretor_ubuntu.zip
+            corretor_macos.zip

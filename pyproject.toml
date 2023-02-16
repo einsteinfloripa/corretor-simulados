@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "corretor-simulados"
-version = "1.0.0"
+version = "0.2.1"
 description = "Corretores do Einstein Floripa (Simulinho, SIMUFSC, SIMUENEM, Feedback Alunos)"
 authors = ["Vale do Silicio <vale@einsteinfloripa.com.br>"]
 license = "MIT"
@@ -13,6 +13,7 @@ pyside6 = "^6.4.1"
 pandas = "^1.5.3"
 pylint = "^2.16.2"
 pylint-venv = "^2.3.0"
+pyinstaller = "^5.7.0"
 
 
 [build-system]
