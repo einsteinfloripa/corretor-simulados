@@ -58,7 +58,7 @@ def get_pares_dfs_2lingua(df_respostas, df_gabarito, tc):
 
     if tc == "simulinho":
         dfs.extend([df_respostas, df_gabarito])
-        print(dfs[0],dfs[1])
+        #print(dfs[0],dfs[1])
     return dfs
 
 
