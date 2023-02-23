@@ -1,6 +1,6 @@
 from pathlib import Path
 import pandas as pd
-from auxilio.variaveis import (
+from src.auxilio.variaveis import (
     nome_col_df_dados_alunos,
     nome_col_df_gabarito,
     nome_col_df_respostas,
@@ -27,4 +27,5 @@ def ler_csv(caminho: str, nome_colunas=None) -> pd.DataFrame:
             Path(caminho), sep=",", quotechar='"', names=nome_colunas, encoding="utf-8"
         )
 
-    return pandas_df
+        return pandas_df
+    return -1
