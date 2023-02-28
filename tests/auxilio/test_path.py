@@ -29,9 +29,10 @@ class TestPath():
     def test_se_ja_existir_output_retorna_caminho_com_output_n(self, tmp_path):
 
         entrada = str(tmp_path)
-        saida_esperada = str(tmp_path / 'output')
+        saida_esperada = str(tmp_path / 'output_2')
 
-        # cria pasta output_1 no diretorio temporario
+        # cria pastas output e output_1 no diretorio temporario
+        (tmp_path / 'output').mkdir()
         (tmp_path / 'output_1').mkdir()
 
         saida = path.get_caminho_de_saida(entrada)

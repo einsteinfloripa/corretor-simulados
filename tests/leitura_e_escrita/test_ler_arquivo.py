@@ -21,9 +21,9 @@ class TestLerArquivos():
 
     def test_se_retorna_data_frame_se_colunas_foram_passadas_como_parametro(self, mock_data):
         caminho_dados = mock_data.get_mock_file_path('dados_csv_1.csv')
-        
+
         df_teste = ler_csv(
-            caminho_dados, 
+            caminho_dados,
             nome_colunas=['id','first_name','last_name','email','gender','ip_address']
         )
         ler_csv(caminho_dados)
@@ -34,7 +34,7 @@ class TestLerArquivos():
     ### Teste csvs_to_dfs() ###
 
     def test_se_retorna_todos_os_data_frames(self, mock_data):
-        
+
         caminhos_de_entrada = (
             mock_data.get_mock_file_path('dados_data_frame/mock_dados_alunos.csv'),
             mock_data.get_mock_file_path('dados_data_frame/mock_gabarito.csv'),
@@ -55,9 +55,9 @@ class TestLerArquivos():
         ],
         ids=['dados_alunos', 'dados_respostas', 'dados_gabarito']
     )
-    def testa_se_o_conteudo_de_cada_data_frame_esta_correto(self, mock_data, 
+    def testa_se_o_conteudo_de_cada_data_frame_esta_correto(self, mock_data,
         caminho_arquivo_testado, indice):
-        
+
         caminhos_de_entrada = (
             mock_data.get_mock_file_path('dados_data_frame/mock_dados_alunos.csv'),
             mock_data.get_mock_file_path('dados_data_frame/mock_respostas.csv'),
