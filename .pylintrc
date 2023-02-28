@@ -9,11 +9,18 @@ extension-pkg-whitelist=PySide6
 
 disable=
       #  CONVENÇOES
+      # Nao estamos usando doctrings
       missing-module-docstring,
       missing-class-docstring,
       missing-function-docstring,
+
+      
+      # CONFLITOS
+      # O pytest requer que o nome do argumento seja igual ao da fixture e isso conflita com
+      # o seguinte warning do pylint
+      redefined-outer-name,
+
       unbalanced-tuple-unpacking,
-      # Nao estamos usando doctrings
 
 
 [BASIC]
