@@ -1,0 +1,38 @@
+name: CI(Build)
+
+on:
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+  build:
+    name: Build App
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          # ubuntu-22.04 Desativado até resolver o erro de dependência
+          - os: macos-latest
+          - os: windows-2022
+    steps:
+      - name: Checkout na Branch
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Instalar dependências para ${{ matrix.config.os }}
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          python -m poetry install
+
+      - name: Build App com PyInstaller no ${{ matrix.config.os }}
+        run: python -m poetry run pyinstaller corretor.spec
+    
+
