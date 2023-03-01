@@ -7,7 +7,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
 
@@ -58,3 +58,27 @@ jobs:
 
       - name: Build App com PyInstaller no ${{ matrix.config.os }}
         run: python -m poetry run pyinstaller corretor.spec
+    
+  tests:
+    name: Executando testes unitários
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Instalando Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: 1.2.2
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+
+    - name: Instalando dependências
+      run: poetry install
+
+    - name: Run pytest
+      run: pytest src
