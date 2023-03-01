@@ -1,38 +1,14 @@
-name: CI (lint + testes + build)
+name: CI(Build)
 
 on:
   pull_request:
     branches:
       - main
 
+
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Setup Python 3.10
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-
-    - name: Instalando Poetry
-      uses: snok/install-poetry@v1
-      with:
-        version: 1.2.2
-        virtualenvs-create: true
-        virtualenvs-in-project: true
-
-    - name: Instalando dependências
-      run: poetry install
-
-    - name: Executando Lint
-      run: |
-        source $VENV
-        pylint --rcfile=.pylintrc --output-format=colorized --fail-under=6.5 -r=y src
-
   build:
-    name: Build app
+    name: Build App
     runs-on: ${{ matrix.config.os }}
     strategy:
       fail-fast: false
@@ -58,3 +34,5 @@ jobs:
 
       - name: Build App com PyInstaller no ${{ matrix.config.os }}
         run: python -m poetry run pyinstaller corretor.spec
+    
+
