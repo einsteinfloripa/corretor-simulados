@@ -84,4 +84,6 @@ jobs:
       run: poetry install
 
     - name: Run pytest
-      run: pytest src
+      run: |
+        source $VENV
+        pytest src

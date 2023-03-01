@@ -31,7 +31,7 @@ class TestEscreverArquivo():
 
         escrever_arquivo.escrever_csv(caminho_do_arquivo_csv, df_entrada)
 
-        df_comparacao = df_entrada = pd.read_csv(
+        df_comparacao = pd.read_csv(
             caminho_do_arquivo_csv,
             index_col='id',
             header=0
