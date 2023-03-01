@@ -417,14 +417,14 @@ testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pylint-venv"
-version = "2.3.0"
+version = "3.0.1"
 description = "pylint-venv provides a Pylint init-hook to use the same Pylint installation with different virtual environments."
 category = "main"
 optional = false
-python-versions = ">=3.6,<4.0"
+python-versions = ">=3.7.2,<4.0.0"
 files = [
-    {file = "pylint-venv-2.3.0.tar.gz", hash = "sha256:3594955502fdee83c98bfcc8c14cd615e6c7c3608aea525df84853ce79f296bf"},
-    {file = "pylint_venv-2.3.0-py3-none-any.whl", hash = "sha256:93a603cb5e1eed8ebc9c36566661a5507e4effb180ac1eba5345fced7617d2ab"},
+    {file = "pylint_venv-3.0.1-py3-none-any.whl", hash = "sha256:22f7404c3d2a2a6c7d61d498dca6ca0716ff2b40b9c8b05d700584a348327dbd"},
+    {file = "pylint_venv-3.0.1.tar.gz", hash = "sha256:c4b455f76a54c1b395ffdb727ff02c29b254d7e3caef12970cd7f6553194848b"},
 ]
 
 [[package]]
@@ -726,4 +726,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.12"
-content-hash = "523588b8274814e347807d10b8e683700e0a65248fed61f2b0b684a8371b99a1"
+content-hash = "5462e97bb8cb536dbaea91398b5da4c859ed45b35850635c529e01173c135f3a"
