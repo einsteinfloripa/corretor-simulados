@@ -86,4 +86,4 @@ jobs:
     - name: Run pytest
       run: |
         source $VENV
-        pytest src
+        pytest
