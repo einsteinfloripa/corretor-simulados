@@ -3,4 +3,5 @@ output
 input/*
 !input/templates
 .venv
-TEMP
+dist
+build

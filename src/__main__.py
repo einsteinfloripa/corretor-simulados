@@ -1,11 +1,12 @@
+
 from corrigir import corrigir
 from geradores.gerar_json_aluno import gerar_json_alunos
 from geradores.gerar_json_geral_disciplina import gerar_json_disciplinas
 from leitura_e_escrita.escrever_arquivo import escrever_csv, escrever_json
 from leitura_e_escrita.ler_arquivo import csvs_to_dfs
 from gui import Aplication
-from src.auxilio.path import (get_caminho_de_saida, join_paths,
-                              ROOT_PATH)
+from auxilio.path import (get_caminho_de_saida, join_paths,
+                          ROOT_PATH)
 
 
 def main(dados):
@@ -17,7 +18,8 @@ def main(dados):
     # TODO: Remover
     dados_alunos_path = "/home/matos/Einstein/Vale/corretor/corretor-simulados/input/alunos/alunos-dados.csv"
 
-    respostas_alunos_path = dados["caminhos_respostas"][0] # so um item por enquanto, por isso [0]
+    dados_alunos_path = dados["caminhos_dados"][0] # so um item por enquanto, por isso [0]
+    respostas_alunos_path = dados["caminhos_respostas"][0]
     gabarito_path = dados["caminhos_gabaritos"][0]
     tipo_correcao = dados["tipo_de_correcao"]
 
@@ -56,7 +58,8 @@ def main(dados):
 
     escrever_json(join_paths(path_output_arquivos_correcao, "data.json"), data)
 
-    app.window.popup_botao_ok("Sucesso!",
+    app.window.popup_botao_ok(
+                              "Sucesso!",
                               "O relatório foi gerado com sucesso!",
                               pixmap_customizado=join_paths(
                                   ROOT_PATH, 'recursos', 'imagens','sucesso.png'
@@ -64,6 +67,7 @@ def main(dados):
                             )
 
 
-app = Aplication()
-app.window.set_corrigir_callback(main)
-app.Run()
+if __name__ == '__main__':
+    app = Aplication()
+    app.window.set_corrigir_callback(main)
+    app.Run()
