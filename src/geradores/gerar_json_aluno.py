@@ -1,9 +1,7 @@
-# TODO: por questão de tempo, não fiz um bom if para verificar
-# se o aluno fez ingles ou espanhol, vou arrumar melhor depois, talvez em um simuenem?
-
 import re
 from geradores.utils.geradores_enem_utils import gerar_details_aluno_enem, gerar_details_aluno_simulinho
-
+import pandas as pd
+from leitura_e_escrita.escrever_arquivo import escrever_csv
 
 def gerar_json_alunos(df_resultado, df_gabarito, tipo_correcao):
 
@@ -104,10 +102,16 @@ def gerar_json_simufsc(correcao, respostas, dados_alunos, gabarito):
             }
         )
 
-
+# TODO: Arrumar CPF simulinho
 def gerar_json_simulinho(df_resultado, df_gabarito):
     student_dataset = []
     lista_total = []
+
+    # TODO: Remover
+    lista_posicao = []
+    dicionario_final = {}
+    #
+
     nomes_lista = df_resultado.index.get_level_values("Nome").unique()
 
     for nome in nomes_lista:
@@ -123,7 +127,6 @@ def gerar_json_simulinho(df_resultado, df_gabarito):
         total_acertos = grupo["Verificação"].eq(1).sum()
         # TODO: Arrumar CPF depois que tiver formato final dos inputs
         # cpf = re.sub("\\D", "", grupo.loc[nome, "CPF"].iat[0])
-        cpf = "PLACE HOLDER"
         # TODO: A princípio não tem 2Lingua
         # msg_tutor = grupo.loc[nome, "2Lingua"].iat[0]
         posicao = next(lista_total_ordenada.index(listas)
@@ -133,7 +136,7 @@ def gerar_json_simulinho(df_resultado, df_gabarito):
             {
                 "info": {
                     "name": nome_aluno,
-                    "cpf": cpf,
+                    "cpf": "PLACE-HOLDER",
                     "total": str(total_acertos),
                     "position": str(posicao+1),
                    #"msg": msg_tutor
@@ -143,13 +146,26 @@ def gerar_json_simulinho(df_resultado, df_gabarito):
                 }
             }
         )
+#region
+# TODO: Remover - TEMPORARIO
+        dicionario_final[nome_aluno] = {}
+        dicionario_final[nome_aluno]["Nota"] = str(total_acertos)
+        dicionario_final[nome_aluno]["Posição"] = posicao+1
+        lista_posicao.append((nome_aluno, posicao+1))
 
+    lista_posicao = sorted(lista_posicao, key = lambda x: x[1])
+    df_final = pd.DataFrame(dicionario_final)
+    df_final = df_final.transpose()
+    print(lista_posicao)
+    print(df_final)
+    escrever_csv("/home/matos/Einstein/Vale/corretor/corretor-simulados/src/TEMP/agora_vai/resultado_final.xlsx", df_final)
+#endregion
     return student_dataset
 
 
 
 
-
+# TODO: Verificar/Remover essas funções abaixo
 def pegar_cpf_e_msg_tutor(nome_aluno, dados_alunos):
     cpf = ""
     msg_tutor = ""

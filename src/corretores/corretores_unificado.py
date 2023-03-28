@@ -28,7 +28,7 @@ def correcao_enem(df_respostas, df_gabarito, tipo_correcao):
 
     return df_resultados
 
-
+# TODO: Adicionar UFSC
 def correcao_ufsc():
     pass
 
@@ -58,7 +58,6 @@ def get_pares_dfs_2lingua(df_respostas, df_gabarito, tc):
 
     if tc == "simulinho":
         dfs.extend([df_respostas, df_gabarito])
-        #print(dfs[0],dfs[1])
     return dfs
 
 
@@ -67,10 +66,12 @@ def modela_df_respostas(dfs_2lingua, tc):
 
     # TODO: Adicionar para o caso simufsc
     col_nomes = (tc == "simuenem" and ncenem) or (tc == "simulinho" and ncsimulinho )
-    range_ = (tc == "simuenem" and col_nomes[0:4]) or (tc == "simulinho" and col_nomes[0:2])
+    range = (tc == "simuenem" and col_nomes[0:4]) or (tc == "simulinho" and col_nomes[0:2])
+
+
 
     for i in range(0, len(dfs_2lingua), 2):
-        df_resposta_modelado = dfs_2lingua[i].melt(id_vars=range_,
+        df_resposta_modelado = dfs_2lingua[i].melt(id_vars=range,
                                                    var_name="Questão",
                                                    value_name="Resposta",
                                                    ignore_index=False)

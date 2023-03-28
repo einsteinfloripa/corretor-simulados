@@ -17,15 +17,15 @@ areas_enem = [{"Linguagens, códigos e suas tecnologias": ["$"]},
               {"Ciências da Natureza e suas tecnologias": ["$"]},
               {"Matemática e suas tecnologias": ["$"]}]
 
-areas_simulinho = [{"Matemática": ["$"]},
-                   {"Português": ["$"]},
+areas_simulinho = [{"Lingua Portuguesa": ["$"]},
+                   {"Matemática": ["$"]},
+                   {"Física": ["$"]},
                    {"Química": ["$"]},
                    {"História": ["$"]},
-                   {"Química": ["$"]},
                    {"Geografia": ["$"]},
-                   {"Física": ["$"]},
                    {"Biologia": ["$"]},
-                   {"Filosofia/Sociologia": ["$"]}]
+                   {"Filosofia e Sociologia": ["$"]},
+                   {"Interdiciplinares": ["$"]}]
 
 
 # Nome em ordem das colunas dos arquivos csv SIMUENEM
@@ -47,10 +47,11 @@ nome_col_df_respostas_enem = ["Nome","CPF","2Lingua","Cota",
 # Nome em ordem das colunas dos arquivos csv SIMULINHO
 # nome_col_df_dados_alunos_simulinho = ["Nome", "CPF", "2Lingua", "Curso", "Cota"]
 nome_col_df_gabarito_simulinho = ["Área", "Questão", "Gabarito", "Matéria"]
-nome_col_df_respostas_simulinho = ["Nome", "Login",
+nome_col_df_respostas_simulinho = ["Nome", "CPF",
     "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
     "20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37",
-    "38","39","40","41","42","43","44","45","46","47","48","49","50"]
+    "38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55",
+    "56","57","58","59","60"]
 
 
 

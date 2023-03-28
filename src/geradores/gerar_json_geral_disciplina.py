@@ -17,7 +17,6 @@ def gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao):
         subjects = gerar_estrutura_disciplinas_enem()
         subjects = gerar_detalhado_disciplina_estrutura_enem(
             subjects, df_resultado, df_gabarito)
-        # subjects = calcular_general_porcent_enem(subjects)
         return subjects
 
     if tipo_correcao == "simulinho":
@@ -135,6 +134,27 @@ def gerar_detalhado_disciplina_estrutura_simulinho(subjects, df_resultado, df_ga
         subjects[nome[0]][nome[1]]["detailed"] = list(serie_temp_)
 
     return subjects
+
+# TODO: Criar funcao dedicada a gerar um relatorio
+# Temporario
+def gerar_estatisticas(df_resultado, df_gabarito):
+    dici_relatorio = {
+    "Lingua Portuguesa": {},
+    "Matemática": {},
+    "Física": {},
+    "Química": {},
+    "História": {},
+    "Geografia": {},
+    "Biologia": {},
+    "Filosofia e Sociologia": {},
+    "Interdiciplinares": {}
+    }
+    grupos = df_resultado.groupby(["Área","Questão"], sort = False)
+    for nome, grupo in grupos:
+        print(nome)
+        dici_relatorio[str(nome[0])][str(nome[1])] = round(grupo["Verificação"].eq(1).sum() * 100 / len(grupo), 2) 
+
+    return dici_relatorio
 
 def calcular_general_porcent_ufsc(subjects):
     for area_ufsc in areas_ufsc:
