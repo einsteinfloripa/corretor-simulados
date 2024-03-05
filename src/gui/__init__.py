@@ -15,7 +15,7 @@ from PySide6.QtWidgets import (
 
 
 from gui.widgets import (
-    FrameSelecaoCaminhosDeEntrada,
+    FrameSelecaoCaminhoDeEntrada,
     FrameSelecaoTipoDeCorrecao,
     FrameSelecaoCaminhoDeSaida,
 )
@@ -51,7 +51,7 @@ class Window(QMainWindow):
         self.layout = QVBoxLayout(self.mainframe)
 
         # Adiciona os widgets filhos
-        self.frame_caminhos_entrada = FrameSelecaoCaminhosDeEntrada()
+        self.frame_caminhos_entrada = FrameSelecaoCaminhoDeEntrada()
         self.frame_correcao = FrameSelecaoTipoDeCorrecao()
         self.frame_caminho_saida = FrameSelecaoCaminhoDeSaida()
         self.btn_corrigir = QPushButton("Corrigir")
@@ -108,8 +108,11 @@ class Window(QMainWindow):
             message_box.exec()
 
         else:
-            self.funcao_corrigir(dados)
-
+            try:
+                self.funcao_corrigir(dados)
+            except Exception as e:
+                message_box = QMessageBox(QMessageBox.Warning, "Algo errado!", str(e))
+                message_box.exec()
     @Slot()
     def set_opcao(self, action):
         if action.text() == "Debug mode":

@@ -56,6 +56,5 @@ def corrigir(dados):
     [*zip(df_total.columns, linha_materias)]
     )
 
-    df_total.to_excel('teste.xlsx')
     return df_total
 

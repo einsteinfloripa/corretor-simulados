@@ -9,7 +9,7 @@ from auxilio.path import (get_caminho_de_saida, join_paths,
 def main(dados: dict):
 
 
-    dir_de_entrada = dados["dir_entrada"][0]
+    dir_de_entrada = dados["dir_entrada"]
     dir_saida = get_caminho_de_saida(dados["dir_saida"])
     tipo_correcao = dados["tipo_de_correcao"]
 

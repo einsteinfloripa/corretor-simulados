@@ -22,18 +22,16 @@ def print_dados(dados):
 def confere_se_nao_nulo(dados):
 
     nome_para_imprimir = {
-        "caminhos_dados" : "Dados dos alunos",
-        "caminhos_gabaritos" : "Gabaritos",
-        "caminhos_respostas"  : "Respostas",
+        "dir_entrada" : "Diretorio de entrada",
         "tipo_de_correcao"  : "Tipo de correçao",
-        "caminho_de_saida"  : "Caminho de saida",
+        "dir_saida"  : "Diretorio de saida",
     }
 
     flag_valor_adicionado = False
     valores_nulos = []
     
     for key, value in dados.items():
-        if value == "Não selecionado" or value == []:
+        if value == "Não selecionado" or value == [] or value == "":
             valores_nulos.append(nome_para_imprimir[key])
             flag_valor_adicionado = True
 
