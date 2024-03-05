@@ -1,4 +1,5 @@
 import sys
+import traceback
 
 from PySide6.QtCore import Slot
 from PySide6.QtGui import QIcon, QPixmap
@@ -111,6 +112,7 @@ class Window(QMainWindow):
             try:
                 self.funcao_corrigir(dados)
             except Exception as e:
+                print(traceback.format_exc())
                 message_box = QMessageBox(QMessageBox.Warning, "Algo errado!", str(e))
                 message_box.exec()
     @Slot()

@@ -4,12 +4,16 @@
 class PS:
     n_questoes = 60
     mapa_de_materias = {
-        'portugues': (1, 10),
-        'matematica': (11, 20),
-        'biologia': (21, 30),
-        'fisica': (31, 40),
-        'historia': (41, 50),
-        'geografia': (51, 60),
+        'portugues': (1, 12),
+        'matematica': (13, 22),
+        'fisica': (23, 28),
+        'quimica': (29, 34),
+        'historia': (35, 40),
+        'biologia': (41, 46),
+        'geografia': (47, 52),
+        'filosofia-sociologia': (53, 55),
+        'interdisciplinar': (56, 60)
+
     }
     required_fields = {
         'dados_alunos':[

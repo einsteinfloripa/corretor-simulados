@@ -1,6 +1,7 @@
 from corretores import corrigir
 from geradores import gerar_relatório
 from leitura_e_escrita.ler_arquivo import carregar_dados
+from src.auxilio.checker import check
 from gui import Aplication
 from auxilio.path import (get_caminho_de_saida, join_paths,
                           ROOT_PATH)
@@ -13,8 +14,11 @@ def main(dados: dict):
     dir_saida = get_caminho_de_saida(dados["dir_saida"])
     tipo_correcao = dados["tipo_de_correcao"]
 
+    # Carregar dados
     dados_de_entrada = carregar_dados(dir_de_entrada, tipo_correcao)
-    df_redacoes = []  # PLACE HOLDER Não implementado
+
+    #checar se os dados são válidos
+    check(dados_de_entrada, tipo_correcao)
 
     # Corrigir Provas
     df_resultado = corrigir(dados_de_entrada, tipo_correcao)
