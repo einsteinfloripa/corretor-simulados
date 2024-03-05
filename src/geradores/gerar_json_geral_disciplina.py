@@ -1,4 +1,4 @@
-from auxilio.variaveis import codigo_2lingua_dicionario as c2l, areas_enem, areas_ufsc
+from auxilio.constantes import codigo_2lingua_dicionario as c2l, areas_enem, areas_ufsc
 
 
 def gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao):

@@ -1,31 +1,103 @@
 from pathlib import Path
+
 import pandas as pd
-from src.auxilio.variaveis import (
-    nome_col_df_dados_alunos,
-    nome_col_df_gabarito,
-    nome_col_df_respostas,
+
+from auxilio.constantes import (
+    PS
 )
 
 
-def csvs_to_dfs(*paths):
-    dfs = []
-    lista_tupla_paths = list(
-        zip(
-            paths,
-            [nome_col_df_dados_alunos, nome_col_df_respostas, nome_col_df_gabarito],
-        )
-    )
-    for tupla in lista_tupla_paths:
-        dfs.append(ler_csv(tupla[0], nome_colunas=tupla[1]))
-    return dfs
+
+def carregar_dados(caminho: str, tipo_prova: str) -> pd.DataFrame:
+    # checar se o caminho existe e é um diretório
+    caminho = Path(caminho)
+    if not caminho.exists():
+        raise ValueError("O caminho fornecido não existe")
+    if not caminho.is_dir():
+        raise ValueError("O caminho fornecido não é um diretório")
+    
+
+    # procurar os arquivos de dados
+    tipo_arquivos = ['dados_alunos', 'respostas', 'gabarito']
+    exts = ['.csv', '.json', '.xlsx']
+
+    caminhos = []
+    for tipo_arquivo in tipo_arquivos:
+        found = False
+        for ext in exts:
+            caminho_arquivo = caminho / f"{tipo_arquivo}{ext}"
+            if caminho_arquivo.exists():
+                caminhos.append((caminho_arquivo, ext, tipo_arquivo))
+                found = True
+                break
+        if not found:
+            raise ValueError(f'Arquivo "{tipo_arquivo}" não encontrado na pasta de entrada')
+
+    # ler e checar os arquivos
+    dados = {}
+    for _caminho in caminhos:
+        dados[_caminho[2]] = _carregar_dados(_caminho, tipo_prova)
+    
+    return dados
 
 
-def ler_csv(caminho: str, nome_colunas=None) -> pd.DataFrame:
 
-    if nome_colunas is not None:  # Assumindo que o CSV não vira com nomes nas colunas
-        pandas_df = pd.read_csv(
-            Path(caminho), sep=",", quotechar='"', names=nome_colunas, encoding="utf-8"
-        )
+# Funções auxiliares
+def _carregar_dados(dados_arquivo : tuple, tipo_prova : str)->pd.DataFrame:
+    mapa_extensao = {
+        ".csv": _carrega_csv,
+        ".json": _carrega_json,
+        ".xlsx": _carrega_excel,
+    }
+    mapa_tipo = {
+        "ps": PS,
+        "enem": None,
+        "ufsc": None
+    }
+    caminho, extensao, tipo_arquivo = dados_arquivo
+    return mapa_extensao[extensao](caminho, tipo_arquivo, mapa_tipo[tipo_prova])
 
-        return pandas_df
-    return -1
+# EXCEL
+def _carrega_excel(file_path: Path, tipo_arquivo : str, tipo_prova : PS | None):
+    required_fields = tipo_prova.required_fields[tipo_arquivo]
+    
+    dataframe = pd.read_excel(file_path)
+
+    return dataframe     
+
+# CSV
+def _carrega_csv(file_path : Path, tipo_arquivo : str, tipo_prova : PS | None):
+    required_fields = tipo_prova.required_fields[tipo_arquivo]
+
+    dataframe = pd.read_csv(file_path)
+    
+    return dataframe
+
+
+# JSON
+def _carrega_json(file_path: Path, tipo_arquivo : str, tipo_prova : PS | None):
+    required_fields = tipo_prova.required_fields[tipo_arquivo]
+
+    import json
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+
+    if tipo_arquivo == 'respostas':
+        try:
+            data.pop('config')
+        except Exception: pass
+        
+        dados_formatados = list(data.values())
+        
+        df = pd.DataFrame.from_records(dados_formatados)
+        
+        return df
+    
+    else:
+        raise NotImplementedError
+
+
+
+
+
+

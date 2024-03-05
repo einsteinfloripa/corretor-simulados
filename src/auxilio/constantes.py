@@ -1,3 +1,41 @@
+
+
+# PS
+class PS:
+    n_questoes = 60
+    mapa_de_materias = {
+        'portugues': (1, 10),
+        'matematica': (11, 20),
+        'biologia': (21, 30),
+        'fisica': (31, 40),
+        'historia': (41, 50),
+        'geografia': (51, 60),
+    }
+    required_fields = {
+        'dados_alunos':[
+            'aluno',
+            'cpf'
+        ],
+        'gabarito':[
+            'numero', 
+            'resposta',
+        ],
+        'respostas':[
+            'cpf',
+            *[f'{x}' for x in range(1, n_questoes + 1)]
+        ]
+    }
+    @classmethod
+    def get_numero_de_questoes(cls, chave:str)->int:
+        try:
+            return cls.mapa_de_materias[chave][1] - cls.mapa_de_materias[chave][0] + 1
+        except IndexError:
+            return 1
+
+
+
+
+
 # Deve possuir o mesmo nome dos arquivo das provas
 aplicacoes = ["respostas-alunos"]
 

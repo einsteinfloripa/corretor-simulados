@@ -3,7 +3,7 @@ from pandas import DataFrame, read_csv
 
 from src.leitura_e_escrita.ler_arquivo import ler_csv, csvs_to_dfs
 
-from src.auxilio.variaveis import (
+from auxilio.constantes import (
     nome_col_df_dados_alunos,
     nome_col_df_gabarito,
     nome_col_df_respostas,

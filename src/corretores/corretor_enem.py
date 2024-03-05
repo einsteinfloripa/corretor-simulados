@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from auxilio.variaveis import codigo_2lingua_dicionario as c2l, nome_col_df_respostas
+from auxilio.constantes import codigo_2lingua_dicionario as c2l, nome_col_df_respostas
 
 
 def correcao_enem(df_respostas, df_gabarito):

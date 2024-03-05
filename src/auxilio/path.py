@@ -28,6 +28,7 @@ def get_caminho_de_saida(dir_selecionado):
             break
         cont += 1
 
+    os.mkdir(path_output_arquivos_correcao)
     return path_output_arquivos_correcao
 
 
