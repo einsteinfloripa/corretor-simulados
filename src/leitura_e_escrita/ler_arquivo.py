@@ -33,7 +33,7 @@ def carregar_dados(caminho: str, tipo_prova: str) -> pd.DataFrame:
         if not found:
             raise ValueError(f'Arquivo "{tipo_arquivo}" não encontrado na pasta de entrada')
 
-    # ler e checar os arquivos
+    # Ler e checar os arquivos
     dados = {}
     for _caminho in caminhos:
         dados[_caminho[2]] = _carregar_dados(_caminho, tipo_prova)
