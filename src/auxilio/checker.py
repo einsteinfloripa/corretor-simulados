@@ -8,7 +8,7 @@ def check(dados_entrada, tipo_correcao):
         "ps": check_ps
     }
 
-    #universal checks
+    # Universal checks
     # valores NaN ou nulos
     
     if True in dados_entrada['gabarito'].isnull().any().values:
