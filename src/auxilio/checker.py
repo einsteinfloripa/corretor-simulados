@@ -40,7 +40,7 @@ def check_ps(dados_entrada):
     # Checa se os campos obrigatórios estão presentes
     _check_required_fields(dados_entrada)
 
-    # checa se o número de questões é o esperado
+    # Checa se o número de questões é o esperado
     n_gab = len(dados_entrada['gabarito'])
     if n_gab != PS.n_questoes:
         raise ValueError(f"O número de questões no gabarito({n_gab}) é diferente de {PS.n_questoes}")
