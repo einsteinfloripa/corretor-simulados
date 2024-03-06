@@ -17,7 +17,7 @@ def carregar_dados(caminho: str, tipo_prova: str) -> pd.DataFrame:
         raise ValueError("O caminho fornecido não é um diretório")
     
 
-    # procurar os arquivos de dados
+    # Procurar os arquivos de dados
     tipo_arquivos = ['dados_alunos', 'respostas', 'gabarito']
     exts = ['.csv', '.json', '.xlsx']
 
