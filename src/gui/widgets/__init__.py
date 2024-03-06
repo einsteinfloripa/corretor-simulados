@@ -19,7 +19,7 @@ class DirLabel(QGroupBox):
         # Vars
         self.widget_patent = widget_patent
 
-        # config
+        # Config
         self.setMinimumHeight(gui_cons.ALTURA_CAIXA_COM_OS_CAMINHOS)
         self.setMaximumHeight(gui_cons.ALTURA_CAIXA_COM_OS_CAMINHOS)
 
