@@ -17,7 +17,7 @@ def main(dados: dict):
     # Carregar dados
     dados_de_entrada = carregar_dados(dir_de_entrada, tipo_correcao)
 
-    #checar se os dados são válidos
+    # Checar se os dados são válidos
     check(dados_de_entrada, tipo_correcao)
 
     # Corrigir Provas
