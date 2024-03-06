@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from auxilio.constantes import (
+from src.auxilio.constantes import (
     PS,
     SimuENEM,
     SimUFSC,
@@ -47,6 +47,9 @@ def carregar_dados(caminho: str, tipo_prova: str) -> pd.DataFrame:
 
 # Funções auxiliares
 def _carregar_dados(dados_arquivo : tuple, tipo_prova : str)->pd.DataFrame:
+    if tipo_prova != 'ps':
+        raise NotImplementedError(f"Tipo de prova '{tipo_prova}' não implementado")
+    
     mapa_extensao = {
         ".csv": _carrega_csv,
         ".json": _carrega_json,
@@ -54,8 +57,8 @@ def _carregar_dados(dados_arquivo : tuple, tipo_prova : str)->pd.DataFrame:
     }
     mapa_tipo = {
         "ps": PS,
-        "enem": None,
-        "ufsc": None
+        "simuenem": None,
+        "simufsc": None
     }
     caminho, extensao, tipo_arquivo = dados_arquivo
     return mapa_extensao[extensao](caminho, tipo_arquivo, mapa_tipo[tipo_prova])

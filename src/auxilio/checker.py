@@ -24,12 +24,12 @@ def check(dados_entrada : dict[str : pd.DataFrame], tipo_correcao : str) -> None
     # Checa se todos os alunos em dados_alunos estão em respostas
     cpf_alunos = dados_entrada['dados_alunos']['cpf'].astype(str)
     cpf_respostas = dados_entrada['respostas']['cpf'].astype(str)
-    alunos_sem_resposta = list(dados_entrada['dados_alunos'][~cpf_alunos.isin(cpf_respostas)]['aluno'])
-    if len(alunos_sem_resposta) > 0:
+    cpf_nao_encontrados = list(dados_entrada['respostas'][~cpf_respostas.isin(cpf_alunos)]['cpf'])
+    if len(cpf_nao_encontrados) > 0:
         raise ValueError(
-            f'Alunos sem respostas: "{[aluno for aluno in alunos_sem_resposta]}"'
+            f'Cpf(s) {[cpf for cpf in cpf_nao_encontrados]} não encontrado(s) na lista de dados dos alunos.'
         )
-
+    
     mapa_correcao[tipo_correcao](dados_entrada)
 
 
