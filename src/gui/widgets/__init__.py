@@ -1,6 +1,6 @@
 from os import path
 
-from PySide6.QtCore import Slot, QRect
+from PySide6.QtCore import Slot, QRect, Qt
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QLabel,
                                QFileDialog, QRadioButton, QLayout, QButtonGroup, QScrollArea,
@@ -30,6 +30,7 @@ class DirLabel(QGroupBox):
         self.label = QLabel(texto)
         self.label.setMaximumWidth(gui_cons.LARGURA_MAXIMA_LABEL_CAMINHO)
         self.label.setWordWrap(True)
+        self.label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
         self.layout.addWidget(self.label)
 
     def get_texto(self):
@@ -71,7 +72,7 @@ class FrameSelecaoCaminhoDeEntrada(QFrame):
 
         # layout
         self.layout = QVBoxLayout(self)
-
+        
         # WIDGETS
         # Botoes
         self.btn_select = QPushButton("Selecione o diretório dos dados")
@@ -104,12 +105,18 @@ class FrameSelecaoTipoDeCorrecao(QFrame):
     def __init__(self):
         super().__init__()
 
-        self.layout = QVBoxLayout(self)
+        self.layout = QHBoxLayout(self)
+        self.layout.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
 
-        # WIDGESTS
+
+        # Widgets
         self.grupo_botoes = QButtonGroup(self)
 
-        self.label_topo = QLabel("Escolha o tipo de correção: ")
+        self.label = QLabel("Escolha o tipo de correção: ")
+        font = self.label.font()
+        font.setPointSize(gui_cons.TAMANHO_FONTE_LABEL)
+        self.label.setFont(font)
+
         self.simuenem_radio_btn = QRadioButton("SIMUENEM")
         self.simufsc_radio_btn = QRadioButton("SIMUFSC")
         self.simulinho_radio_btn = QRadioButton("SIMULINHO")
@@ -124,7 +131,7 @@ class FrameSelecaoTipoDeCorrecao(QFrame):
         self.grupo_botoes.setId(self.simulinho_radio_btn, 2)
         self.grupo_botoes.setId(self.ps_radio_btn, 3)
 
-        self.layout.addWidget(self.label_topo)
+        self.layout.addWidget(self.label)
         self.layout.addWidget(self.simuenem_radio_btn)
         self.layout.addWidget(self.simufsc_radio_btn)
         self.layout.addWidget(self.simulinho_radio_btn)
