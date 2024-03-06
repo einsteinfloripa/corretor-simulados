@@ -58,7 +58,7 @@ def check_simulinho(*args, **kwargs):
 
 
 
-# private
+# Private
     
 def _check_required_fields(dados_entrada):
     for nome, df in dados_entrada.items():
