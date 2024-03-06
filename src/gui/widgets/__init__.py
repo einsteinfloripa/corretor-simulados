@@ -154,7 +154,7 @@ class FrameSelecaoCaminhoDeSaida(QFrame):
         self.layout = QVBoxLayout(self)
 
         # WIDGETS
-        # botoes
+        # Botoes
         self.btn_select = QPushButton("Selecione o diretório de saida")
         self.btn_select.setMinimumHeight(gui_cons.ALTURA_BOTAO_PROCURAR)
         # Widgets que contem os caminhos de entrada
