@@ -63,22 +63,30 @@ def gerar_json(
     #     },
     #  ...
     # ]
-    alunos = {}
-    for linha in df_estatistica.iloc[:,2:].join(df_estatistica['aluno']).iloc[:-1].iterrows():
+    alunos = []
+    for linha in df_estatistica.iloc[:,2:].join(df_estatistica[['aluno', 'cpf']]).iloc[:-1].iterrows():
        
         data = dict(linha[1])
         nome = data.pop('aluno')
         total = data.pop('total')
-        alunos[nome] = {}
+        cpf = data.pop('cpf')
 
+        aluno = {
+            'info': {'nome':nome, 'cpf':cpf},
+            'materias' : {},
+            'total' : {}
+            }
+        
         for materia in lista_de_materias:
+
             numero_de_questoes = PS.get_numero_de_questoes(materia)
-            alunos[nome][materia] = {
+            aluno['materias'][materia] = {
                 'absoluto':int(data[materia]), 'percentual':data[materia]/numero_de_questoes
             }
-        alunos[nome]['total'] = {
+        aluno['total'] = {
             'absoluto':int(total), 'percentual':total/PS.n_questoes
         }
+        alunos.append(aluno)
         
     # Estatisticas das materias
     # mateiras = { $mateira1: { absoluto: (int), percentual: (float) }, ... }
