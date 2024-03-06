@@ -1,7 +1,7 @@
 import json
 import os.path
 
-def escrever_saida(caminho: str, extencao:str, dados):
+def escrever_saida(caminho: str, extencao : str, dados : dict) -> None:
     if extencao == ".json":
         with open(os.path.join(caminho, "saida.json"), "w") as f:
             json.dump(dados, f)

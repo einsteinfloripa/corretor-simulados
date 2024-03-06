@@ -2,7 +2,7 @@ import pandas as pd
 
 from src.auxilio.constantes import PS
 
-def corrigir(dados):
+def corrigir(dados : dict[str:pd.DataFrame]) -> pd.DataFrame:
     
 
     df_alunos = dados['dados_alunos']

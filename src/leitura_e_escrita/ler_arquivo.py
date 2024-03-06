@@ -3,7 +3,10 @@ from pathlib import Path
 import pandas as pd
 
 from auxilio.constantes import (
-    PS
+    PS,
+    SimuENEM,
+    SimUFSC,
+    Simulinho
 )
 
 
@@ -58,7 +61,7 @@ def _carregar_dados(dados_arquivo : tuple, tipo_prova : str)->pd.DataFrame:
     return mapa_extensao[extensao](caminho, tipo_arquivo, mapa_tipo[tipo_prova])
 
 # EXCEL
-def _carrega_excel(file_path: Path, tipo_arquivo : str, tipo_prova : PS | None):
+def _carrega_excel(file_path: Path, tipo_arquivo : str, tipo_prova : PS | SimuENEM | SimUFSC | Simulinho):
     required_fields = tipo_prova.required_fields[tipo_arquivo]
     
     dataframe = pd.read_excel(file_path)
@@ -66,7 +69,7 @@ def _carrega_excel(file_path: Path, tipo_arquivo : str, tipo_prova : PS | None):
     return dataframe     
 
 # CSV
-def _carrega_csv(file_path : Path, tipo_arquivo : str, tipo_prova : PS | None):
+def _carrega_csv(file_path : Path, tipo_arquivo : str, tipo_prova : PS | SimuENEM | SimUFSC | Simulinho):
     required_fields = tipo_prova.required_fields[tipo_arquivo]
 
     dataframe = pd.read_csv(file_path)
@@ -75,7 +78,7 @@ def _carrega_csv(file_path : Path, tipo_arquivo : str, tipo_prova : PS | None):
 
 
 # JSON
-def _carrega_json(file_path: Path, tipo_arquivo : str, tipo_prova : PS | None):
+def _carrega_json(file_path: Path, tipo_arquivo : str, tipo_prova : PS | SimuENEM | SimUFSC | Simulinho):
     required_fields = tipo_prova.required_fields[tipo_arquivo]
 
     import json

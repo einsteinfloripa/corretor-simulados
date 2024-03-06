@@ -6,7 +6,7 @@ from src.leitura_e_escrita.escrever_arquivo import escrever_saida
 
 idx = pd.IndexSlice
 
-def gerar(df_dados, extencao_saida, dir_saida):
+def gerar(df_dados : pd.DataFrame, extencao_saida : str, dir_saida : str) -> None:
 
     mapa_saida = {
         '.json': gerar_json,
@@ -32,7 +32,7 @@ def gerar(df_dados, extencao_saida, dir_saida):
     numero_de_alunos = (len(df_estatistica) - 1)
     numero_total_de_questoes = numero_de_alunos * PS.n_questoes
 
-    return mapa_saida[extencao_saida](
+    mapa_saida[extencao_saida](
         df_estatistica, lista_de_materias, numero_de_alunos,
         numero_total_de_questoes, dir_saida
     )
@@ -40,9 +40,12 @@ def gerar(df_dados, extencao_saida, dir_saida):
 
 
 def gerar_json(
-        df_estatistica, lista_de_materias, numero_de_alunos,
-        numero_total_de_questoes, dir_saida
-    ):
+        df_estatistica : pd.DataFrame, 
+        lista_de_materias : list[str], 
+        numero_de_alunos : int,
+        numero_total_de_questoes : int, 
+        dir_saida : str
+    ) -> None:
     
     # Estatisticas gerais 
     acertos_totais_absoluto = int(df_estatistica.loc['gabarito']['total'])

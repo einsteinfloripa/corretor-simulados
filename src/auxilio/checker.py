@@ -1,6 +1,8 @@
+import pandas as pd
+
 from src.auxilio.constantes import PS
 
-def check(dados_entrada, tipo_correcao):
+def check(dados_entrada : dict[str : pd.DataFrame], tipo_correcao : str) -> None:
     mapa_correcao = {
         "simuenem": check_simuenem,
         "simufsc": check_ufsc,
@@ -60,7 +62,7 @@ def check_simulinho(*args, **kwargs):
 
 # Private
     
-def _check_required_fields(dados_entrada):
+def _check_required_fields(dados_entrada : dict[str : pd.DataFrame]) -> None:
     for nome, df in dados_entrada.items():
         required_fields = PS.required_fields[nome]
         columns = df.columns

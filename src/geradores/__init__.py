@@ -1,5 +1,11 @@
+import pandas as pd
 
-def gerar_relatório(dados, tipo_correcao, dir_saida, extencao_saida='.json'):
+def gerar_relatório(
+        dados : pd.DataFrame, 
+        tipo_correcao : str, 
+        dir_saida : str, 
+        extencao_saida='.json'
+    ) -> None:
 
     if tipo_correcao == "ps":
         import src.geradores.gerar_ps as gerador

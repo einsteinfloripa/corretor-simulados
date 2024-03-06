@@ -37,7 +37,14 @@ class PS:
             return 1
 
 
+class SimuENEM:
+    pass
 
+class SimUFSC:
+    pass
+
+class Simulinho:
+    pass
 
 
 # Deve possuir o mesmo nome dos arquivo das provas
