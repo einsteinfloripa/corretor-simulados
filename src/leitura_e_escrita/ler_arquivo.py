@@ -9,7 +9,7 @@ from auxilio.constantes import (
 
 
 def carregar_dados(caminho: str, tipo_prova: str) -> pd.DataFrame:
-    # checar se o caminho existe e é um diretório
+    # Checar se o caminho existe e é um diretório
     caminho = Path(caminho)
     if not caminho.exists():
         raise ValueError("O caminho fornecido não existe")
