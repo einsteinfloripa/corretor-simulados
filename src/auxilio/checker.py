@@ -19,7 +19,7 @@ def check(dados_entrada, tipo_correcao):
         raise ValueError(f'Valores nulos encontrados nas respostas')
     
 
-    # checa se todos os alunos em dados_alunos estão em respostas
+    # Checa se todos os alunos em dados_alunos estão em respostas
     cpf_alunos = dados_entrada['dados_alunos']['cpf'].astype(str)
     cpf_respostas = dados_entrada['respostas']['cpf'].astype(str)
     alunos_sem_resposta = list(dados_entrada['dados_alunos'][~cpf_alunos.isin(cpf_respostas)]['aluno'])
