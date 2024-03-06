@@ -23,7 +23,7 @@ def main(dados: dict):
     # Corrigir Provas
     df_resultado = corrigir(dados_de_entrada, tipo_correcao)
 
-    # gerar arquivo de estatisticas de correção e salvar
+    # Gerar arquivo de estatisticas de correção e salvar
     gerar_relatório(df_resultado, tipo_correcao, dir_saida)
 
     app.window.popup_botao_ok(
