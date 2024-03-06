@@ -37,7 +37,7 @@ def check_ps(dados_entrada):
     df_gabarito = dados_entrada['gabarito']
     df_respostas = dados_entrada['respostas']
 
-    # checa se os campos obrigatórios estão presentes
+    # Checa se os campos obrigatórios estão presentes
     _check_required_fields(dados_entrada)
 
     # checa se o número de questões é o esperado
