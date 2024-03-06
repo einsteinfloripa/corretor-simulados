@@ -78,7 +78,7 @@ def gerar_json(
         }
         
     # Estatisticas das materias
-        # mateiras = { $mateira1: { absoluto: (int), percentual: (float) }, ... }
+    # mateiras = { $mateira1: { absoluto: (int), percentual: (float) }, ... }
         materias = {}
         valores_absolutos = dict(df_estatistica.loc['gabarito'].iloc[2:-1])
         for materia in lista_de_materias:
