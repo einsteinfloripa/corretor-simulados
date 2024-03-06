@@ -16,7 +16,7 @@ def gerar(df_dados, extencao_saida, dir_saida):
     
     lista_de_materias = list(PS.mapa_de_materias.keys())
     
-    # essa operacao muda as colunas de lugar!
+    # Essa operacao muda as colunas de lugar!
     df_dados = df_dados.sort_index(axis=1)
         
     df_estatistica = df_dados.loc[:, idx[['aluno','cpf','total'],:]].join(
