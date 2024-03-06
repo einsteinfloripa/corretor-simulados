@@ -9,7 +9,7 @@ def check(dados_entrada, tipo_correcao):
     }
 
     # Universal checks
-    # valores NaN ou nulos
+    # Valores NaN ou nulos
     
     if True in dados_entrada['gabarito'].isnull().any().values:
         raise ValueError(f'Valores nulos encontrados no gabarito')
