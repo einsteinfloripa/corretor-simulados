@@ -40,7 +40,7 @@ class WidgetConteinerDir(QFrame):
 
     def __init__(self):
         super().__init__()
-        # config
+        # Config
         self.layout = QVBoxLayout(self)
         self.label = DirLabel("Não selecionado", self)
         self.layout.addWidget(self.label)
