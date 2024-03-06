@@ -16,7 +16,7 @@ class DirLabel(QGroupBox):
     def __init__(self, texto, widget_patent):
         super().__init__()
 
-        # vars
+        # Vars
         self.widget_patent = widget_patent
 
         # config
