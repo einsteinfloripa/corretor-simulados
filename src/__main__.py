@@ -2,8 +2,8 @@ from src.corretores import corrigir
 from src.geradores import gerar_relatorio
 from src.leitura_e_escrita.ler_arquivo import carregar_dados
 from src.auxilio.checker import check
-from src.gui import Application
 from src.auxilio.path import get_caminho_de_saida, join_paths, ROOT_PATH
+import src.gui as gui
 
 
 def main(dados: dict, window):
@@ -32,6 +32,6 @@ def main(dados: dict, window):
 
 
 if __name__ == "__main__":
-    app = Application()
+    app = gui.Application()
     app.window.set_corrigir_callback(main)
     app.Run()

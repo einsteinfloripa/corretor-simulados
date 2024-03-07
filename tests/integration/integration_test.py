@@ -17,7 +17,6 @@ class TestIntegration:
 
         # Para evitar erros de interface grafica, que nao esta presente nos testes
         window = mock.MagicMock()
-
         # Gera relatorio com os dados de entrada
         main({
             'dir_entrada': dir_entrada,

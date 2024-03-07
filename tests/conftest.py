@@ -1,10 +1,15 @@
 from pathlib import Path
 import csv
 import json
+import sys
+from unittest import mock
 
 import pytest
 
 from src.leitura_e_escrita.ler_arquivo import carregar_dados
+
+## Mocks de modulos
+sys.modules['src.gui'] = mock.MagicMock()
 
 ### Carregamento de dados
 
