@@ -15,14 +15,13 @@ from PySide6.QtWidgets import (
 )
 
 
-from gui.widgets import (
+from src.gui.widgets import (
     FrameSelecaoCaminhoDeEntrada,
     FrameSelecaoTipoDeCorrecao,
     FrameSelecaoCaminhoDeSaida,
 )
-
-import gui.constantes as gui_cons
-import gui.auxiliar as aux
+import src.gui.constantes as gui_cons
+import src.gui.auxiliar as aux
 
 
 class Window(QMainWindow):
@@ -110,7 +109,7 @@ class Window(QMainWindow):
 
         else:
             try:
-                self.funcao_corrigir(dados)
+                self.funcao_corrigir(dados, self)
             except Exception as e:
                 print(traceback.format_exc())
                 message_box = QMessageBox(QMessageBox.Warning, "Algo errado!", str(e))
@@ -121,7 +120,7 @@ class Window(QMainWindow):
             self.debug_mode = action.isChecked()
 
 
-class Aplication(QApplication):
+class Application(QApplication):
     def __init__(self):
         super().__init__(sys.argv)
         self.icone = QIcon(gui_cons.CAMINHO_ICONE)

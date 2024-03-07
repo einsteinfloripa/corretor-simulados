@@ -92,7 +92,6 @@ class TestChecker:
 
 
     #### Testes para conferir a se todas as respostas possuem o cpf em 'dados_alunos'
-    @pytest.mark.t
     @pytest.mark.parametrize(
         'linhas',
         [

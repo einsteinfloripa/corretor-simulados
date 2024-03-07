@@ -1,4 +1,4 @@
-from auxilio.path import ROOT_PATH, join_paths
+from src.auxilio.path import ROOT_PATH, join_paths
 
 # Paths
 CAMINHO_ICONE = join_paths(ROOT_PATH, 'recursos', 'imagens', 'icone.png')

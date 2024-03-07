@@ -6,7 +6,7 @@ from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QL
                                QFileDialog, QRadioButton, QLayout, QButtonGroup, QScrollArea,
                                QGroupBox, QSizePolicy, QSpacerItem, QWidget, QMessageBox)
 
-from gui import constantes as gui_cons
+from src.gui import constantes as gui_cons
 
 
 ### WIDGETS AUXILIARES ###
