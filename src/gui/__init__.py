@@ -69,8 +69,9 @@ class Window(QMainWindow):
     def set_corrigir_callback(self, func):
         self.funcao_corrigir = func
 
-    def popup_botao_ok(self, titulo, mensagem,
-            pixmap_padrao='Warning', pixmap_customizado = None):
+    def popup_botao_ok(
+        self, titulo, mensagem, pixmap_padrao="Warning", pixmap_customizado=None
+    ):
 
         msg = QMessageBox()
         msg.setWindowTitle(titulo)
@@ -82,7 +83,6 @@ class Window(QMainWindow):
             msg.setIcon(aux.get_icone_padrao(pixmap_padrao))
 
         msg.exec()
-
 
     @Slot()
     def corrigir(self):
@@ -110,10 +110,17 @@ class Window(QMainWindow):
         else:
             try:
                 self.funcao_corrigir(dados, self)
-            except Exception as e:
+            except ValueError as exc:
                 print(traceback.format_exc())
-                message_box = QMessageBox(QMessageBox.Warning, "Algo errado!", str(e))
+                message_box = QMessageBox(QMessageBox.Warning, "Algo errado!", str(exc))
                 message_box.exec()
+            except Exception as exc:
+                print(traceback.format_exc())
+                message_box = QMessageBox(
+                    QMessageBox.Critical, "Erro inesperado!", str(exc)
+                )
+                message_box.exec()
+
     @Slot()
     def set_opcao(self, action):
         if action.text() == "Debug mode":

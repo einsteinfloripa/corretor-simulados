@@ -2,14 +2,29 @@ from os import path
 
 from PySide6.QtCore import Slot, QRect, Qt
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QLabel,
-                               QFileDialog, QRadioButton, QLayout, QButtonGroup, QScrollArea,
-                               QGroupBox, QSizePolicy, QSpacerItem, QWidget, QMessageBox)
+from PySide6.QtWidgets import (
+    QPushButton,
+    QVBoxLayout,
+    QHBoxLayout,
+    QFrame,
+    QLabel,
+    QFileDialog,
+    QRadioButton,
+    QLayout,
+    QButtonGroup,
+    QScrollArea,
+    QGroupBox,
+    QSizePolicy,
+    QSpacerItem,
+    QWidget,
+    QMessageBox,
+)
 
 from src.gui import constantes as gui_cons
 
 
 ### WIDGETS AUXILIARES ###
+
 
 class DirLabel(QGroupBox):
 
@@ -46,7 +61,6 @@ class WidgetConteinerDir(QFrame):
         self.label = DirLabel("Não selecionado", self)
         self.layout.addWidget(self.label)
 
-
     def adiciona_novo_caminho(self, novo_caminho):
 
         if self.layout.count() > 0:
@@ -57,13 +71,15 @@ class WidgetConteinerDir(QFrame):
 
     def remove_caminho(self, dirlabel):
         dirlabel.deleteLater()
-    
+
     def get_data(self):
         if self.label is not None:
             return self.label.get_texto()
-        else: return ''
+        return ""
+
 
 ### WIDGETS PRINCIPAIS ###
+
 
 class FrameSelecaoCaminhoDeEntrada(QFrame):
 
@@ -72,7 +88,7 @@ class FrameSelecaoCaminhoDeEntrada(QFrame):
 
         # layout
         self.layout = QVBoxLayout(self)
-        
+
         # WIDGETS
         # Botoes
         self.btn_select = QPushButton("Selecione o diretório dos dados")
@@ -80,23 +96,22 @@ class FrameSelecaoCaminhoDeEntrada(QFrame):
         # Widgets que contem os caminhos de entrada
         self.container_dir = WidgetConteinerDir()
 
-
         self.btn_select.clicked.connect(self.procura_caminho)
 
         self.layout.addWidget(self.btn_select)
         self.layout.addWidget(self.container_dir)
 
-
     @Slot()
     def procura_caminho(self):
-        caminho_arquivo = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+        caminho_arquivo = str(
+            QFileDialog.getExistingDirectory(self, "Select Directory")
+        )
         self.container_dir.adiciona_novo_caminho(caminho_arquivo)
-
 
     def get_data(self):
         caminhos_dados = self.container_dir.get_data()
         return {
-            'dir_entrada': caminhos_dados,
+            "dir_entrada": caminhos_dados,
         }
 
 
@@ -107,7 +122,6 @@ class FrameSelecaoTipoDeCorrecao(QFrame):
 
         self.layout = QHBoxLayout(self)
         self.layout.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
-
 
         # Widgets
         self.grupo_botoes = QButtonGroup(self)
@@ -141,15 +155,14 @@ class FrameSelecaoTipoDeCorrecao(QFrame):
         btn_id = self.grupo_botoes.checkedId()
 
         if btn_id == 0:
-            return {'tipo_de_correcao': 'simuenem'}
-        elif btn_id == 1:
-            return {'tipo_de_correcao': 'simufsc'}
-        elif btn_id == 2:
-            return {'tipo_de_correcao': 'simulinho'}
-        elif btn_id == 3:
-            return {'tipo_de_correcao': 'ps'}
-        else:
-            return {'tipo_de_correcao': 'Não selecionado'}
+            return {"tipo_de_correcao": "simuenem"}
+        if btn_id == 1:
+            return {"tipo_de_correcao": "simufsc"}
+        if btn_id == 2:
+            return {"tipo_de_correcao": "simulinho"}
+        if btn_id == 3:
+            return {"tipo_de_correcao": "ps"}
+        return {"tipo_de_correcao": "Não selecionado"}
 
 
 class FrameSelecaoCaminhoDeSaida(QFrame):
@@ -167,21 +180,20 @@ class FrameSelecaoCaminhoDeSaida(QFrame):
         # Widgets que contem os caminhos de entrada
         self.container_dir = WidgetConteinerDir()
 
-
         self.btn_select.clicked.connect(self.procura_caminho)
 
         self.layout.addWidget(self.btn_select)
         self.layout.addWidget(self.container_dir)
 
-
     @Slot()
     def procura_caminho(self):
-        caminho_arquivo = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+        caminho_arquivo = str(
+            QFileDialog.getExistingDirectory(self, "Select Directory")
+        )
         self.container_dir.adiciona_novo_caminho(caminho_arquivo)
-
 
     def get_data(self):
         caminhos_dados = self.container_dir.get_data()
         return {
-            'dir_saida': caminhos_dados,
+            "dir_saida": caminhos_dados,
         }

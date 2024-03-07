@@ -1,7 +1,7 @@
 from src.auxilio.path import ROOT_PATH, join_paths
 
 # Paths
-CAMINHO_ICONE = join_paths(ROOT_PATH, 'recursos', 'imagens', 'icone.png')
+CAMINHO_ICONE = join_paths(ROOT_PATH, "recursos", "imagens", "icone.png")
 
 # Janela principal
 ALTURA_DA_JANELA = 400

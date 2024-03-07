@@ -2,14 +2,6 @@ from pathlib import Path
 
 import pandas as pd
 
-from src.auxilio.constantes import (
-    PS,
-    SimuENEM,
-    SimUFSC,
-    Simulinho
-)
-
-
 
 def carregar_dados(caminho: str, tipo_prova: str) -> pd.DataFrame:
     # Checar se o caminho existe e é um diretório
@@ -18,11 +10,10 @@ def carregar_dados(caminho: str, tipo_prova: str) -> pd.DataFrame:
         raise ValueError("O caminho fornecido não existe")
     if not caminho.is_dir():
         raise ValueError("O caminho fornecido não é um diretório")
-    
 
     # Procurar os arquivos de dados
-    tipo_arquivos = ['dados_alunos', 'respostas', 'gabarito']
-    exts = ['.csv', '.json', '.xlsx']
+    tipo_arquivos = ["dados_alunos", "respostas", "gabarito"]
+    exts = [".csv", ".json", ".xlsx"]
 
     caminhos = []
     for tipo_arquivo in tipo_arquivos:
@@ -34,76 +25,64 @@ def carregar_dados(caminho: str, tipo_prova: str) -> pd.DataFrame:
                 found = True
                 break
         if not found:
-            raise ValueError(f'Arquivo "{tipo_arquivo}" não encontrado na pasta de entrada')
+            raise ValueError(
+                f'Arquivo "{tipo_arquivo}" não encontrado na pasta de entrada'
+            )
 
     # Ler e checar os arquivos
     dados = {}
     for _caminho in caminhos:
         dados[_caminho[2]] = _carregar_dados(_caminho, tipo_prova)
-    
+
     return dados
 
 
-
 # Funções auxiliares
-def _carregar_dados(dados_arquivo : tuple, tipo_prova : str)->pd.DataFrame:
-    if tipo_prova != 'ps':
+def _carregar_dados(dados_arquivo: tuple, tipo_prova: str) -> pd.DataFrame:
+    if tipo_prova != "ps":
         raise NotImplementedError(f"Tipo de prova '{tipo_prova}' não implementado")
-    
+
     mapa_extensao = {
         ".csv": _carrega_csv,
         ".json": _carrega_json,
         ".xlsx": _carrega_excel,
     }
-    mapa_tipo = {
-        "ps": PS,
-        "simuenem": None,
-        "simufsc": None
-    }
     caminho, extensao, tipo_arquivo = dados_arquivo
-    return mapa_extensao[extensao](caminho, tipo_arquivo, mapa_tipo[tipo_prova])
+    return mapa_extensao[extensao](caminho, tipo_arquivo)
+
 
 # EXCEL
-def _carrega_excel(file_path: Path, tipo_arquivo : str, tipo_prova : PS | SimuENEM | SimUFSC | Simulinho):
-    required_fields = tipo_prova.required_fields[tipo_arquivo]
-    
-    dataframe = pd.read_excel(file_path)
+# args = (caminho, tipo_arquivo)
+def _carrega_excel(*args : tuple[str, str]):
+    dataframe = pd.read_excel(args[0])
+    return dataframe
 
-    return dataframe     
 
 # CSV
-def _carrega_csv(file_path : Path, tipo_arquivo : str, tipo_prova : PS | SimuENEM | SimUFSC | Simulinho):
-    required_fields = tipo_prova.required_fields[tipo_arquivo]
-
-    dataframe = pd.read_csv(file_path)
-    
+# args = (caminho, tipo_arquivo)
+def _carrega_csv(*args : tuple[str, str]):
+    dataframe = pd.read_csv(args[0])
     return dataframe
 
 
 # JSON
-def _carrega_json(file_path: Path, tipo_arquivo : str, tipo_prova : PS | SimuENEM | SimUFSC | Simulinho):
-    required_fields = tipo_prova.required_fields[tipo_arquivo]
-
+def _carrega_json(
+    file_path: Path, tipo_arquivo: str):
     import json
-    with open(file_path, 'r') as file:
+
+    with open(file_path, "r", encoding='utf-8') as file:
         data = json.load(file)
 
-    if tipo_arquivo == 'respostas':
+    if tipo_arquivo == "respostas":
         try:
-            data.pop('config')
-        except Exception: pass
-        
+            data.pop("config")
+        except KeyError:
+            pass
+
         dados_formatados = list(data.values())
-        
+
         df = pd.DataFrame.from_records(dados_formatados)
-        
+
         return df
-    
-    else:
-        raise NotImplementedError
 
-
-
-
-
-
+    raise NotImplementedError

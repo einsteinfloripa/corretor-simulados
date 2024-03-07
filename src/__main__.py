@@ -1,14 +1,12 @@
 from src.corretores import corrigir
-from src.geradores import gerar_relatório
+from src.geradores import gerar_relatorio
 from src.leitura_e_escrita.ler_arquivo import carregar_dados
 from src.auxilio.checker import check
 from src.gui import Application
-from src.auxilio.path import (get_caminho_de_saida, join_paths,
-                          ROOT_PATH)
+from src.auxilio.path import get_caminho_de_saida, join_paths, ROOT_PATH
 
 
 def main(dados: dict, window):
-
 
     dir_de_entrada = dados["dir_entrada"]
     dir_saida = get_caminho_de_saida(dados["dir_saida"])
@@ -24,18 +22,16 @@ def main(dados: dict, window):
     df_resultado = corrigir(dados_de_entrada, tipo_correcao)
 
     # Gerar arquivo de estatisticas de correção e salvar
-    gerar_relatório(df_resultado, tipo_correcao, dir_saida)
+    gerar_relatorio(df_resultado, tipo_correcao, dir_saida)
 
     window.popup_botao_ok(
-                              "Sucesso!",
-                              "O relatório foi gerado com sucesso!",
-                              pixmap_customizado=join_paths(
-                                  ROOT_PATH, 'recursos', 'imagens','sucesso.png'
-                                )
-                            )
+        "Sucesso!",
+        "O relatório foi gerado com sucesso!",
+        pixmap_customizado=join_paths(ROOT_PATH, "recursos", "imagens", "sucesso.png"),
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = Application()
     app.window.set_corrigir_callback(main)
     app.Run()
