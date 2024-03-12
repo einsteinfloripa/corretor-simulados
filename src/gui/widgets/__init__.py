@@ -1,25 +1,40 @@
 from os import path
 
-from PySide6.QtCore import Slot, QRect
+from PySide6.QtCore import Slot, QRect, Qt
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import (QPushButton, QVBoxLayout, QHBoxLayout, QFrame, QLabel,
-                               QFileDialog, QRadioButton, QLayout, QButtonGroup, QScrollArea,
-                               QGroupBox, QSizePolicy, QSpacerItem, QWidget, QMessageBox)
+from PySide6.QtWidgets import (
+    QPushButton,
+    QVBoxLayout,
+    QHBoxLayout,
+    QFrame,
+    QLabel,
+    QFileDialog,
+    QRadioButton,
+    QLayout,
+    QButtonGroup,
+    QScrollArea,
+    QGroupBox,
+    QSizePolicy,
+    QSpacerItem,
+    QWidget,
+    QMessageBox,
+)
 
-from gui import constantes as gui_cons
+from src.gui import constantes as gui_cons
 
 
 ### WIDGETS AUXILIARES ###
 
-class CaminhoLabelBtnPair(QGroupBox):
 
-    def __init__(self, texto, scroll_widget_patent):
+class DirLabel(QGroupBox):
+
+    def __init__(self, texto, widget_patent):
         super().__init__()
 
-        # vars
-        self.scroll_widget_patent = scroll_widget_patent
+        # Vars
+        self.widget_patent = widget_patent
 
-        # config
+        # Config
         self.setMinimumHeight(gui_cons.ALTURA_CAIXA_COM_OS_CAMINHOS)
         self.setMaximumHeight(gui_cons.ALTURA_CAIXA_COM_OS_CAMINHOS)
 
@@ -30,74 +45,43 @@ class CaminhoLabelBtnPair(QGroupBox):
         self.label = QLabel(texto)
         self.label.setMaximumWidth(gui_cons.LARGURA_MAXIMA_LABEL_CAMINHO)
         self.label.setWordWrap(True)
+        self.label.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
         self.layout.addWidget(self.label)
-
-        # botao
-        self.btn_remover = QPushButton("Remover")
-        self.btn_remover.setMinimumSize(
-            gui_cons.LARGURA_BOTAO_REMOVER,
-            gui_cons.ALTURA_BOTAO_REMOVER
-        )
-        self.btn_remover.setMaximumSize(
-            gui_cons.LARGURA_BOTAO_REMOVER, gui_cons.ALTURA_BOTAO_REMOVER)
-        self.layout.addWidget(self.btn_remover)
-        self.btn_remover.clicked.connect(self.remover)
 
     def get_texto(self):
         return self.label.text()
 
-    @Slot()
-    def remover(self):
-        self.scroll_widget_patent.remove_caminho(self)
 
-
-class ScrollWidgetConteinerCaminhos(QScrollArea):
+class WidgetConteinerDir(QFrame):
 
     def __init__(self):
         super().__init__()
-
-        # config
-        self.setWidgetResizable(True)
+        # Config
         self.layout = QVBoxLayout(self)
-
-        # main widget
-        self.main_widget = QWidget(self)
-        self.main_widget_layout = QVBoxLayout(self.main_widget)
-
-        self.setWidget(self.main_widget)
+        self.label = DirLabel("Não selecionado", self)
+        self.layout.addWidget(self.label)
 
     def adiciona_novo_caminho(self, novo_caminho):
 
-        # valida se o caminho ja existe
-        for caminho in self.get_data():
-            if caminho == novo_caminho:
-                message_box = QMessageBox(QMessageBox.Warning,
-                                          "Ops!",
-                                          "Arquivo já adicionado.")
-                message_box.exec()
-                return
+        if self.layout.count() > 0:
+            self.remove_caminho(self.layout.itemAt(0).widget())
 
-        novo_caminho_widget = CaminhoLabelBtnPair(novo_caminho, self)
-        self.main_widget_layout.addWidget(novo_caminho_widget)
+        self.label = DirLabel(novo_caminho, self)
+        self.layout.addWidget(self.label)
 
-    def remove_caminho(self, caminho):
-        caminho.deleteLater()
+    def remove_caminho(self, dirlabel):
+        dirlabel.deleteLater()
 
     def get_data(self):
-        data = []
-
-        count = self.main_widget_layout.count()
-        for index in range(count):
-            item = self.main_widget_layout.itemAt(index)
-            caminho = item.widget().get_texto()
-            data.append(caminho)
-
-        return data
+        if self.label is not None:
+            return self.label.get_texto()
+        return ""
 
 
 ### WIDGETS PRINCIPAIS ###
 
-class FrameSelecaoCaminhosDeEntrada(QFrame):
+
+class FrameSelecaoCaminhoDeEntrada(QFrame):
 
     def __init__(self):
         super().__init__()
@@ -106,59 +90,28 @@ class FrameSelecaoCaminhosDeEntrada(QFrame):
         self.layout = QVBoxLayout(self)
 
         # WIDGETS
-        # botoes
-        self.btn_dados = QPushButton("Adicionar dados dos alunos")
-        self.btn_gabarito = QPushButton("Adicionar Gabarito")
-        self.btn_respostas = QPushButton("Adicionar Resposta")
+        # Botoes
+        self.btn_select = QPushButton("Selecione o diretório dos dados")
+        self.btn_select.setMinimumHeight(gui_cons.ALTURA_BOTAO_PROCURAR)
         # Widgets que contem os caminhos de entrada
-        self.scroll_dados = ScrollWidgetConteinerCaminhos()
-        self.scroll_gabarito = ScrollWidgetConteinerCaminhos()
-        self.scroll_respostas = ScrollWidgetConteinerCaminhos()
+        self.container_dir = WidgetConteinerDir()
 
-        self.btn_gabarito.clicked.connect(
-            lambda: self.procura_caminho("gabarito"))
-        self.btn_respostas.clicked.connect(
-            lambda: self.procura_caminho("respostas"))
-        self.btn_dados.clicked.connect(
-            lambda: self.procura_caminho("dados")
-        )
+        self.btn_select.clicked.connect(self.procura_caminho)
 
-        self.layout.addWidget(self.btn_dados)
-        self.layout.addWidget(self.scroll_dados)
-        self.layout.addWidget(self.btn_gabarito)
-        self.layout.addWidget(self.scroll_gabarito)
-        self.layout.addWidget(self.btn_respostas)
-        self.layout.addWidget(self.scroll_respostas)
+        self.layout.addWidget(self.btn_select)
+        self.layout.addWidget(self.container_dir)
 
     @Slot()
-    def procura_caminho(self, tipo_arquivo):
-
-        caminho_arquivo = QFileDialog.getOpenFileName(
-            self,
-            "Arquivo de " + tipo_arquivo,
-            path.pardir,
-            "Arquivo de dados (*.xlsx *.csv)",
+    def procura_caminho(self):
+        caminho_arquivo = str(
+            QFileDialog.getExistingDirectory(self, "Select Directory")
         )
-
-        if caminho_arquivo[0] != '':
-            if tipo_arquivo == "gabarito":
-                self.scroll_gabarito.adiciona_novo_caminho(caminho_arquivo[0])
-
-            elif tipo_arquivo == "respostas":
-                self.scroll_respostas.adiciona_novo_caminho(caminho_arquivo[0])
-
-            elif tipo_arquivo == "dados":
-                self.scroll_dados.adiciona_novo_caminho(caminho_arquivo[0])
-
+        self.container_dir.adiciona_novo_caminho(caminho_arquivo)
 
     def get_data(self):
-        caminhos_gabaritos = self.scroll_gabarito.get_data()
-        caminhos_respostas = self.scroll_respostas.get_data()
-        caminhos_dados = self.scroll_dados.get_data()
+        caminhos_dados = self.container_dir.get_data()
         return {
-            'caminhos_gabaritos': caminhos_gabaritos,
-            'caminhos_respostas': caminhos_respostas,
-            'caminhos_dados': caminhos_dados,
+            "dir_entrada": caminhos_dados,
         }
 
 
@@ -167,39 +120,49 @@ class FrameSelecaoTipoDeCorrecao(QFrame):
     def __init__(self):
         super().__init__()
 
-        self.layout = QVBoxLayout(self)
+        self.layout = QHBoxLayout(self)
+        self.layout.setAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
 
-        # WIDGESTS
+        # Widgets
         self.grupo_botoes = QButtonGroup(self)
 
-        self.label_topo = QLabel("Escolha o tipo de correção: ")
+        self.label = QLabel("Escolha o tipo de correção: ")
+        font = self.label.font()
+        font.setPointSize(gui_cons.TAMANHO_FONTE_LABEL)
+        self.label.setFont(font)
+
         self.simuenem_radio_btn = QRadioButton("SIMUENEM")
         self.simufsc_radio_btn = QRadioButton("SIMUFSC")
         self.simulinho_radio_btn = QRadioButton("SIMULINHO")
+        self.ps_radio_btn = QRadioButton("PS")
 
         self.grupo_botoes.addButton(self.simuenem_radio_btn)
         self.grupo_botoes.addButton(self.simufsc_radio_btn)
         self.grupo_botoes.addButton(self.simulinho_radio_btn)
+        self.grupo_botoes.addButton(self.ps_radio_btn)
         self.grupo_botoes.setId(self.simuenem_radio_btn, 0)
         self.grupo_botoes.setId(self.simufsc_radio_btn, 1)
         self.grupo_botoes.setId(self.simulinho_radio_btn, 2)
+        self.grupo_botoes.setId(self.ps_radio_btn, 3)
 
-        self.layout.addWidget(self.label_topo)
+        self.layout.addWidget(self.label)
         self.layout.addWidget(self.simuenem_radio_btn)
         self.layout.addWidget(self.simufsc_radio_btn)
         self.layout.addWidget(self.simulinho_radio_btn)
+        self.layout.addWidget(self.ps_radio_btn)
 
     def get_data(self):
         btn_id = self.grupo_botoes.checkedId()
 
         if btn_id == 0:
-            return {'tipo_de_correcao': 'simuenem'}
-        elif btn_id == 1:
-            return {'tipo_de_correcao': 'simufsc'}
-        elif btn_id == 2:
-            return {'tipo_de_correcao': 'simulinho'}
-        else:
-            return {'tipo_de_correcao': 'Não selecionado'}
+            return {"tipo_de_correcao": "simuenem"}
+        if btn_id == 1:
+            return {"tipo_de_correcao": "simufsc"}
+        if btn_id == 2:
+            return {"tipo_de_correcao": "simulinho"}
+        if btn_id == 3:
+            return {"tipo_de_correcao": "ps"}
+        return {"tipo_de_correcao": "Não selecionado"}
 
 
 class FrameSelecaoCaminhoDeSaida(QFrame):
@@ -207,27 +170,30 @@ class FrameSelecaoCaminhoDeSaida(QFrame):
     def __init__(self):
         super().__init__()
 
+        # layout
         self.layout = QVBoxLayout(self)
-        # WIDGETS
-        self.btn_salvar = QPushButton("Salvar na pasta:")
-        self.label_salvar = QLabel("Não selecionado")
-        self.label_salvar.setWordWrap(True)
 
-        self.btn_salvar.clicked.connect(self.procura_caminho)
-        self.layout.addWidget(self.btn_salvar)
-        self.layout.addWidget(self.label_salvar)
+        # WIDGETS
+        # Botoes
+        self.btn_select = QPushButton("Selecione o diretório de saida")
+        self.btn_select.setMinimumHeight(gui_cons.ALTURA_BOTAO_PROCURAR)
+        # Widgets que contem os caminhos de entrada
+        self.container_dir = WidgetConteinerDir()
+
+        self.btn_select.clicked.connect(self.procura_caminho)
+
+        self.layout.addWidget(self.btn_select)
+        self.layout.addWidget(self.container_dir)
 
     @Slot()
     def procura_caminho(self):
-
-        caminho_arquivo = QFileDialog.getExistingDirectory(self,
-                                                           "Escolha o diretório",
-                                                           "",  # <- Diretorio inicial
-                                                           QFileDialog.ShowDirsOnly
-                                                           )
-        if caminho_arquivo != '':
-            self.label_salvar.setText(caminho_arquivo)
+        caminho_arquivo = str(
+            QFileDialog.getExistingDirectory(self, "Select Directory")
+        )
+        self.container_dir.adiciona_novo_caminho(caminho_arquivo)
 
     def get_data(self):
-        caminho_de_saida = self.label_salvar.text()
-        return {'caminho_de_saida': caminho_de_saida}
+        caminhos_dados = self.container_dir.get_data()
+        return {
+            "dir_saida": caminhos_dados,
+        }

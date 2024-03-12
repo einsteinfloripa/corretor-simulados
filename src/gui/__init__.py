@@ -1,4 +1,5 @@
 import sys
+import traceback
 
 from PySide6.QtCore import Slot
 from PySide6.QtGui import QIcon, QPixmap
@@ -14,14 +15,13 @@ from PySide6.QtWidgets import (
 )
 
 
-from gui.widgets import (
-    FrameSelecaoCaminhosDeEntrada,
+from src.gui.widgets import (
+    FrameSelecaoCaminhoDeEntrada,
     FrameSelecaoTipoDeCorrecao,
     FrameSelecaoCaminhoDeSaida,
 )
-
-import gui.constantes as gui_cons
-import gui.auxiliar as aux
+import src.gui.constantes as gui_cons
+import src.gui.auxiliar as aux
 
 
 class Window(QMainWindow):
@@ -51,7 +51,7 @@ class Window(QMainWindow):
         self.layout = QVBoxLayout(self.mainframe)
 
         # Adiciona os widgets filhos
-        self.frame_caminhos_entrada = FrameSelecaoCaminhosDeEntrada()
+        self.frame_caminhos_entrada = FrameSelecaoCaminhoDeEntrada()
         self.frame_correcao = FrameSelecaoTipoDeCorrecao()
         self.frame_caminho_saida = FrameSelecaoCaminhoDeSaida()
         self.btn_corrigir = QPushButton("Corrigir")
@@ -69,8 +69,9 @@ class Window(QMainWindow):
     def set_corrigir_callback(self, func):
         self.funcao_corrigir = func
 
-    def popup_botao_ok(self, titulo, mensagem,
-            pixmap_padrao='Warning', pixmap_customizado = None):
+    def popup_botao_ok(
+        self, titulo, mensagem, pixmap_padrao="Warning", pixmap_customizado=None
+    ):
 
         msg = QMessageBox()
         msg.setWindowTitle(titulo)
@@ -82,7 +83,6 @@ class Window(QMainWindow):
             msg.setIcon(aux.get_icone_padrao(pixmap_padrao))
 
         msg.exec()
-
 
     @Slot()
     def corrigir(self):
@@ -108,7 +108,18 @@ class Window(QMainWindow):
             message_box.exec()
 
         else:
-            self.funcao_corrigir(dados)
+            try:
+                self.funcao_corrigir(dados, self)
+            except ValueError as exc:
+                print(traceback.format_exc())
+                message_box = QMessageBox(QMessageBox.Warning, "Algo errado!", str(exc))
+                message_box.exec()
+            except Exception as exc:
+                print(traceback.format_exc())
+                message_box = QMessageBox(
+                    QMessageBox.Critical, "Erro inesperado!", str(exc)
+                )
+                message_box.exec()
 
     @Slot()
     def set_opcao(self, action):
@@ -116,7 +127,7 @@ class Window(QMainWindow):
             self.debug_mode = action.isChecked()
 
 
-class Aplication(QApplication):
+class Application(QApplication):
     def __init__(self):
         super().__init__(sys.argv)
         self.icone = QIcon(gui_cons.CAMINHO_ICONE)

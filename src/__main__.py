@@ -1,66 +1,37 @@
-
-from corrigir import corrigir
-from geradores.gerar_json_aluno import gerar_json_alunos
-from geradores.gerar_json_geral_disciplina import gerar_json_disciplinas
-from leitura_e_escrita.escrever_arquivo import escrever_csv, escrever_json
-from leitura_e_escrita.ler_arquivo import csvs_to_dfs
-from gui import Aplication
-from auxilio.path import (get_caminho_de_saida, join_paths,
-                          ROOT_PATH)
+from src.corretores import corrigir
+from src.geradores import gerar_relatorio
+from src.leitura_e_escrita.ler_arquivo import carregar_dados
+from src.auxilio.checker import check
+from src.auxilio.path import get_caminho_de_saida, join_paths, ROOT_PATH
+import src.gui as gui
 
 
-def main(dados):
+def main(dados: dict, window):
 
-
-    dados_alunos_path = dados["caminhos_dados"][0] # so um item por enquanto, por isso [0]
-    respostas_alunos_path = dados["caminhos_respostas"][0]
-    gabarito_path = dados["caminhos_gabaritos"][0]
+    dir_de_entrada = dados["dir_entrada"]
+    dir_saida = get_caminho_de_saida(dados["dir_saida"])
     tipo_correcao = dados["tipo_de_correcao"]
 
-    path_output_arquivos_correcao = get_caminho_de_saida(dados["caminho_de_saida"])
+    # Carregar dados
+    dados_de_entrada = carregar_dados(dir_de_entrada, tipo_correcao)
 
-    _, df_respostas, df_gabarito = csvs_to_dfs(
-        dados_alunos_path, respostas_alunos_path, gabarito_path
-    )
-    df_redacoes = []  # PLACE HOLDER Não implementado
+    # Checar se os dados são válidos
+    check(dados_de_entrada, tipo_correcao)
 
     # Corrigir Provas
-    df_resultado = corrigir(df_respostas, df_gabarito, df_redacoes, tipo_correcao)
+    df_resultado = corrigir(dados_de_entrada, tipo_correcao)
 
-    # escrever_csv("./output/respostas.csv", respostas)  ### Igual ao input...
-    escrever_csv(join_paths(path_output_arquivos_correcao, "resultado.csv"), df_resultado)
-    escrever_csv(join_paths(path_output_arquivos_correcao, "gabarito.csv"), df_gabarito)
+    # Gerar arquivo de estatisticas de correção e salvar
+    gerar_relatorio(df_resultado, tipo_correcao, dir_saida)
 
-    subjects = gerar_json_disciplinas(df_resultado, df_gabarito, tipo_correcao)
-    # writing = gerar_json_redacao(correcao, len(redacoes))
-    student_dataset = gerar_json_alunos(df_resultado, df_gabarito, tipo_correcao)
-
-    data = {
-        "config": {
-            "role": 0,
-            "type": 4,
-            "version": "I 07/2022",
-            "name": "SIMUFSC 2022",
-        },
-        "general": {
-            "subjects": subjects,
-            # "writing": writing,
-        },
-        "student_dataset": student_dataset,
-    }
-
-    escrever_json(join_paths(path_output_arquivos_correcao, "data.json"), data)
-
-    app.window.popup_botao_ok(
-                              "Sucesso!",
-                              "O relatório foi gerado com sucesso!",
-                              pixmap_customizado=join_paths(
-                                  ROOT_PATH, 'recursos', 'imagens','sucesso.png'
-                                )
-                            )
+    window.popup_botao_ok(
+        "Sucesso!",
+        "O relatório foi gerado com sucesso!",
+        pixmap_customizado=join_paths(ROOT_PATH, "recursos", "imagens", "sucesso.png"),
+    )
 
 
-if __name__ == '__main__':
-    app = Aplication()
+if __name__ == "__main__":
+    app = gui.Application()
     app.window.set_corrigir_callback(main)
     app.Run()

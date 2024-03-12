@@ -2,20 +2,22 @@ import os
 import sys
 from pathlib import Path
 
+
 # Constatntes
 # .../corretor-simulados
-def get_root_path():
+def get_root_path() -> str:
 
-    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS') :
-        return Path(sys._MEIPASS).resolve()
+    if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
+        return str(Path(sys._MEIPASS).resolve())
 
-    return os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    return os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+
 
 ROOT_PATH = get_root_path()
 
 
 # adiciona relatorio ao caminho, se ja existir adiciona relatorio_1 ...
-def get_caminho_de_saida(dir_selecionado):
+def get_caminho_de_saida(dir_selecionado: str) -> str:
 
     cont = 0
     while True:
@@ -33,3 +35,12 @@ def get_caminho_de_saida(dir_selecionado):
 
 def join_paths(*args):
     return os.path.join(*args)
+
+def mkdir(path: str):
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+def rmdir(path: str):
+    if os.path.exists(path):
+        os.removedirs(path)
+    

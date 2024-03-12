@@ -1,4 +1,4 @@
-from auxilio.variaveis import areas_enem
+from auxilio.constantes import areas_enem
 
 def gerar_details_aluno_enem(nome_aluno, df_gabarito, df_resultado):
     subjects = gerar_estrutura_disciplinas_enem_aluno()
