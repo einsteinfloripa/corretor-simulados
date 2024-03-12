@@ -10,6 +10,9 @@ def check(dados_entrada: dict[str : pd.DataFrame], tipo_correcao: str) -> None:
         "simulinho": check_simulinho,
         "ps": check_ps,
     }
+
+    mapa_correcao[tipo_correcao](dados_entrada)
+
     # Universal checks
     # Valores NaN ou nulos
     if True in dados_entrada["gabarito"].isnull().any().values:
@@ -30,7 +33,9 @@ def check(dados_entrada: dict[str : pd.DataFrame], tipo_correcao: str) -> None:
             f"Cpf(s) {cpf_nao_encontrados} não encontrado(s) na lista de dados dos alunos."
         )
 
-    mapa_correcao[tipo_correcao](dados_entrada)
+    # Checa se encontra valores duplicados nas respostas
+    if True in dados_entrada["respostas"].duplicated().values:
+        raise ValueError("Valores duplicados encontrados nas respostas")
 
 
 def check_ps(dados_entrada):

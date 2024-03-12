@@ -8,7 +8,6 @@ from src.__main__ import main
 
 class TestIntegration:
 
-    @pytest.mark.t
     def test_integration_ps(self, tmp_path, dados_validados):
         # Variaveis de entrada
         dir_entrada = 'recursos/exemplos/exemplo_ps'

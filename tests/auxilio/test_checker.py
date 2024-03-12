@@ -114,3 +114,14 @@ class TestChecker:
             check(dados_entrada, 'ps')
         
         assert f'Cpf(s) {[cpf for cpf in cpfs]} não encontrado(s) na lista de dados dos alunos.' in str(excinfo.value)
+    
+    def test_respostas_repetidas(self, mock_data):
+        dados_entrada = mock_data.carrega_dados('ps')
+        # Adiciona uma linha repetida
+        repetida = dados_entrada['respostas'].iloc[0]
+        dados_entrada['respostas'].iloc[len(dados_entrada['respostas'].index)-1] = repetida
+
+        with pytest.raises(ValueError) as excinfo:
+            check(dados_entrada, 'ps')
+        
+        assert 'Valores duplicados encontrados nas respostas' in str(excinfo.value)
