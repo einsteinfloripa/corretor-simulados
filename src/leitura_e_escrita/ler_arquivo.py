@@ -54,14 +54,14 @@ def _carregar_dados(dados_arquivo: tuple, tipo_prova: str) -> pd.DataFrame:
 # EXCEL
 # args = (caminho, tipo_arquivo)
 def _carrega_excel(*args : tuple[str, str]):
-    dataframe = pd.read_excel(args[0])
+    dataframe = pd.read_excel(args[0], dtype=str)
     return dataframe
 
 
 # CSV
 # args = (caminho, tipo_arquivo)
 def _carrega_csv(*args : tuple[str, str]):
-    dataframe = pd.read_csv(args[0])
+    dataframe = pd.read_csv(args[0], dtype=str)
     return dataframe
 
 

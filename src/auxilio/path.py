@@ -30,9 +30,17 @@ def get_caminho_de_saida(dir_selecionado: str) -> str:
             break
         cont += 1
 
-    os.mkdir(path_output_arquivos_correcao)
     return path_output_arquivos_correcao
 
 
 def join_paths(*args):
     return os.path.join(*args)
+
+def mkdir(path: str):
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+def rmdir(path: str):
+    if os.path.exists(path):
+        os.removedirs(path)
+    
