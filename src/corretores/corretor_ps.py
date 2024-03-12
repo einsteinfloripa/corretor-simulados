@@ -21,9 +21,8 @@ def corrigir(dados: dict[str : pd.DataFrame]) -> pd.DataFrame:
     # compara e cria um novo dataframe com valores booleanos
     df_corrigido = pd.DataFrame(
         somente_respostas == somente_gabarito,
-        columns=[f"c{q:02}" for q in df_gabarito["numero"].values],
+        columns=[f"c{int(q):02}" for q in df_gabarito["numero"].values],
     )
-
     # junta as correçoes ao df total
     df_total = df_total.merge(df_corrigido, left_index=True, right_index=True)
 
